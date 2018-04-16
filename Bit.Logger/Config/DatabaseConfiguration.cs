@@ -13,7 +13,7 @@ namespace Bit.Logger.Config
         {
             get
             {
-                if (!UseCustomFormat && _format == null)
+                if (_format == null)
                 {
                     _format = string.Empty;
 

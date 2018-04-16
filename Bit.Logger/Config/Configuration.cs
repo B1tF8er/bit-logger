@@ -9,7 +9,5 @@ namespace Bit.Logger.Config
         public bool ShowLevel { get; set; } = true;
 
         public Level Level { get; set; } = Level.Information;
-
-        public bool UseCustomFormat { get; set; } = false;
     }
 }
