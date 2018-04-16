@@ -15,21 +15,21 @@
             _loggers = new List<ILogger>();
         }
 
-        public Logger AddConsoleHandler(ConsoleConfiguration configuration)
+        public Logger AddConsoleHandler(ConsoleConfiguration configuration = null)
         {
             _loggers.Add(new ConsoleLogger(configuration));
 
             return this;
         }
 
-        public Logger AddDatabaseHandler(DatabaseConfiguration configuration)
+        public Logger AddDatabaseHandler(DatabaseConfiguration configuration = null)
         {
             _loggers.Add(new DatabaseLogger(configuration));
 
             return this;
         }
 
-        public Logger AddFileHandler(FileConfiguration configuration)
+        public Logger AddFileHandler(FileConfiguration configuration = null)
         {
             _loggers.Add(new FileLogger(configuration));
 
