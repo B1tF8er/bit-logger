@@ -7,13 +7,13 @@ namespace Bit.Logger.Config
     {
         public IFormatProvider FormatProvider { get; set; } = new LoggerFormatProvider();
 
-        private string _format;
+        private string _format = default(string);
 
         public string Format
         {
             get
             {
-                if (!UseCustomFormat)
+                if (!UseCustomFormat && _format == null)
                 {
                     _format = string.Empty;
 
