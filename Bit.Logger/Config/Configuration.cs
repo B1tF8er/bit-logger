@@ -41,8 +41,8 @@ namespace Bit.Logger.Config
             }
             set
             {
-                if (string.IsNullOrEmpty(_format) || string.IsNullOrWhiteSpace(_format))
-                    throw new ArgumentNullException(nameof(_format));
+                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentNullException(nameof(Format));
 
                 _format = value;
             }
