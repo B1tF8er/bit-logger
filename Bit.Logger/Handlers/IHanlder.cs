@@ -1,9 +1,9 @@
-namespace Bit.Logger
+namespace Bit.Logger.Handlers
 {
     using Bit.Logger.Config;
     using System;
 
-    public interface ILogger
+    public interface IHanlder
     {
         Configuration Configuration { get; } 
 

@@ -5,28 +5,33 @@ namespace Bit.Logger.Tests
     using System;
     using Xunit;
 
-    public class CustomLoggerTests
+    public class CustomConsoleHandlerTests
     {
         private Logger logger;
         private const string message = "Test message";
         private readonly Exception exception = new Exception("Test exception");
-        private readonly ConsoleConfiguration configuration;
+        private readonly Configuration configuration;
 
-        public CustomLoggerTests()
+        public CustomConsoleHandlerTests()
         {
             logger = new Logger();
 
-            var customLogger = new CustomLogger();
+            configuration = new Configuration
+            {
+                Level = Level.Critical
+            };
 
-            logger.AddHandler(customLogger);            
+            var customConsoleHandler = new CustomConsoleHandler(configuration);
+
+            logger.AddHandler(customConsoleHandler);            
         }
 
         [Fact]
         public void Trace_ShouldBeExposedForCustomLoggerWithSourceClass()
         {
-            logger.Trace<CustomLoggerTests>(message);
-            logger.Trace<CustomLoggerTests>(exception);
-            logger.Trace<CustomLoggerTests>(message, exception);
+            logger.Trace<CustomConsoleHandlerTests>(message);
+            logger.Trace<CustomConsoleHandlerTests>(exception);
+            logger.Trace<CustomConsoleHandlerTests>(message, exception);
         }
 
         [Fact]
@@ -40,9 +45,9 @@ namespace Bit.Logger.Tests
         [Fact]
         public void Debug_ShouldBeExposedForCustomLoggerWithSourceClass()
         {
-            logger.Debug<CustomLoggerTests>(message);
-            logger.Debug<CustomLoggerTests>(exception);
-            logger.Debug<CustomLoggerTests>(message, exception);
+            logger.Debug<CustomConsoleHandlerTests>(message);
+            logger.Debug<CustomConsoleHandlerTests>(exception);
+            logger.Debug<CustomConsoleHandlerTests>(message, exception);
         }
 
         [Fact]
@@ -56,9 +61,9 @@ namespace Bit.Logger.Tests
         [Fact]
         public void Verbose_ShouldBeExposedForCustomLoggerWithSourceClass()
         {
-            logger.Verbose<CustomLoggerTests>(message);
-            logger.Verbose<CustomLoggerTests>(exception);
-            logger.Verbose<CustomLoggerTests>(message, exception);
+            logger.Verbose<CustomConsoleHandlerTests>(message);
+            logger.Verbose<CustomConsoleHandlerTests>(exception);
+            logger.Verbose<CustomConsoleHandlerTests>(message, exception);
         }
 
         [Fact]
@@ -72,9 +77,9 @@ namespace Bit.Logger.Tests
         [Fact]
         public void Information_ShouldBeExposedForCustomLoggerWithSourceClass()
         {
-            logger.Information<CustomLoggerTests>(message);
-            logger.Information<CustomLoggerTests>(exception);
-            logger.Information<CustomLoggerTests>(message, exception);
+            logger.Information<CustomConsoleHandlerTests>(message);
+            logger.Information<CustomConsoleHandlerTests>(exception);
+            logger.Information<CustomConsoleHandlerTests>(message, exception);
         }
 
         [Fact]
@@ -88,9 +93,9 @@ namespace Bit.Logger.Tests
         [Fact]
         public void Warning_ShouldBeExposedForCustomLoggerWithSourceClass()
         {
-            logger.Information<CustomLoggerTests>(message);
-            logger.Information<CustomLoggerTests>(exception);
-            logger.Information<CustomLoggerTests>(message, exception);
+            logger.Information<CustomConsoleHandlerTests>(message);
+            logger.Information<CustomConsoleHandlerTests>(exception);
+            logger.Information<CustomConsoleHandlerTests>(message, exception);
         }
 
         [Fact]
@@ -104,9 +109,9 @@ namespace Bit.Logger.Tests
         [Fact]
         public void Error_ShouldBeExposedForCustomLoggerWithSourceClass()
         {
-            logger.Error<CustomLoggerTests>(message);
-            logger.Error<CustomLoggerTests>(exception);
-            logger.Error<CustomLoggerTests>(message, exception);
+            logger.Error<CustomConsoleHandlerTests>(message);
+            logger.Error<CustomConsoleHandlerTests>(exception);
+            logger.Error<CustomConsoleHandlerTests>(message, exception);
         }
 
         [Fact]
@@ -120,9 +125,9 @@ namespace Bit.Logger.Tests
         [Fact]
         public void Critical_ShouldBeExposedForCustomLoggerWithSourceClass()
         {
-            logger.Critical<CustomLoggerTests>(message);
-            logger.Critical<CustomLoggerTests>(exception);
-            logger.Critical<CustomLoggerTests>(message, exception);
+            logger.Critical<CustomConsoleHandlerTests>(message);
+            logger.Critical<CustomConsoleHandlerTests>(exception);
+            logger.Critical<CustomConsoleHandlerTests>(message, exception);
         }
 
         [Fact]

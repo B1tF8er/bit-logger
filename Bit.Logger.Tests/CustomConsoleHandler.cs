@@ -1,15 +1,16 @@
 namespace Bit.Logger.Tests
 {
     using Bit.Logger.Config;
+    using Bit.Logger.Handlers;
     using System;
 
-    public class CustomLogger : ILogger
+    public class CustomConsoleHandler : IHanlder
     {
         public Configuration Configuration { get; }
 
-        public CustomLogger()
+        public CustomConsoleHandler(Configuration configuration)
         {
-            Configuration = new Configuration();
+            Configuration = configuration ?? new Configuration();
         }
 
         public void Write<TClass>(string message, Level level) where TClass : class

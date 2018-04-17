@@ -4,11 +4,11 @@ namespace Bit.Logger.Handlers
     using System;
     using static Bit.Logger.Helpers.Tracer;
 
-    internal class ConsoleLogger : ILogger
+    internal class ConsoleHandlerLogger : IHanlder
     {
         public Configuration Configuration { get; }
 
-        public ConsoleLogger(ConsoleConfiguration configuration) =>
+        public ConsoleHandlerLogger(ConsoleConfiguration configuration) =>
             Configuration = configuration ?? new ConsoleConfiguration();
 
         public void Write<TClass>(string message, Level level) where TClass : class =>
