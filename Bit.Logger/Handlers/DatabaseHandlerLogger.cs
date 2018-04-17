@@ -34,16 +34,7 @@ namespace Bit.Logger.Handlers
         {
             if (Configuration.Level >= level)
             {
-                Console.WriteLine(
-                    string.Format(Configuration.FormatProvider, Configuration.Format,
-                        level,
-                        DateTime.Now,
-                        typeof(TClass).FullName,
-                        GetMethodName(),
-                        message,
-                        exception
-                    )
-                );
+                // TODO: save to DB
             }
         }
 
@@ -51,16 +42,7 @@ namespace Bit.Logger.Handlers
         {
             if (Configuration.Level >= level)
             {
-                Console.WriteLine(
-                    string.Format(Configuration.FormatProvider, Configuration.Format,
-                        level,
-                        DateTime.Now,
-                        GetClass().FullName,
-                        GetMethodName(),
-                        message,
-                        exception
-                    )
-                );
+                // TODO: save to DB
             }
         }
     }
