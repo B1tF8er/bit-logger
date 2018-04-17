@@ -6,7 +6,7 @@ namespace Bit.Logger.Handlers
 
     internal class DatabaseLogger : ILogger
     {
-        public readonly DatabaseConfiguration Configuration;
+        public Configuration Configuration { get; }
 
         public DatabaseLogger(DatabaseConfiguration configuration) =>
             Configuration = configuration ?? new DatabaseConfiguration();

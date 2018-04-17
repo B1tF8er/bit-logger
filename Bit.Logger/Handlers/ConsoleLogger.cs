@@ -6,7 +6,7 @@ namespace Bit.Logger.Handlers
 
     internal class ConsoleLogger : ILogger
     {
-        public readonly ConsoleConfiguration Configuration;
+        public Configuration Configuration { get; }
 
         public ConsoleLogger(ConsoleConfiguration configuration) =>
             Configuration = configuration ?? new ConsoleConfiguration();
@@ -20,8 +20,8 @@ namespace Bit.Logger.Handlers
         public void Write<TClass>(Exception exception, Level level) where TClass : class =>
             ToConsole<TClass>(level, exception: exception);
 
-        public void Write(Exception exception, Level logLevel) =>
-            ToConsole(logLevel, exception: exception);
+        public void Write(Exception exception, Level level) =>
+            ToConsole(level, exception: exception);
 
         public void Write<TClass>(string message, Exception exception, Level level) where TClass : class =>
             ToConsole<TClass>(level, message, exception);

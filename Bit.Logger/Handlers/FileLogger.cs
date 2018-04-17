@@ -6,7 +6,7 @@ namespace Bit.Logger.Handlers
 
     internal class FileLogger : ILogger 
     {
-        public readonly FileConfiguration Configuration;
+        public Configuration Configuration { get; }
 
         public FileLogger(FileConfiguration configuration) =>
             Configuration = configuration ?? new FileConfiguration();

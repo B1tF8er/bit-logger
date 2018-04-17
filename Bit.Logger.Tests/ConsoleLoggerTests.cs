@@ -1,8 +1,8 @@
 namespace Bit.Logger.Tests
 {
-    using System;
     using Bit.Logger;
     using Bit.Logger.Config;
+    using System;
     using Xunit;
 
     public class ConsoleLoggerTests

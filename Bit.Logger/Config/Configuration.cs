@@ -12,7 +12,7 @@ namespace Bit.Logger.Config
         public bool ShowLevel { get; set; } = true;
 
         public Level Level { get; set; } = Level.Information;
-        
+
         public IFormatProvider FormatProvider { get; set; } = new DefaultFormatProvider();
 
         private string _format = default(string);
