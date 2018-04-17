@@ -7,7 +7,7 @@ namespace Bit.Logger.Tests
 
     public class DatabaseLoggerTests
     {
-        private Logger logger;
+        private ILogger logger;
         private const string message = "Test message";
         private readonly Exception exception = new Exception("Test exception");
         private readonly DatabaseConfiguration configuration;

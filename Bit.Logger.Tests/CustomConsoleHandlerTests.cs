@@ -7,7 +7,7 @@ namespace Bit.Logger.Tests
 
     public class CustomConsoleHandlerTests
     {
-        private Logger logger;
+        private ILogger logger;
         private const string message = "Test message";
         private readonly Exception exception = new Exception("Test exception");
         private readonly Configuration configuration;
@@ -23,7 +23,7 @@ namespace Bit.Logger.Tests
 
             var customConsoleHandler = new CustomConsoleHandler(configuration);
 
-            logger.AddHandler(customConsoleHandler);            
+            logger.Warning(message);            
         }
 
         [Fact]
