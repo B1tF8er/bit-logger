@@ -2,11 +2,11 @@ namespace Bit.Logger.FormatProviders
 {
     using System;
 
-    public class LoggerFormatProvider : IFormatProvider
+    public class DefaultFormatProvider : IFormatProvider
     {
         public object GetFormat(Type formatType) =>
             formatType == typeof(ICustomFormatter) ? 
-                new LoggerCustomFormatter() : 
+                new DefaultCustomFormatter() : 
                 null;
     }
 }

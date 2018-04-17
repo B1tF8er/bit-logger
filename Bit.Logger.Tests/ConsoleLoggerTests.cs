@@ -20,7 +20,7 @@ namespace Bit.Logger.Tests
                 ShowTime = true,
                 ShowLevel = true,
                 Level = Level.Critical,
-                ShowColors = true
+                ShowColors = true,
             };
 
             logger = new Logger();

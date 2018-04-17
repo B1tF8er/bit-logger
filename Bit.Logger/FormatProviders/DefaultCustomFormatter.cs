@@ -3,7 +3,7 @@ namespace Bit.Logger.FormatProviders
     using System;
     using System.Linq;
 
-    public class LoggerCustomFormatter : ICustomFormatter
+    public class DefaultCustomFormatter : ICustomFormatter
     {
         public string Format(string format, object arg, IFormatProvider formatProvider)
         {
