@@ -7,7 +7,7 @@ namespace Bit.Logger
 
     public partial interface ILogger
     {
-        List<IHanlder> Handlers { get; }
+        List<IHandler> Handlers { get; }
 
         ILogger AddConsoleHandler(ConsoleConfiguration configuration = null);
 
@@ -15,8 +15,8 @@ namespace Bit.Logger
         
         ILogger AddFileHandler(FileConfiguration configuration = null);
 
-        ILogger AddHandler(IHanlder handler);
+        ILogger AddHandler(IHandler handler);
 
-        ILogger AddHandlers(IEnumerable<IHanlder> handlers);
+        ILogger AddHandlers(IEnumerable<IHandler> handlers);
     }
 }

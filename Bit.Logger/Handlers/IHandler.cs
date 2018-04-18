@@ -3,7 +3,7 @@ namespace Bit.Logger.Handlers
     using Bit.Logger.Config;
     using System;
 
-    public interface IHanlder
+    public interface IHandler
     {
         Configuration Configuration { get; } 
 

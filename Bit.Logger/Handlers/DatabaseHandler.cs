@@ -4,45 +4,45 @@ namespace Bit.Logger.Handlers
     using System;
     using static Bit.Logger.Helpers.Tracer;
 
-    internal class FileHandlerLogger : IHanlder 
+    internal class DatabaseHandler : IHandler
     {
         public Configuration Configuration { get; }
 
-        public FileHandlerLogger(FileConfiguration configuration) =>
-            Configuration = configuration ?? new FileConfiguration();
+        public DatabaseHandler(DatabaseConfiguration configuration) =>
+            Configuration = configuration ?? new DatabaseConfiguration();
 
         public void Write<TClass>(string message, Level level) where TClass : class =>
-            ToFile<TClass>(level, message);
+            ToDatabase<TClass>(level, message);
 
         public void Write(string message, Level level) =>
-            ToFile(level, message);
+            ToDatabase(level, message);
 
         public void Write<TClass>(Exception exception, Level level) where TClass : class =>
-            ToFile<TClass>(level, exception: exception);
+            ToDatabase<TClass>(level, exception: exception);
 
         public void Write(Exception exception, Level level) =>
-            ToFile(level, exception: exception);
+            ToDatabase(level, exception: exception);
 
         public void Write<TClass>(string message, Exception exception, Level level) where TClass : class =>
-            ToFile<TClass>(level, message, exception);
+            ToDatabase<TClass>(level, message, exception);
 
         public void Write(string message, Exception exception, Level level) =>
-            ToFile(level, message, exception);
+            ToDatabase(level, message, exception);
 
-        private void ToFile<TClass>(Level level, string message = default(string), Exception exception = null)
+        private void ToDatabase<TClass>(Level level, string message = default(string), Exception exception = null)
             where TClass : class
         {
             if (Configuration.Level >= level)
             {
-                // TODO: Write to file
+                // TODO: save to DB
             }
         }
 
-        private void ToFile(Level level, string message = default(string), Exception exception = null)
+        private void ToDatabase(Level level, string message = default(string), Exception exception = null)
         {
             if (Configuration.Level >= level)
             {
-                // TODO: Write to file
+                // TODO: save to DB
             }
         }
     }

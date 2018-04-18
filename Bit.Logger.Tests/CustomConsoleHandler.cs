@@ -4,7 +4,7 @@ namespace Bit.Logger.Tests
     using Bit.Logger.Handlers;
     using System;
 
-    public class CustomConsoleHandler : IHanlder
+    public class CustomConsoleHandler : IHandler
     {
         public Configuration Configuration { get; }
 
