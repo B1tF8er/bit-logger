@@ -10,19 +10,30 @@ namespace Bit.Logger.Handlers
     {
         public Configuration Configuration { get; }
 
-        private string _assemblyPath = default(string);
+        private const string logName = "BitLogger";
+
+        private const string dateFormat = "yyyy_MM_dd_HH";
+
+        private string lastHour = default(string);
+
+        private string logPath = default(string);
         
-        private string AssemblyPath 
+        private string LogPath 
         { 
             get
             {
-                if (_assemblyPath == null)
+                var currentHour = DateTime.Now.ToString(dateFormat);
+                
+                if (logPath == null || currentHour != lastHour)
                 {
-                    var assemblyLocation = Assembly.GetEntryAssembly().Location;
-                    _assemblyPath = Path.GetDirectoryName(assemblyLocation);
+                    var assemblyLocation = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+                    var logLocation = Path.Combine(assemblyLocation, logName);
+
+                    logPath = $"{logLocation}\\{currentHour}.log";
+                    lastHour = currentHour;
                 }
 
-                return _assemblyPath;
+                return logPath;
             }
         }
 
@@ -52,7 +63,7 @@ namespace Bit.Logger.Handlers
         {
             if (Configuration.Level >= level)
             {
-                var logFile = File.Create(AssemblyPath);
+                var logFile = File.Create(LogPath);
                 var logWriter = new StreamWriter(logFile);
                 logWriter.WriteLine(
                     string.Format(Configuration.FormatProvider, Configuration.Format,
@@ -72,7 +83,7 @@ namespace Bit.Logger.Handlers
         {
             if (Configuration.Level >= level)
             {
-                var logFile = File.Create(AssemblyPath);
+                var logFile = File.Create(LogPath);
                 var logWriter = new StreamWriter(logFile);
                 logWriter.WriteLine(
                     string.Format(Configuration.FormatProvider, Configuration.Format,
