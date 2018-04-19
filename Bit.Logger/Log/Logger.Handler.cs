@@ -12,21 +12,21 @@
 
         public Logger() => Handlers = new List<IHandler>();
 
-        public ILogger AddConsoleHandler(ConsoleConfiguration configuration = null)
+        public ILogger AddConsoleHandler(Configuration configuration = null)
         {
             Handlers.Add(new ConsoleHandler(configuration));
 
             return this;
         }
 
-        public ILogger AddDatabaseHandler(DatabaseConfiguration configuration = null)
+        public ILogger AddDatabaseHandler(Configuration configuration = null)
         {
             Handlers.Add(new DatabaseHandler(configuration));
 
             return this;
         }
 
-        public ILogger AddFileHandler(FileConfiguration configuration = null)
+        public ILogger AddFileHandler(Configuration configuration = null)
         {
             Handlers.Add(new FileHandler(configuration));
 

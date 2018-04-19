@@ -5,7 +5,7 @@ namespace Bit.Logger.Handlers
 
     public interface IHandler
     {
-        Configuration Configuration { get; } 
+        Configuration Configuration { get; }
 
         void Write<TClass>(string message, Level level) where TClass : class;
 

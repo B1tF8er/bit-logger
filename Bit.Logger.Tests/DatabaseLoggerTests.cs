@@ -2,30 +2,28 @@ namespace Bit.Logger.Tests
 {
     using Bit.Logger;
     using Bit.Logger.Config;
+    using Moq;
     using System;
     using Xunit;
 
     public class DatabaseLoggerTests
     {
-        private ILogger logger;
+        private readonly ILogger logger;
+        private readonly Mock<ILogger> mockLogger;
         private const string message = "Test message";
         private readonly Exception exception = new Exception("Test exception");
-        private readonly DatabaseConfiguration configuration;
 
         public DatabaseLoggerTests()
         {
-            configuration = new DatabaseConfiguration
-            {
-                ShowDate = true,
-                ShowTime = true,
-                ShowLevel = true,
-                Level = Level.Critical,
-                ConnectionString = "testConnectionString"
-            };
+            mockLogger = new Mock<ILogger>(MockBehavior.Strict);
 
-            logger = new Logger();
+            mockLogger
+                .SetupCallsWithSource<DatabaseLoggerTests>(message, exception)
+                .SetupCallsWithoutSource(message, exception)
+                .Setup(logger => logger.AddDatabaseHandler(It.IsAny<Configuration>()))
+                .Returns(mockLogger.Object);
 
-            logger.AddDatabaseHandler(configuration);
+            logger = mockLogger.Object;
         }
 
         [Fact]

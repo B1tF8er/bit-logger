@@ -9,11 +9,11 @@ namespace Bit.Logger
     {
         List<IHandler> Handlers { get; }
 
-        ILogger AddConsoleHandler(ConsoleConfiguration configuration = null);
+        ILogger AddConsoleHandler(Configuration configuration = null);
 
-        ILogger AddDatabaseHandler(DatabaseConfiguration configuration = null);
+        ILogger AddDatabaseHandler(Configuration configuration = null);
         
-        ILogger AddFileHandler(FileConfiguration configuration = null);
+        ILogger AddFileHandler(Configuration configuration = null);
 
         ILogger AddHandler(IHandler handler);
 

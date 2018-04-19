@@ -9,8 +9,8 @@ namespace Bit.Logger.Handlers
     {
         public Configuration Configuration { get; }
 
-        public DatabaseHandler(DatabaseConfiguration configuration) =>
-            Configuration = configuration ?? new DatabaseConfiguration();
+        public DatabaseHandler(Configuration configuration) =>
+            Configuration = configuration ?? new Configuration();
 
         public void Write<TClass>(string message, Level level) where TClass : class =>
             ToDatabase<TClass>(level, message);

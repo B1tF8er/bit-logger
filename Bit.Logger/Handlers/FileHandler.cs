@@ -3,14 +3,31 @@ namespace Bit.Logger.Handlers
     using Bit.Logger.Config;
     using System;
     using System.IO;
+    using System.Reflection;
     using static Bit.Logger.Helpers.Tracer;
 
     internal class FileHandler : IHandler 
     {
         public Configuration Configuration { get; }
 
-        public FileHandler(FileConfiguration configuration) =>
-            Configuration = configuration ?? new FileConfiguration();
+        private string _assemblyPath = default(string);
+        
+        private string AssemblyPath 
+        { 
+            get
+            {
+                if (_assemblyPath == null)
+                {
+                    var assemblyLocation = Assembly.GetEntryAssembly().Location;
+                    _assemblyPath = Path.GetDirectoryName(assemblyLocation);
+                }
+
+                return _assemblyPath;
+            }
+        }
+
+        public FileHandler(Configuration configuration) =>
+            Configuration = configuration ?? new Configuration();
 
         public void Write<TClass>(string message, Level level) where TClass : class =>
             ToFile<TClass>(level, message);
@@ -35,8 +52,7 @@ namespace Bit.Logger.Handlers
         {
             if (Configuration.Level >= level)
             {
-                var logPath = Path.GetTempFileName();
-                var logFile = File.Create(logPath);
+                var logFile = File.Create(AssemblyPath);
                 var logWriter = new StreamWriter(logFile);
                 logWriter.WriteLine(
                     string.Format(Configuration.FormatProvider, Configuration.Format,
@@ -56,8 +72,7 @@ namespace Bit.Logger.Handlers
         {
             if (Configuration.Level >= level)
             {
-                var logPath = Path.GetTempFileName();
-                var logFile = File.Create(logPath);
+                var logFile = File.Create(AssemblyPath);
                 var logWriter = new StreamWriter(logFile);
                 logWriter.WriteLine(
                     string.Format(Configuration.FormatProvider, Configuration.Format,

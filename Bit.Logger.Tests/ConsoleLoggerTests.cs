@@ -2,30 +2,28 @@ namespace Bit.Logger.Tests
 {
     using Bit.Logger;
     using Bit.Logger.Config;
+    using Moq;
     using System;
     using Xunit;
 
     public class ConsoleLoggerTests
     {
         private ILogger logger;
+        private readonly Mock<ILogger> mockLogger;
         private const string message = "Test message";
         private readonly Exception exception = new Exception("Test exception");
-        private readonly ConsoleConfiguration configuration;
 
         public ConsoleLoggerTests()
         {
-            configuration = new ConsoleConfiguration
-            {
-                ShowDate = true,
-                ShowTime = true,
-                ShowLevel = true,
-                Level = Level.Critical,
-                ShowColors = true,
-            };
+            mockLogger = new Mock<ILogger>(MockBehavior.Strict);
 
-            logger = new Logger();
+            mockLogger
+                .SetupCallsWithSource<ConsoleLoggerTests>(message, exception)
+                .SetupCallsWithoutSource(message, exception)
+                .Setup(logger => logger.AddConsoleHandler(It.IsAny<Configuration>()))
+                .Returns(mockLogger.Object);
 
-            logger.AddConsoleHandler(configuration);
+            logger = mockLogger.Object;
         }
 
         [Fact]

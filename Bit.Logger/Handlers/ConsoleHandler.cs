@@ -8,8 +8,8 @@ namespace Bit.Logger.Handlers
     {
         public Configuration Configuration { get; }
 
-        public ConsoleHandler(ConsoleConfiguration configuration) =>
-            Configuration = configuration ?? new ConsoleConfiguration();
+        public ConsoleHandler(Configuration configuration) =>
+            Configuration = configuration ?? new Configuration();
 
         public void Write<TClass>(string message, Level level) where TClass : class =>
             ToConsole<TClass>(level, message);
@@ -54,8 +54,8 @@ namespace Bit.Logger.Handlers
                 Console.WriteLine(
                     string.Format(Configuration.FormatProvider, Configuration.Format,
                         level,
-                        DateTime.Now,   
-                        GetClass().FullName,    
+                        DateTime.Now,
+                        GetClass().FullName,
                         GetMethodName(),    
                         message,    
                         exception

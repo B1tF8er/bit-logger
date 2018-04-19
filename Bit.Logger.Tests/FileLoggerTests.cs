@@ -2,30 +2,29 @@ namespace Bit.Logger.Tests
 {
     using Bit.Logger;
     using Bit.Logger.Config;
+    using Moq;
     using System;
     using Xunit;
+    using static SetupExtensions;
 
     public class FileLoggerTests
     {
-        private ILogger logger;
+        private readonly ILogger logger;
+        private readonly Mock<ILogger> mockLogger;
         private const string message = "Test message";
         private readonly Exception exception = new Exception("Test exception");
-        private readonly FileConfiguration configuration;
 
         public FileLoggerTests()
         {
-            configuration = new FileConfiguration
-            {
-                ShowDate = true,
-                ShowTime = true,
-                ShowLevel = true,
-                Level = Level.Critical,
-                FilePath = "testFilePath"
-            };
+            mockLogger = new Mock<ILogger>(MockBehavior.Strict);
 
-            logger = new Logger();
+            mockLogger
+                .SetupCallsWithSource<FileLoggerTests>(message, exception)
+                .SetupCallsWithoutSource(message, exception)
+                .Setup(logger => logger.AddFileHandler(It.IsAny<Configuration>()))
+                .Returns(mockLogger.Object);
 
-            logger.AddFileHandler(configuration);
+            logger = mockLogger.Object;
         }
 
         [Fact]
