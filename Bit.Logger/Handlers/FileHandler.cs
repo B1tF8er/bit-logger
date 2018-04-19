@@ -6,7 +6,7 @@ namespace Bit.Logger.Handlers
     using System.Reflection;
     using static Bit.Logger.Helpers.Tracer;
 
-    internal class FileHandler : IHandler 
+    internal class FileHandler : IHandler
     {
         public Configuration Configuration { get; }
 
@@ -17,13 +17,13 @@ namespace Bit.Logger.Handlers
         private string lastHour = default(string);
 
         private string logPath = default(string);
-        
-        private string LogPath 
-        { 
+
+        private string LogPath
+        {
             get
             {
                 var currentHour = DateTime.Now.ToString(dateFormat);
-                
+
                 if (logPath == null || currentHour != lastHour)
                 {
                     var assemblyLocation = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
@@ -63,19 +63,20 @@ namespace Bit.Logger.Handlers
         {
             if (Configuration.Level >= level)
             {
-                var logFile = File.Create(LogPath);
-                var logWriter = new StreamWriter(logFile);
-                logWriter.WriteLine(
-                    string.Format(Configuration.FormatProvider, Configuration.Format,
-                        level,
-                        DateTime.Now,
-                        typeof(TClass).FullName,
-                        GetMethodName(),
-                        message,
-                        exception
-                    )
-                );
-                logWriter.Dispose();
+                using (var logFile = File.Create(LogPath))
+                using (var logWriter = new StreamWriter(logFile))
+                {
+                    logWriter.WriteLine(
+                        string.Format(Configuration.FormatProvider, Configuration.Format,
+                            level,
+                            DateTime.Now,
+                            typeof(TClass).FullName,
+                            GetMethodName(),
+                            message,
+                            exception
+                        )
+                    );
+                }
             }
         }
 
@@ -83,19 +84,20 @@ namespace Bit.Logger.Handlers
         {
             if (Configuration.Level >= level)
             {
-                var logFile = File.Create(LogPath);
-                var logWriter = new StreamWriter(logFile);
-                logWriter.WriteLine(
-                    string.Format(Configuration.FormatProvider, Configuration.Format,
-                        level,
-                        DateTime.Now,
-                        GetClass().FullName,
-                        GetMethodName(),
-                        message,
-                        exception
-                    )
-                );
-                logWriter.Dispose();
+                using (var logFile = File.Create(LogPath))
+                using (var logWriter = new StreamWriter(logFile))
+                {
+                    logWriter.WriteLine(
+                        string.Format(Configuration.FormatProvider, Configuration.Format,
+                            level,
+                            DateTime.Now,
+                            GetClass().FullName,
+                            GetMethodName(),
+                            message,
+                            exception
+                        )
+                    );
+                }
             }
         }
     }
