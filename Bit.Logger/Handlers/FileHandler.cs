@@ -2,6 +2,7 @@ namespace Bit.Logger.Handlers
 {
     using Bit.Logger.Config;
     using System;
+    using System.IO;
     using static Bit.Logger.Helpers.Tracer;
 
     internal class FileHandler : IHandler 
@@ -34,7 +35,20 @@ namespace Bit.Logger.Handlers
         {
             if (Configuration.Level >= level)
             {
-                // TODO: Write to file
+                var logPath = Path.GetTempFileName();
+                var logFile = File.Create(logPath);
+                var logWriter = new StreamWriter(logFile);
+                logWriter.WriteLine(
+                    string.Format(Configuration.FormatProvider, Configuration.Format,
+                        level,
+                        DateTime.Now,
+                        typeof(TClass).FullName,
+                        GetMethodName(),
+                        message,
+                        exception
+                    )
+                );
+                logWriter.Dispose();
             }
         }
 
@@ -42,7 +56,20 @@ namespace Bit.Logger.Handlers
         {
             if (Configuration.Level >= level)
             {
-                // TODO: Write to file
+                var logPath = Path.GetTempFileName();
+                var logFile = File.Create(logPath);
+                var logWriter = new StreamWriter(logFile);
+                logWriter.WriteLine(
+                    string.Format(Configuration.FormatProvider, Configuration.Format,
+                        level,
+                        DateTime.Now,
+                        GetClass().FullName,
+                        GetMethodName(),
+                        message,
+                        exception
+                    )
+                );
+                logWriter.Dispose();
             }
         }
     }
