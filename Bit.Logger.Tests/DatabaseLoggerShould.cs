@@ -1,0 +1,185 @@
+namespace Bit.Logger.Tests
+{
+    using Bit.Logger;
+    using Bit.Logger.Config;
+    using Moq;
+    using System;
+    using Xunit;
+
+    public class DatabaseLoggerShould
+    {
+        private readonly Mock<ILogger> mockLogger;
+        private readonly ILogger logger;
+        private readonly Exception exception;
+        private const string message = "Test message";
+
+        public DatabaseLoggerShould()
+        {
+            mockLogger = new Mock<ILogger>(MockBehavior.Strict);
+
+            logger = mockLogger.Object;
+
+            exception = new Exception("Test exception");
+
+            mockLogger
+                .SetupCallsWithSource<DatabaseLoggerShould>(message, exception)
+                .SetupCallsWithoutSource(message, exception)
+                .Setup(logger => logger.AddDatabaseHandler(It.IsAny<Configuration>()))
+                .Returns(logger);
+        }
+
+        [Fact]
+        public void LogMessage_AsTrace_OncePerMethodOverload()
+        {
+            logger.Trace<DatabaseLoggerShould>(message);
+            logger.Trace<DatabaseLoggerShould>(exception);
+            logger.Trace<DatabaseLoggerShould>(message, exception);
+
+            mockLogger.Verify(logger => logger.Trace<DatabaseLoggerShould>(message), Times.Once);
+            mockLogger.Verify(logger => logger.Trace<DatabaseLoggerShould>(exception), Times.Once);
+            mockLogger.Verify(logger => logger.Trace<DatabaseLoggerShould>(message, exception), Times.Once);
+
+            mockLogger.ResetCalls();
+
+            logger.Trace(message);
+            logger.Trace(exception);
+            logger.Trace(message, exception);
+
+            mockLogger.Verify(logger => logger.Trace(message), Times.Once);
+            mockLogger.Verify(logger => logger.Trace(exception), Times.Once);
+            mockLogger.Verify(logger => logger.Trace(message, exception), Times.Once);
+        }
+
+        [Fact]
+        public void LogMessage_AsDebug_OncePerMethodOverload()
+        {
+            logger.Debug<DatabaseLoggerShould>(message);
+            logger.Debug<DatabaseLoggerShould>(exception);
+            logger.Debug<DatabaseLoggerShould>(message, exception);
+
+            mockLogger.Verify(logger => logger.Debug<DatabaseLoggerShould>(message), Times.Once);
+            mockLogger.Verify(logger => logger.Debug<DatabaseLoggerShould>(exception), Times.Once);
+            mockLogger.Verify(logger => logger.Debug<DatabaseLoggerShould>(message, exception), Times.Once);
+
+            mockLogger.ResetCalls();
+
+            logger.Debug(message);
+            logger.Debug(exception);
+            logger.Debug(message, exception);
+
+            mockLogger.Verify(logger => logger.Debug(message), Times.Once);
+            mockLogger.Verify(logger => logger.Debug(exception), Times.Once);
+            mockLogger.Verify(logger => logger.Debug(message, exception), Times.Once);
+        }
+
+        [Fact]
+        public void LogMessage_AsVerbose_OncePerMethodOverload()
+        {
+            logger.Verbose<DatabaseLoggerShould>(message);
+            logger.Verbose<DatabaseLoggerShould>(exception);
+            logger.Verbose<DatabaseLoggerShould>(message, exception);
+
+            mockLogger.Verify(logger => logger.Verbose<DatabaseLoggerShould>(message), Times.Once);
+            mockLogger.Verify(logger => logger.Verbose<DatabaseLoggerShould>(exception), Times.Once);
+            mockLogger.Verify(logger => logger.Verbose<DatabaseLoggerShould>(message, exception), Times.Once);
+
+            mockLogger.ResetCalls();
+            
+            logger.Verbose(message);
+            logger.Verbose(exception);
+            logger.Verbose(message, exception);
+
+            mockLogger.Verify(logger => logger.Verbose(message), Times.Once);
+            mockLogger.Verify(logger => logger.Verbose(exception), Times.Once);
+            mockLogger.Verify(logger => logger.Verbose(message, exception), Times.Once);
+        }
+
+        [Fact]
+        public void LogMessage_AsInformation_OncePerMethodOverload()
+        {
+            logger.Information<DatabaseLoggerShould>(message);
+            logger.Information<DatabaseLoggerShould>(exception);
+            logger.Information<DatabaseLoggerShould>(message, exception);
+
+            mockLogger.Verify(logger => logger.Information<DatabaseLoggerShould>(message), Times.Once);
+            mockLogger.Verify(logger => logger.Information<DatabaseLoggerShould>(exception), Times.Once);
+            mockLogger.Verify(logger => logger.Information<DatabaseLoggerShould>(message, exception), Times.Once);
+
+            mockLogger.ResetCalls();
+
+            logger.Information(message);
+            logger.Information(exception);
+            logger.Information(message, exception);
+
+            mockLogger.Verify(logger => logger.Information(message), Times.Once);
+            mockLogger.Verify(logger => logger.Information(exception), Times.Once);
+            mockLogger.Verify(logger => logger.Information(message, exception), Times.Once);
+        }
+
+        [Fact]
+        public void LogMessage_AsWarning_OncePerMethodOverload()
+        {
+            logger.Warning<DatabaseLoggerShould>(message);
+            logger.Warning<DatabaseLoggerShould>(exception);
+            logger.Warning<DatabaseLoggerShould>(message, exception);
+
+            mockLogger.Verify(logger => logger.Warning<DatabaseLoggerShould>(message), Times.Once);
+            mockLogger.Verify(logger => logger.Warning<DatabaseLoggerShould>(exception), Times.Once);
+            mockLogger.Verify(logger => logger.Warning<DatabaseLoggerShould>(message, exception), Times.Once);
+
+            mockLogger.ResetCalls();
+
+            logger.Warning(message);
+            logger.Warning(exception);
+            logger.Warning(message, exception);
+
+            mockLogger.Verify(logger => logger.Warning(message), Times.Once);
+            mockLogger.Verify(logger => logger.Warning(exception), Times.Once);
+            mockLogger.Verify(logger => logger.Warning(message, exception), Times.Once);
+        }
+
+        [Fact]
+        public void LogMessage_AsError_OncePerMethodOverload()
+        {
+            logger.Error<DatabaseLoggerShould>(message);
+            logger.Error<DatabaseLoggerShould>(exception);
+            logger.Error<DatabaseLoggerShould>(message, exception);
+
+            mockLogger.Verify(logger => logger.Error<DatabaseLoggerShould>(message), Times.Once);
+            mockLogger.Verify(logger => logger.Error<DatabaseLoggerShould>(exception), Times.Once);
+            mockLogger.Verify(logger => logger.Error<DatabaseLoggerShould>(message, exception), Times.Once);
+
+            mockLogger.ResetCalls();
+            
+            logger.Error(message);
+            logger.Error(exception);
+            logger.Error(message, exception);
+
+            mockLogger.Verify(logger => logger.Error(message), Times.Once);
+            mockLogger.Verify(logger => logger.Error(exception), Times.Once);
+            mockLogger.Verify(logger => logger.Error(message, exception), Times.Once);
+        }
+
+        [Fact]
+        public void LogMessage_AsCritical_OncePerMethodOverload()
+        {
+            logger.Critical<DatabaseLoggerShould>(message);
+            logger.Critical<DatabaseLoggerShould>(exception);
+            logger.Critical<DatabaseLoggerShould>(message, exception);
+
+            mockLogger.Verify(logger => logger.Critical<DatabaseLoggerShould>(message), Times.Once);
+            mockLogger.Verify(logger => logger.Critical<DatabaseLoggerShould>(exception), Times.Once);
+            mockLogger.Verify(logger => logger.Critical<DatabaseLoggerShould>(message, exception), Times.Once);
+
+            mockLogger.ResetCalls();
+
+            logger.Critical(message);
+            logger.Critical(exception);
+            logger.Critical(message, exception);
+
+            mockLogger.Verify(logger => logger.Critical(message), Times.Once);
+            mockLogger.Verify(logger => logger.Critical(exception), Times.Once);
+            mockLogger.Verify(logger => logger.Critical(message, exception), Times.Once);
+        }
+    }
+}
