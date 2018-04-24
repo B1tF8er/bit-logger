@@ -4,6 +4,7 @@ namespace Bit.Logger.Loggers
     using System;
     using System.IO;
     using System.Reflection;
+    using System.Text;
     using static Bit.Logger.Helpers.Tracer;
 
     internal class FileLogger : ILogger, IConfiguration
@@ -31,6 +32,9 @@ namespace Bit.Logger.Loggers
 
                     logPath = $"{logLocation}\\{currentHour}.log";
                     lastHour = currentHour;
+
+                    if (!Directory.Exists(logLocation))
+                        Directory.CreateDirectory(logLocation);
                 }
 
                 return logPath;
@@ -171,8 +175,7 @@ namespace Bit.Logger.Loggers
         {
             if (Configuration.Level >= level)
             {
-                using (var logFile = File.Create(LogPath))
-                using (var logWriter = new StreamWriter(logFile))
+                using (var logWriter = new StreamWriter(LogPath, true, Encoding.UTF8))
                 {
                     logWriter.WriteLine(
                         string.Format(Configuration.FormatProvider, Configuration.Format,
@@ -192,8 +195,7 @@ namespace Bit.Logger.Loggers
         {
             if (Configuration.Level >= level)
             {
-                using (var logFile = File.Create(LogPath))
-                using (var logWriter = new StreamWriter(logFile))
+                using (var logWriter = new StreamWriter(LogPath, true, Encoding.UTF8))
                 {
                     logWriter.WriteLine(
                         string.Format(Configuration.FormatProvider, Configuration.Format,

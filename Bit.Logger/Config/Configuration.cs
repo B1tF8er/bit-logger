@@ -26,13 +26,14 @@ namespace Bit.Logger.Config
                     _format = string.Empty;
 
                     if (ShowLevel)
-                        _format += "{0:level}";
+                        _format += "{0:level} ";
+                    
                     if (ShowDate && ShowTime)
-                        _format += "{1:datetime}";
-                    if (ShowDate)
-                        _format += "{1:date}";
-                    if (ShowTime)
-                        _format += "{1:time}";
+                        _format += "{1:datetime} ";
+                    else if (ShowDate)
+                        _format += "{1:date} ";
+                    else if (ShowTime)
+                        _format += "{1:time} ";
 
                     _format += "[{2:short}::{3}] {4} {5:exception}";
                 }

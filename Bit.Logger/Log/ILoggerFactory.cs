@@ -13,8 +13,8 @@ namespace Bit.Logger
         
         ILoggerFactory AddFileSource(Configuration configuration = default(Configuration));
 
-        ILoggerFactory AddSource(ILogger handler);
+        ILoggerFactory AddSource(ILogger logger);
 
-        ILoggerFactory AddSources(IEnumerable<ILogger> handlers);
+        ILoggerFactory AddSources(IEnumerable<ILogger> loggers);
     }
 }
