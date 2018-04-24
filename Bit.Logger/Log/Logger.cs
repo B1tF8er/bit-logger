@@ -6,34 +6,34 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public partial class Logger : ILoggerFactoty
+    public partial class Logger : ILoggerFactory
     {
         public List<ILogger> Loggers { get; }
 
         public Logger() => Loggers = new List<ILogger>();
 
-        public ILoggerFactoty AddConsoleLogger(Configuration configuration = default(Configuration))
+        public ILoggerFactory AddConsole(Configuration configuration = default(Configuration))
         {
             Loggers.Add(new ConsoleLogger(configuration));
 
             return this;
         }
 
-        public ILoggerFactoty AddDatabaseLogger(Configuration configuration = default(Configuration))
+        public ILoggerFactory AddDatabase(Configuration configuration = default(Configuration))
         {
             Loggers.Add(new DatabaseLogger(configuration));
 
             return this;
         }
 
-        public ILoggerFactoty AddFileLogger(Configuration configuration = default(Configuration))
+        public ILoggerFactory AddFile(Configuration configuration = default(Configuration))
         {
             Loggers.Add(new FileLogger(configuration));
 
             return this;
         }
 
-        public ILoggerFactoty AddLogger(ILogger logger)
+        public ILoggerFactory AddSource(ILogger logger)
         {
             if (logger == null)
                 throw new ArgumentNullException(nameof(logger));
@@ -43,7 +43,7 @@
             return this;
         }
 
-        public ILoggerFactoty AddLoggers(IEnumerable<ILogger> loggers)
+        public ILoggerFactory AddSources(IEnumerable<ILogger> loggers)
         {
             var anyLoggerIsNull = loggers?.Any(logger => logger == null) ?? true;
 

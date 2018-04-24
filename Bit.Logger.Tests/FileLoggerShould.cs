@@ -8,14 +8,14 @@ namespace Bit.Logger.Tests
 
     public class FileLoggerShould
     {
-        private readonly Mock<ILoggerFactoty> mockLoggerFactory;
-        private readonly ILoggerFactoty loggerFactory;
+        private readonly Mock<ILoggerFactory> mockLoggerFactory;
+        private readonly ILoggerFactory loggerFactory;
         private readonly Exception exception;
         private const string message = "Test message";
 
         public FileLoggerShould()
         {
-            mockLoggerFactory = new Mock<ILoggerFactoty>(MockBehavior.Strict);
+            mockLoggerFactory = new Mock<ILoggerFactory>(MockBehavior.Strict);
 
             loggerFactory = mockLoggerFactory.Object;
 
@@ -24,7 +24,7 @@ namespace Bit.Logger.Tests
             mockLoggerFactory
                 .SetupCallsWithSource<FileLoggerShould>(message, exception)
                 .SetupCallsWithoutSource(message, exception)
-                .Setup(loggerFactory => loggerFactory.AddFileLogger(It.IsAny<Configuration>()))
+                .Setup(loggerFactory => loggerFactory.AddFile(It.IsAny<Configuration>()))
                 .Returns(loggerFactory);
         }
 

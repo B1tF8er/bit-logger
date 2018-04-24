@@ -8,14 +8,14 @@ namespace Bit.Logger.Tests
 
     public class DatabaseLoggerShould
     {
-        private readonly Mock<ILoggerFactoty> mockLoggerFactory;
-        private readonly ILoggerFactoty loggerFactory;
+        private readonly Mock<ILoggerFactory> mockLoggerFactory;
+        private readonly ILoggerFactory loggerFactory;
         private readonly Exception exception;
         private const string message = "Test message";
 
         public DatabaseLoggerShould()
         {
-            mockLoggerFactory = new Mock<ILoggerFactoty>(MockBehavior.Strict);
+            mockLoggerFactory = new Mock<ILoggerFactory>(MockBehavior.Strict);
 
             loggerFactory = mockLoggerFactory.Object;
 
@@ -24,7 +24,7 @@ namespace Bit.Logger.Tests
             mockLoggerFactory
                 .SetupCallsWithSource<DatabaseLoggerShould>(message, exception)
                 .SetupCallsWithoutSource(message, exception)
-                .Setup(loggerFactory => loggerFactory.AddDatabaseLogger(It.IsAny<Configuration>()))
+                .Setup(loggerFactory => loggerFactory.AddDatabase(It.IsAny<Configuration>()))
                 .Returns(loggerFactory);
         }
 

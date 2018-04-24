@@ -5,7 +5,7 @@ namespace Bit.Logger.Tests
 
     internal static class SetupExtensions
     {
-        internal static Mock<ILoggerFactoty> SetupCallsWithSource<TCLass>(this Mock<ILoggerFactoty> mockLoggerFactoty, string message, Exception exception) where TCLass : class
+        internal static Mock<ILoggerFactory> SetupCallsWithSource<TCLass>(this Mock<ILoggerFactory> mockLoggerFactoty, string message, Exception exception) where TCLass : class
         {
             mockLoggerFactoty.Setup(l => l.Trace<TCLass>(message));
             mockLoggerFactoty.Setup(l => l.Trace<TCLass>(exception));
@@ -38,7 +38,7 @@ namespace Bit.Logger.Tests
             return mockLoggerFactoty;
         }
 
-        internal static Mock<ILoggerFactoty> SetupCallsWithoutSource(this Mock<ILoggerFactoty> mockLoggerFactoty, string message, Exception exception)
+        internal static Mock<ILoggerFactory> SetupCallsWithoutSource(this Mock<ILoggerFactory> mockLoggerFactoty, string message, Exception exception)
         {
             mockLoggerFactoty.Setup(l => l.Trace(message));
             mockLoggerFactoty.Setup(l => l.Trace(exception));

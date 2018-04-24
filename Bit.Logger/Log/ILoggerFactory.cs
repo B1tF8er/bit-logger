@@ -3,18 +3,18 @@ namespace Bit.Logger
     using Bit.Logger.Config;
     using System.Collections.Generic;
 
-    public partial interface ILoggerFactoty : ILogger
+    public partial interface ILoggerFactory : ILogger
     {
         List<ILogger> Loggers { get; }
 
-        ILoggerFactoty AddConsoleLogger(Configuration configuration = default(Configuration));
+        ILoggerFactory AddConsole(Configuration configuration = default(Configuration));
 
-        ILoggerFactoty AddDatabaseLogger(Configuration configuration = default(Configuration));
+        ILoggerFactory AddDatabase(Configuration configuration = default(Configuration));
         
-        ILoggerFactoty AddFileLogger(Configuration configuration = default(Configuration));
+        ILoggerFactory AddFile(Configuration configuration = default(Configuration));
 
-        ILoggerFactoty AddLogger(ILogger handler);
+        ILoggerFactory AddSource(ILogger handler);
 
-        ILoggerFactoty AddLoggers(IEnumerable<ILogger> handlers);
+        ILoggerFactory AddSources(IEnumerable<ILogger> handlers);
     }
 }
