@@ -141,7 +141,7 @@ namespace Bit.Logger.Loggers
         private void ToConsole<TClass>(Level level, string message = default(string), Exception exception = null)
             where TClass : class
         {
-            if (Configuration.Level >= level)
+            if (Configuration.Level <= level)
             {
                 Console.WriteLine(
                     string.Format(Configuration.FormatProvider, Configuration.Format,
@@ -158,7 +158,7 @@ namespace Bit.Logger.Loggers
 
         private void ToConsole(Level level, string message = default(string), Exception exception = null)
         {
-            if (Configuration.Level >= level)
+            if (Configuration.Level <= level)
             {
                 Console.WriteLine(
                     string.Format(Configuration.FormatProvider, Configuration.Format,

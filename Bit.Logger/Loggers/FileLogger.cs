@@ -173,7 +173,7 @@ namespace Bit.Logger.Loggers
         private void ToFile<TClass>(Level level, string message = default(string), Exception exception = null)
             where TClass : class
         {
-            if (Configuration.Level >= level)
+            if (Configuration.Level <= level)
             {
                 using (var logWriter = new StreamWriter(LogPath, true, Encoding.UTF8))
                 {
@@ -193,7 +193,7 @@ namespace Bit.Logger.Loggers
 
         private void ToFile(Level level, string message = default(string), Exception exception = null)
         {
-            if (Configuration.Level >= level)
+            if (Configuration.Level <= level)
             {
                 using (var logWriter = new StreamWriter(LogPath, true, Encoding.UTF8))
                 {

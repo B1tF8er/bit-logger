@@ -141,7 +141,7 @@ namespace Bit.Logger.Loggers
         private void ToDatabase<TClass>(Level level, string message = default(string), Exception exception = null)
             where TClass : class
         {
-            if (Configuration.Level >= level)
+            if (Configuration.Level <= level)
             {
                 using (var context = new LoggingContext())
                 {
@@ -161,7 +161,7 @@ namespace Bit.Logger.Loggers
 
         private void ToDatabase(Level level, string message = default(string), Exception exception = null)
         {
-            if (Configuration.Level >= level)
+            if (Configuration.Level <= level)
             {
                 using (var context = new LoggingContext())
                 {
