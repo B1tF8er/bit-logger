@@ -24,7 +24,7 @@ namespace Bit.Logger.Tests
             mockLoggerFactory
                 .SetupCallsWithSource<ConsoleLoggerShould>(message, exception)
                 .SetupCallsWithoutSource(message, exception)
-                .Setup(loggerFactory => loggerFactory.AddConsole(It.IsAny<Configuration>()))
+                .Setup(loggerFactory => loggerFactory.AddConsoleSource(It.IsAny<Configuration>()))
                 .Returns(loggerFactory);
         }
 

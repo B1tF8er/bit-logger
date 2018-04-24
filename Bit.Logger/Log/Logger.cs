@@ -12,21 +12,21 @@
 
         public Logger() => Loggers = new List<ILogger>();
 
-        public ILoggerFactory AddConsole(Configuration configuration = default(Configuration))
+        public ILoggerFactory AddConsoleSource(Configuration configuration = default(Configuration))
         {
             Loggers.Add(new ConsoleLogger(configuration));
 
             return this;
         }
 
-        public ILoggerFactory AddDatabase(Configuration configuration = default(Configuration))
+        public ILoggerFactory AddDatabaseSource(Configuration configuration = default(Configuration))
         {
             Loggers.Add(new DatabaseLogger(configuration));
 
             return this;
         }
 
-        public ILoggerFactory AddFile(Configuration configuration = default(Configuration))
+        public ILoggerFactory AddFileSource(Configuration configuration = default(Configuration))
         {
             Loggers.Add(new FileLogger(configuration));
 

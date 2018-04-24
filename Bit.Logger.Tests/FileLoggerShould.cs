@@ -24,7 +24,7 @@ namespace Bit.Logger.Tests
             mockLoggerFactory
                 .SetupCallsWithSource<FileLoggerShould>(message, exception)
                 .SetupCallsWithoutSource(message, exception)
-                .Setup(loggerFactory => loggerFactory.AddFile(It.IsAny<Configuration>()))
+                .Setup(loggerFactory => loggerFactory.AddFileSource(It.IsAny<Configuration>()))
                 .Returns(loggerFactory);
         }
 

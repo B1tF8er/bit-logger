@@ -7,11 +7,11 @@ namespace Bit.Logger
     {
         List<ILogger> Loggers { get; }
 
-        ILoggerFactory AddConsole(Configuration configuration = default(Configuration));
+        ILoggerFactory AddConsoleSource(Configuration configuration = default(Configuration));
 
-        ILoggerFactory AddDatabase(Configuration configuration = default(Configuration));
+        ILoggerFactory AddDatabaseSource(Configuration configuration = default(Configuration));
         
-        ILoggerFactory AddFile(Configuration configuration = default(Configuration));
+        ILoggerFactory AddFileSource(Configuration configuration = default(Configuration));
 
         ILoggerFactory AddSource(ILogger handler);
 
