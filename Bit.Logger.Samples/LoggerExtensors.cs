@@ -5,6 +5,19 @@ namespace Bit.Logger.Samples
     
     internal static class LoggerExtensors
     {
+        internal static ILoggerFactory SampleMessageLogs<TClass>(this ILoggerFactory logger) where TClass : class
+        {
+            logger.Trace<TClass>(TraceMessage);
+            logger.Debug<TClass>(DebugMessage);
+            logger.Verbose<TClass>(VerboseMessage);
+            logger.Information<TClass>(InformationMessage);
+            logger.Warning<TClass>(WarningMessage);
+            logger.Error<TClass>(ErrorMessage);
+            logger.Critical<TClass>(CriticalMessage);
+
+            return logger;
+        }
+        
         internal static ILoggerFactory SampleMessageLogs(this ILoggerFactory logger)
         {
             logger.Trace(TraceMessage);
@@ -18,6 +31,19 @@ namespace Bit.Logger.Samples
             return logger;
         }
         
+        internal static ILoggerFactory SampleExceptionLogs<TClass>(this ILoggerFactory logger) where TClass : class
+        {
+            logger.Trace<TClass>(TraceException);
+            logger.Debug<TClass>(DebugException);
+            logger.Verbose<TClass>(VerboseException);
+            logger.Information<TClass>(InformationException);
+            logger.Warning<TClass>(WarningException);
+            logger.Error<TClass>(ErrorException);
+            logger.Critical<TClass>(CriticalException);
+
+            return logger;
+        }
+
         internal static ILoggerFactory SampleExceptionLogs(this ILoggerFactory logger)
         {
             logger.Trace(TraceException);
@@ -40,6 +66,19 @@ namespace Bit.Logger.Samples
             logger.Warning(WarningMessage, WarningException);
             logger.Error(ErrorMessage, ErrorException);
             logger.Critical(CriticalMessage, CriticalException);
+
+            return logger;
+        }
+        
+        internal static ILoggerFactory SampleMessageAndExceptionLogs<TClass>(this ILoggerFactory logger) where TClass : class
+        {
+            logger.Trace<TClass>(TraceMessage, TraceException);
+            logger.Debug<TClass>(DebugMessage, DebugException);
+            logger.Verbose<TClass>(VerboseMessage, VerboseException);
+            logger.Information<TClass>(InformationMessage, InformationException);
+            logger.Warning<TClass>(WarningMessage, WarningException);
+            logger.Error<TClass>(ErrorMessage, ErrorException);
+            logger.Critical<TClass>(CriticalMessage, CriticalException);
 
             return logger;
         }

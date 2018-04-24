@@ -25,8 +25,11 @@
                     Level = Level.Information,
                     ShowDate = false
                 })
+                .SampleMessageLogs<Program>()
                 .SampleMessageLogs()
+                .SampleExceptionLogs<Program>()
                 .SampleExceptionLogs()
+                .SampleMessageAndExceptionLogs<Program>()
                 .SampleMessageAndExceptionLogs();
         }
     }
