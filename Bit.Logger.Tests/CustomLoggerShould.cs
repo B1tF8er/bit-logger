@@ -29,6 +29,16 @@ namespace Bit.Logger.Tests
         }
 
         [Fact]
+        public void Test()
+        {
+            var logger = new Logger();
+
+            logger.AddConsoleLogger();
+
+            logger.Information("test get class");
+        }
+
+        [Fact]
         public void LogMessage_AsTrace_OncePerMethodOverload()
         {
             loggerFactory.Trace<CustomLoggerShould>(message);
