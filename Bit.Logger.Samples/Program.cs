@@ -1,9 +1,7 @@
 ﻿namespace Bit.Logger.Samples
 {
     using Bit.Logger;
-    using Bit.Logger.Config;
-    using System;
-    using System.Collections.Generic;
+    using static SourceConfiguration;
 
     class Program
     {
@@ -21,44 +19,9 @@
             // this should be done using a DI container LOL!!
             var sample = new Sample(logger);
 
-            sample.Test();
+            sample.BasicTest();
 
-            sample.TestAllPossibleLevels();
+            sample.AllPossibleLevels();
         }
-
-        static Func<Configuration> CreateConsoleConfiguration = () => new Configuration
-        {
-            Level = Level.Trace,
-            ShowLevel = false
-        };
-
-        static Func<Configuration> CreateDatabaseConfiguration = () => new Configuration
-        {
-            Level = Level.Critical,
-            ShowTime = false
-        };
-        static Func<Configuration> CreateFileConfiguration = () => new Configuration
-        {
-            Level = Level.Information,
-            ShowDate = false
-        };
-
-        static Func<CustomConsoleSource> CreateCustomConsoleSource = () => new CustomConsoleSource(new Configuration
-        {
-            Level = Level.Trace
-        });
-
-        static Func<IEnumerable<CustomConsoleSource>> CreateCustomConsoleSources = () => new List<CustomConsoleSource>
-        {
-            new CustomConsoleSource(new Configuration
-            {
-                Level = Level.Critical
-            }),
-            new CustomConsoleSource(new Configuration
-            {
-                Level = Level.Error
-            }),
-            new CustomConsoleSource()
-        };
     }
 }
