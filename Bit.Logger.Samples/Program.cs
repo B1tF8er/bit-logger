@@ -16,13 +16,14 @@
                 .AddDatabaseSource(CreateDatabaseConfiguration())
                 .AddFileSource(CreateFileConfiguration())
                 .AddSource(CreateCustomConsoleSource())
-                .AddSources(CreateCustomConsoleSources())
-                .SampleMessageLogs<Program>()
-                .SampleMessageLogs()
-                .SampleExceptionLogs<Program>()
-                .SampleExceptionLogs()
-                .SampleMessageAndExceptionLogs<Program>()
-                .SampleMessageAndExceptionLogs();
+                .AddSources(CreateCustomConsoleSources());
+
+            // this should be done using a DI container LOL!!
+            var sample = new Sample(logger);
+
+            sample.Test();
+
+            sample.TestAllPossibleLevels();
         }
 
         static Func<Configuration> CreateConsoleConfiguration = () => new Configuration
