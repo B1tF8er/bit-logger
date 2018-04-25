@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Authors>Jorge Yañez</Authors>
+    <Description>Logger for .NET Core Apps</Description>
+    <PackageProjectUrl>https://github.com/B1tF8er/bit-logger</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/B1tF8er/bit-logger/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/B1tF8er/bit-logger</RepositoryUrl>
+    <PackageTags>csharp logger dotnet-core</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

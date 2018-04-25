@@ -4,7 +4,7 @@ namespace Bit.Logger.Samples
     using System;
     using System.Collections.Generic;
 
-    internal static class Config
+    internal static class SourceConfiguration
     {
         internal static Func<Configuration> CreateConsoleConfiguration = () => new Configuration
         {
