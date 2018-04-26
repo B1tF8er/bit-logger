@@ -5,35 +5,36 @@ namespace Bit.Logger.Tests
 
     internal static class SetupExtensions
     {
-        internal static Mock<ILoggerFactory> SetupCallsWithSource<TCLass>(this Mock<ILoggerFactory> mockLoggerFactoty, string message, Exception exception) where TCLass : class
+        internal static Mock<ILoggerFactory> SetupCallsWithSource<TClass>(this Mock<ILoggerFactory> mockLoggerFactoty, string message, Exception exception) 
+            where TClass : class
         {
-            mockLoggerFactoty.Setup(l => l.Trace<TCLass>(message));
-            mockLoggerFactoty.Setup(l => l.Trace<TCLass>(exception));
-            mockLoggerFactoty.Setup(l => l.Trace<TCLass>(message, exception));
+            mockLoggerFactoty.Setup(l => l.Trace<TClass>(message));
+            mockLoggerFactoty.Setup(l => l.Trace<TClass>(exception));
+            mockLoggerFactoty.Setup(l => l.Trace<TClass>(message, exception));
 
-            mockLoggerFactoty.Setup(l => l.Debug<TCLass>(message));
-            mockLoggerFactoty.Setup(l => l.Debug<TCLass>(exception));
-            mockLoggerFactoty.Setup(l => l.Debug<TCLass>(message, exception));
+            mockLoggerFactoty.Setup(l => l.Debug<TClass>(message));
+            mockLoggerFactoty.Setup(l => l.Debug<TClass>(exception));
+            mockLoggerFactoty.Setup(l => l.Debug<TClass>(message, exception));
 
-            mockLoggerFactoty.Setup(l => l.Verbose<TCLass>(message));
-            mockLoggerFactoty.Setup(l => l.Verbose<TCLass>(exception));
-            mockLoggerFactoty.Setup(l => l.Verbose<TCLass>(message, exception));
+            mockLoggerFactoty.Setup(l => l.Verbose<TClass>(message));
+            mockLoggerFactoty.Setup(l => l.Verbose<TClass>(exception));
+            mockLoggerFactoty.Setup(l => l.Verbose<TClass>(message, exception));
 
-            mockLoggerFactoty.Setup(l => l.Information<TCLass>(message));
-            mockLoggerFactoty.Setup(l => l.Information<TCLass>(exception));
-            mockLoggerFactoty.Setup(l => l.Information<TCLass>(message, exception));
+            mockLoggerFactoty.Setup(l => l.Information<TClass>(message));
+            mockLoggerFactoty.Setup(l => l.Information<TClass>(exception));
+            mockLoggerFactoty.Setup(l => l.Information<TClass>(message, exception));
 
-            mockLoggerFactoty.Setup(l => l.Warning<TCLass>(message));
-            mockLoggerFactoty.Setup(l => l.Warning<TCLass>(exception));
-            mockLoggerFactoty.Setup(l => l.Warning<TCLass>(message, exception));
+            mockLoggerFactoty.Setup(l => l.Warning<TClass>(message));
+            mockLoggerFactoty.Setup(l => l.Warning<TClass>(exception));
+            mockLoggerFactoty.Setup(l => l.Warning<TClass>(message, exception));
 
-            mockLoggerFactoty.Setup(l => l.Error<TCLass>(message));
-            mockLoggerFactoty.Setup(l => l.Error<TCLass>(exception));
-            mockLoggerFactoty.Setup(l => l.Error<TCLass>(message, exception));
+            mockLoggerFactoty.Setup(l => l.Error<TClass>(message));
+            mockLoggerFactoty.Setup(l => l.Error<TClass>(exception));
+            mockLoggerFactoty.Setup(l => l.Error<TClass>(message, exception));
 
-            mockLoggerFactoty.Setup(l => l.Critical<TCLass>(message));
-            mockLoggerFactoty.Setup(l => l.Critical<TCLass>(exception));
-            mockLoggerFactoty.Setup(l => l.Critical<TCLass>(message, exception));
+            mockLoggerFactoty.Setup(l => l.Critical<TClass>(message));
+            mockLoggerFactoty.Setup(l => l.Critical<TClass>(exception));
+            mockLoggerFactoty.Setup(l => l.Critical<TClass>(message, exception));
 
             return mockLoggerFactoty;
         }
