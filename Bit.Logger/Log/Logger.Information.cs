@@ -1,11 +1,6 @@
 namespace Bit.Logger
 {
-    using Bit.Logger.Config;
-    using Bit.Logger.Loggers.Console;
-    using Bit.Logger.Loggers.Database;
-    using Bit.Logger.Loggers.File;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     public partial class Logger : ILoggerFactory
