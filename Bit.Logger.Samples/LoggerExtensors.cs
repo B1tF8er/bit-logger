@@ -1,7 +1,7 @@
 namespace Bit.Logger.Samples
 {
     using Bit.Logger;
-    using static Bit.Logger.Samples.Constants;
+    using static Constants;
     
     internal static class LoggerExtensors
     {
