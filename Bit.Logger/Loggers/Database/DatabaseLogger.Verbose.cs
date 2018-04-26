@@ -11,18 +11,18 @@ namespace Bit.Logger.Loggers.Database
             WriteToDatabase<TClass>(Level.Verbose, message);
 
         public void Verbose(string message) =>
-            ToDatabase(Level.Verbose, message);
+            WriteToDatabase(Level.Verbose, message);
 
         public void Verbose<TClass>(Exception exception) where TClass : class =>
             WriteToDatabase<TClass>(Level.Verbose, exception: exception);
 
         public void Verbose(Exception exception) =>
-            ToDatabase(Level.Verbose, exception: exception);
+            WriteToDatabase(Level.Verbose, exception: exception);
 
         public void Verbose<TClass>(string message, Exception exception) where TClass : class =>
             WriteToDatabase<TClass>(Level.Verbose, message, exception);
 
         public void Verbose(string message, Exception exception) =>
-            ToDatabase(Level.Verbose, message, exception);
+            WriteToDatabase(Level.Verbose, message, exception);
     }
 }

@@ -11,18 +11,18 @@ namespace Bit.Logger.Loggers.Console
             WriteToConsole<TClass>(Level.Critical, message);
 
         public void Critical(string message) =>
-            ToConsole(Level.Critical, message);
+            WriteToConsole(Level.Critical, message);
 
         public void Critical<TClass>(Exception exception) where TClass : class =>
             WriteToConsole<TClass>(Level.Critical, exception: exception);
 
         public void Critical(Exception exception) =>
-            ToConsole(Level.Critical, exception: exception);
+            WriteToConsole(Level.Critical, exception: exception);
 
         public void Critical<TClass>(string message, Exception exception) where TClass : class =>
             WriteToConsole<TClass>(Level.Critical, message, exception);
 
         public void Critical(string message, Exception exception) =>
-            ToConsole(Level.Critical, message, exception);
+            WriteToConsole(Level.Critical, message, exception);
     }
 }

@@ -11,18 +11,18 @@ namespace Bit.Logger.Loggers.Console
             WriteToConsole<TClass>(Level.Debug, message);
 
         public void Debug(string message) =>
-            ToConsole(Level.Debug, message);
+            WriteToConsole(Level.Debug, message);
 
         public void Debug<TClass>(Exception exception) where TClass : class =>
             WriteToConsole<TClass>(Level.Debug, exception: exception);
 
         public void Debug(Exception exception) =>
-            ToConsole(Level.Debug, exception: exception);
+            WriteToConsole(Level.Debug, exception: exception);
 
         public void Debug<TClass>(string message, Exception exception) where TClass : class =>
             WriteToConsole<TClass>(Level.Debug, message, exception);
 
         public void Debug(string message, Exception exception) =>
-            ToConsole(Level.Debug, message, exception);
+            WriteToConsole(Level.Debug, message, exception);
     }
 }

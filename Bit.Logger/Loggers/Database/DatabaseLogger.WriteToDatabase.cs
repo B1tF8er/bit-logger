@@ -28,7 +28,7 @@ namespace Bit.Logger.Loggers.Database
             }
         }
 
-        private void ToDatabase(Level level, string message = default(string), Exception exception = null)
+        private void WriteToDatabase(Level level, string message = default(string), Exception exception = null)
         {
             if (Configuration.Level <= level)
             {

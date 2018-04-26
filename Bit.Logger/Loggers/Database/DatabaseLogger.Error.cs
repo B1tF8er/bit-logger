@@ -11,18 +11,18 @@ namespace Bit.Logger.Loggers.Database
             WriteToDatabase<TClass>(Level.Error, message);
 
         public void Error(string message) =>
-            ToDatabase(Level.Error, message);
+            WriteToDatabase(Level.Error, message);
 
         public void Error<TClass>(Exception exception) where TClass : class =>
             WriteToDatabase<TClass>(Level.Error, exception: exception);
 
         public void Error(Exception exception) =>
-            ToDatabase(Level.Error, exception: exception);
+            WriteToDatabase(Level.Error, exception: exception);
 
         public void Error<TClass>(string message, Exception exception) where TClass : class =>
             WriteToDatabase<TClass>(Level.Error, message, exception);
 
         public void Error(string message, Exception exception) =>
-            ToDatabase(Level.Error, message, exception);
+            WriteToDatabase(Level.Error, message, exception);
     }
 }

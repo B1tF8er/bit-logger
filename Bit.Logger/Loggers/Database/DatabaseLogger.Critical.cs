@@ -11,18 +11,18 @@ namespace Bit.Logger.Loggers.Database
             WriteToDatabase<TClass>(Level.Critical, message);
 
         public void Critical(string message) =>
-            ToDatabase(Level.Critical, message);
+            WriteToDatabase(Level.Critical, message);
 
         public void Critical<TClass>(Exception exception) where TClass : class =>
             WriteToDatabase<TClass>(Level.Critical, exception: exception);
 
         public void Critical(Exception exception) =>
-            ToDatabase(Level.Critical, exception: exception);
+            WriteToDatabase(Level.Critical, exception: exception);
 
         public void Critical<TClass>(string message, Exception exception) where TClass : class =>
             WriteToDatabase<TClass>(Level.Critical, message, exception);
 
         public void Critical(string message, Exception exception) =>
-            ToDatabase(Level.Critical, message, exception);
+            WriteToDatabase(Level.Critical, message, exception);
     }
 }

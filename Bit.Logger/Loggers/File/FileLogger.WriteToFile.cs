@@ -38,6 +38,7 @@ namespace Bit.Logger.Loggers.File
                 return logPath;
             }
         }
+        
         private void WriteToFile<TClass>(Level level, string message = default(string), Exception exception = null)
             where TClass : class
         {

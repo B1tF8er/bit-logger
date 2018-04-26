@@ -25,7 +25,7 @@ namespace Bit.Logger.Loggers.Console
             }
         }
 
-        private void ToConsole(Level level, string message = default(string), Exception exception = null)
+        private void WriteToConsole(Level level, string message = default(string), Exception exception = null)
         {
             if (Configuration.Level <= level)
             {

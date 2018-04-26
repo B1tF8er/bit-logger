@@ -11,18 +11,18 @@ namespace Bit.Logger.Loggers.Console
             WriteToConsole<TClass>(Level.Verbose, message);
 
         public void Verbose(string message) =>
-            ToConsole(Level.Verbose, message);
+            WriteToConsole(Level.Verbose, message);
 
         public void Verbose<TClass>(Exception exception) where TClass : class =>
             WriteToConsole<TClass>(Level.Verbose, exception: exception);
 
         public void Verbose(Exception exception) =>
-            ToConsole(Level.Verbose, exception: exception);
+            WriteToConsole(Level.Verbose, exception: exception);
 
         public void Verbose<TClass>(string message, Exception exception) where TClass : class =>
             WriteToConsole<TClass>(Level.Verbose, message, exception);
 
         public void Verbose(string message, Exception exception) =>
-            ToConsole(Level.Verbose, message, exception);
+            WriteToConsole(Level.Verbose, message, exception);
     }
 }
