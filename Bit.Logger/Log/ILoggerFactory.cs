@@ -3,7 +3,7 @@ namespace Bit.Logger
     using Bit.Logger.Config;
     using System.Collections.Generic;
 
-    public partial interface ILoggerFactory : ILogger
+    public interface ILoggerFactory : ILogger
     {
         List<ILogger> Loggers { get; }
 

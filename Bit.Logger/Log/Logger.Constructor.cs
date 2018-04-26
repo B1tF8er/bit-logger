@@ -1,0 +1,60 @@
+﻿namespace Bit.Logger
+{
+    using Bit.Logger.Config;
+    using Bit.Logger.Loggers.Console;
+    using Bit.Logger.Loggers.Database;
+    using Bit.Logger.Loggers.File;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    public partial class Logger : ILoggerFactory
+    {
+        public List<ILogger> Loggers { get; }
+
+        public Logger() => Loggers = new List<ILogger>();
+
+        public ILoggerFactory AddConsoleSource(Configuration configuration = default(Configuration))
+        {
+            Loggers.Add(new ConsoleLogger(configuration));
+
+            return this;
+        }
+
+        public ILoggerFactory AddDatabaseSource(Configuration configuration = default(Configuration))
+        {
+            Loggers.Add(new DatabaseLogger(configuration));
+
+            return this;
+        }
+
+        public ILoggerFactory AddFileSource(Configuration configuration = default(Configuration))
+        {
+            Loggers.Add(new FileLogger(configuration));
+
+            return this;
+        }
+
+        public ILoggerFactory AddSource(ILogger logger)
+        {
+            if (logger == null)
+                throw new ArgumentNullException(nameof(logger));
+
+            Loggers.Add(logger);
+
+            return this;
+        }
+
+        public ILoggerFactory AddSources(IEnumerable<ILogger> loggers)
+        {
+            var anyLoggerIsNull = loggers?.Any(logger => logger == null) ?? true;
+
+            if (anyLoggerIsNull)
+                throw new ArgumentNullException(nameof(loggers));
+
+            Loggers.AddRange(loggers);
+
+            return this;
+        }
+    }
+}
