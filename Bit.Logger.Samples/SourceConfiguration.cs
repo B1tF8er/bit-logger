@@ -17,6 +17,7 @@ namespace Bit.Logger.Samples
             Level = Level.Critical,
             ShowTime = false
         };
+        
         internal static Func<Configuration> CreateFileConfiguration = () => new Configuration
         {
             Level = Level.Information,
