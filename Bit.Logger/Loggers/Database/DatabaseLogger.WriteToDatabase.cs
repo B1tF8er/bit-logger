@@ -7,7 +7,7 @@ namespace Bit.Logger.Loggers.Database
 
     internal partial class DatabaseLogger : ILogger, IConfiguration
     {
-        private void WriteToDatabase<TClass>(Level level, string message = default(string), Exception exception = null)
+        private void WriteToDatabase<TClass>(Level level, string message = default(string), Exception exception = default(Exception))
             where TClass : class
         {
             if (Configuration.Level <= level)
@@ -28,7 +28,7 @@ namespace Bit.Logger.Loggers.Database
             }
         }
 
-        private void WriteToDatabase(Level level, string message = default(string), Exception exception = null)
+        private void WriteToDatabase(Level level, string message = default(string), Exception exception = default(Exception))
         {
             if (Configuration.Level <= level)
             {

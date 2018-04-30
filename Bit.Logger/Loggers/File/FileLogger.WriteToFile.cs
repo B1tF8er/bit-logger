@@ -39,7 +39,7 @@ namespace Bit.Logger.Loggers.File
             }
         }
         
-        private void WriteToFile<TClass>(Level level, string message = default(string), Exception exception = null)
+        private void WriteToFile<TClass>(Level level, string message = default(string), Exception exception = default(Exception))
             where TClass : class
         {
             if (Configuration.Level <= level)
@@ -60,7 +60,7 @@ namespace Bit.Logger.Loggers.File
             }
         }
 
-        private void WriteToFile(Level level, string message = default(string), Exception exception = null)
+        private void WriteToFile(Level level, string message = default(string), Exception exception = default(Exception))
         {
             if (Configuration.Level <= level)
             {

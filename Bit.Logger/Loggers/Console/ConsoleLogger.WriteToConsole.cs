@@ -6,7 +6,7 @@ namespace Bit.Logger.Loggers.Console
 
     internal partial class ConsoleLogger : ILogger, IConfiguration
     {
-        private void WriteToConsole<TClass>(Level level, string message = default(string), Exception exception = null)
+        private void WriteToConsole<TClass>(Level level, string message = default(string), Exception exception = default(Exception))
             where TClass : class
         {
             if (Configuration.Level <= level)
@@ -24,7 +24,7 @@ namespace Bit.Logger.Loggers.Console
             }
         }
 
-        private void WriteToConsole(Level level, string message = default(string), Exception exception = null)
+        private void WriteToConsole(Level level, string message = default(string), Exception exception = default(Exception))
         {
             if (Configuration.Level <= level)
             {
