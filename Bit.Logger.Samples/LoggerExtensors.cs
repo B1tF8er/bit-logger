@@ -2,9 +2,22 @@ namespace Bit.Logger.Samples
 {
     using Bit.Logger;
     using static Constants;
-    
+    using static SourceConfiguration;
+
     internal static class LoggerExtensors
     {
+        internal static ILoggerFactory ConfigureLoggerSources(this ILoggerFactory logger)
+        {
+            logger
+                .AddConsoleSource(CreateConsoleConfiguration())
+                .AddDatabaseSource(CreateDatabaseConfiguration())
+                .AddFileSource(CreateFileConfiguration())
+                .AddSource(CreateCustomConsoleSource())
+                .AddSources(CreateCustomConsoleSources());
+
+            return logger;
+        }
+
         internal static ILoggerFactory SampleMessageLogs<TClass>(this ILoggerFactory logger) where TClass : class
         {
             logger.Trace<TClass>(TraceMessage);
@@ -17,7 +30,7 @@ namespace Bit.Logger.Samples
 
             return logger;
         }
-        
+
         internal static ILoggerFactory SampleMessageLogs(this ILoggerFactory logger)
         {
             logger.Trace(TraceMessage);
@@ -30,7 +43,7 @@ namespace Bit.Logger.Samples
 
             return logger;
         }
-        
+
         internal static ILoggerFactory SampleExceptionLogs<TClass>(this ILoggerFactory logger) where TClass : class
         {
             logger.Trace<TClass>(TraceException);
@@ -69,7 +82,7 @@ namespace Bit.Logger.Samples
 
             return logger;
         }
-        
+
         internal static ILoggerFactory SampleMessageAndExceptionLogs<TClass>(this ILoggerFactory logger) where TClass : class
         {
             logger.Trace<TClass>(TraceMessage, TraceException);
