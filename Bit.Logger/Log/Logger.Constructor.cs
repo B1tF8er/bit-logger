@@ -7,6 +7,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
 
     public partial class Logger : ILoggerFactory
     {
@@ -55,6 +56,15 @@
             Loggers.AddRange(loggers);
 
             return this;
+        }
+
+        public override string ToString()
+        {
+            var loggersNames = new StringBuilder();
+            
+            Loggers.ForEach(logger => loggersNames.AppendLine(logger.GetType().FullName));
+
+            return loggersNames.ToString();
         }
     }
 }

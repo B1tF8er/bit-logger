@@ -2,6 +2,7 @@
 {
     using Bit.Logger;
     using Microsoft.Extensions.DependencyInjection;
+    using System;
 
     class Program
     {
@@ -21,6 +22,8 @@
 
             sample.BasicTest();
             sample.AllPossibleLevels();
+
+            Console.WriteLine(logger.ToString()); // this will show all the sources of the logger
         }
     }
 }

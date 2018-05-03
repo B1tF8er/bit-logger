@@ -48,5 +48,7 @@ namespace Bit.Logger.Config
                 _format = value;
             }
         }
+
+        public override string ToString() => $"Level:{Level}, Format:{Format}";
     }
 }
