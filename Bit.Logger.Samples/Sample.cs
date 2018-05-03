@@ -10,7 +10,7 @@ namespace Bit.Logger.Samples
         public Sample(ILoggerFactory logger) =>
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
-        public void BasicTest()
+        internal void BasicTest()
         {
             logger.Trace("entry test");
 
@@ -36,7 +36,7 @@ namespace Bit.Logger.Samples
             logger.Trace("exit test");
         }
 
-        public void AllPossibleLevels()
+        internal void AllPossibleLevels()
         {
             logger
                 .SampleMessageLogs<Sample>()

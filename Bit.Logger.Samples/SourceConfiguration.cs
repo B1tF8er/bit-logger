@@ -6,30 +6,42 @@ namespace Bit.Logger.Samples
 
     internal static class SourceConfiguration
     {
-        internal static Func<Configuration> CreateConsoleConfiguration = () => new Configuration
+        internal static ILoggerFactory ConfigureLoggerSources(this ILoggerFactory logger)
+        {
+            logger
+                .AddConsoleSource(CreateConsoleConfiguration())
+                .AddDatabaseSource(CreateDatabaseConfiguration())
+                .AddFileSource(CreateFileConfiguration())
+                .AddSource(CreateCustomConsoleSource())
+                .AddSources(CreateCustomConsoleSources());
+
+            return logger;
+        }
+
+        private static Func<Configuration> CreateConsoleConfiguration = () => new Configuration
         {
             Level = Level.Trace,
             ShowLevel = false
         };
 
-        internal static Func<Configuration> CreateDatabaseConfiguration = () => new Configuration
+        private static Func<Configuration> CreateDatabaseConfiguration = () => new Configuration
         {
             Level = Level.Critical,
             ShowTime = false
         };
         
-        internal static Func<Configuration> CreateFileConfiguration = () => new Configuration
+        private static Func<Configuration> CreateFileConfiguration = () => new Configuration
         {
             Level = Level.Information,
             ShowDate = false
         };
 
-        internal static Func<CustomConsoleSource> CreateCustomConsoleSource = () => new CustomConsoleSource(new Configuration
+        private static Func<CustomConsoleSource> CreateCustomConsoleSource = () => new CustomConsoleSource(new Configuration
         {
             Level = Level.Trace
         });
 
-        internal static Func<IEnumerable<CustomConsoleSource>> CreateCustomConsoleSources = () => new List<CustomConsoleSource>
+        private static Func<IEnumerable<CustomConsoleSource>> CreateCustomConsoleSources = () => new List<CustomConsoleSource>
         {
             new CustomConsoleSource(new Configuration
             {

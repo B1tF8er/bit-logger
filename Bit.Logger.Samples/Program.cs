@@ -1,26 +1,25 @@
 ﻿namespace Bit.Logger.Samples
 {
     using Bit.Logger;
-    using static SourceConfiguration;
+    using Microsoft.Extensions.DependencyInjection;
 
     class Program
     {
-        static ILoggerFactory logger = new Logger();
-
         static void Main(string[] args)
         {
-            logger
-                .AddConsoleSource(CreateConsoleConfiguration())
-                .AddDatabaseSource(CreateDatabaseConfiguration())
-                .AddFileSource(CreateFileConfiguration())
-                .AddSource(CreateCustomConsoleSource())
-                .AddSources(CreateCustomConsoleSources());
+            // Inject logging service
+            var services = new ServiceCollection()
+                .AddSingleton<ILoggerFactory, Logger>()
+                .BuildServiceProvider();
 
-            // this should be done using a DI container LOL!!
+            // Get logging service and configure its sources
+            var logger = services
+                .GetService<ILoggerFactory>()
+                .ConfigureLoggerSources();
+
             var sample = new Sample(logger);
 
             sample.BasicTest();
-
             sample.AllPossibleLevels();
         }
     }
