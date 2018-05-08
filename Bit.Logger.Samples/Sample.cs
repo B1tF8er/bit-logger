@@ -39,12 +39,12 @@ namespace Bit.Logger.Samples
         internal void AllPossibleLevels()
         {
             logger
-                .SampleMessageLogs<Sample>()
                 .SampleMessageLogs()
-                .SampleExceptionLogs<Sample>()
                 .SampleExceptionLogs()
-                .SampleMessageAndExceptionLogs<Sample>()
-                .SampleMessageAndExceptionLogs();
+                .SampleMessageAndExceptionLogs()
+                .SampleMessageLogs<Sample>()
+                .SampleExceptionLogs<Sample>()
+                .SampleMessageAndExceptionLogs<Sample>();
         }
     }
 }
