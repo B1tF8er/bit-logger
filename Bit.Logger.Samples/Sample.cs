@@ -3,7 +3,7 @@ namespace Bit.Logger.Samples
     using Bit.Logger;
     using System;
 
-    public class Sample
+    internal class Sample
     {
         private readonly ILoggerFactory logger;
 

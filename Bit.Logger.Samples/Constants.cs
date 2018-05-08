@@ -2,7 +2,7 @@ namespace Bit.Logger.Samples
 {
     using System;
 
-    internal class Constants
+    internal static class Constants
     {
         internal const string TraceMessage = "TEST TRACE MESSAGE";
         internal const string DebugMessage = "TEST DEBUG MESSAGE";
