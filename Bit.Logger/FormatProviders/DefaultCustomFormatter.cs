@@ -32,9 +32,9 @@ namespace Bit.Logger.FormatProviders
 
                 return arg.ToString();
             }
-            catch
+            catch (Exception ex)
             {
-                return "Error formatting argument";
+                throw ex;
             }
         }
     }
