@@ -5,13 +5,12 @@ namespace Bit.Logger.Tests
     using Moq;
     using System;
     using Xunit;
+    using static Constants;
 
     public class CustomLoggerShould
     {
         private readonly Mock<ILoggerFactory> mockLoggerFactory;
         private readonly ILoggerFactory loggerFactory;
-        private readonly Exception exception;
-        private const string message = "Test message";
 
         public CustomLoggerShould()
         {
@@ -19,11 +18,9 @@ namespace Bit.Logger.Tests
 
             loggerFactory = mockLoggerFactory.Object;
 
-            exception = new Exception("Test exception");
-
             mockLoggerFactory
-                .SetupCallsWithSource<CustomLoggerShould>(message, exception)
-                .SetupCallsWithoutSource(message, exception)
+                .SetupCallsWithSource<CustomLoggerShould>(TestMessage, TestException)
+                .SetupCallsWithoutSource(TestMessage, TestException)
                 .Setup(loggerFactory => loggerFactory.AddSource(It.IsAny<ILogger>()))
                 .Returns(loggerFactory);
         }
@@ -31,155 +28,155 @@ namespace Bit.Logger.Tests
         [Fact]
         public void LogMessage_AsTrace_OncePerMethodOverload()
         {
-            loggerFactory.Trace<CustomLoggerShould>(message);
-            loggerFactory.Trace<CustomLoggerShould>(exception);
-            loggerFactory.Trace<CustomLoggerShould>(message, exception);
+            loggerFactory.Trace<CustomLoggerShould>(TestMessage);
+            loggerFactory.Trace<CustomLoggerShould>(TestException);
+            loggerFactory.Trace<CustomLoggerShould>(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Trace<CustomLoggerShould>(message), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Trace<CustomLoggerShould>(exception), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Trace<CustomLoggerShould>(message, exception), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Trace<CustomLoggerShould>(TestMessage), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Trace<CustomLoggerShould>(TestException), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Trace<CustomLoggerShould>(TestMessage, TestException), Times.Once);
 
             mockLoggerFactory.ResetCalls();
 
-            loggerFactory.Trace(message);
-            loggerFactory.Trace(exception);
-            loggerFactory.Trace(message, exception);
+            loggerFactory.Trace(TestMessage);
+            loggerFactory.Trace(TestException);
+            loggerFactory.Trace(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Trace(message), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Trace(exception), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Trace(message, exception), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Trace(TestMessage), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Trace(TestException), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Trace(TestMessage, TestException), Times.Once);
         }
 
         [Fact]
         public void LogMessage_AsDebug_OncePerMethodOverload()
         {
-            loggerFactory.Debug<CustomLoggerShould>(message);
-            loggerFactory.Debug<CustomLoggerShould>(exception);
-            loggerFactory.Debug<CustomLoggerShould>(message, exception);
+            loggerFactory.Debug<CustomLoggerShould>(TestMessage);
+            loggerFactory.Debug<CustomLoggerShould>(TestException);
+            loggerFactory.Debug<CustomLoggerShould>(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Debug<CustomLoggerShould>(message), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Debug<CustomLoggerShould>(exception), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Debug<CustomLoggerShould>(message, exception), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Debug<CustomLoggerShould>(TestMessage), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Debug<CustomLoggerShould>(TestException), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Debug<CustomLoggerShould>(TestMessage, TestException), Times.Once);
 
             mockLoggerFactory.ResetCalls();
 
-            loggerFactory.Debug(message);
-            loggerFactory.Debug(exception);
-            loggerFactory.Debug(message, exception);
+            loggerFactory.Debug(TestMessage);
+            loggerFactory.Debug(TestException);
+            loggerFactory.Debug(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Debug(message), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Debug(exception), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Debug(message, exception), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Debug(TestMessage), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Debug(TestException), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Debug(TestMessage, TestException), Times.Once);
         }
 
         [Fact]
         public void LogMessage_AsVerbose_OncePerMethodOverload()
         {
-            loggerFactory.Verbose<CustomLoggerShould>(message);
-            loggerFactory.Verbose<CustomLoggerShould>(exception);
-            loggerFactory.Verbose<CustomLoggerShould>(message, exception);
+            loggerFactory.Verbose<CustomLoggerShould>(TestMessage);
+            loggerFactory.Verbose<CustomLoggerShould>(TestException);
+            loggerFactory.Verbose<CustomLoggerShould>(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Verbose<CustomLoggerShould>(message), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Verbose<CustomLoggerShould>(exception), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Verbose<CustomLoggerShould>(message, exception), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Verbose<CustomLoggerShould>(TestMessage), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Verbose<CustomLoggerShould>(TestException), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Verbose<CustomLoggerShould>(TestMessage, TestException), Times.Once);
 
             mockLoggerFactory.ResetCalls();
             
-            loggerFactory.Verbose(message);
-            loggerFactory.Verbose(exception);
-            loggerFactory.Verbose(message, exception);
+            loggerFactory.Verbose(TestMessage);
+            loggerFactory.Verbose(TestException);
+            loggerFactory.Verbose(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Verbose(message), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Verbose(exception), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Verbose(message, exception), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Verbose(TestMessage), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Verbose(TestException), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Verbose(TestMessage, TestException), Times.Once);
         }
 
         [Fact]
         public void LogMessage_AsInformation_OncePerMethodOverload()
         {
-            loggerFactory.Information<CustomLoggerShould>(message);
-            loggerFactory.Information<CustomLoggerShould>(exception);
-            loggerFactory.Information<CustomLoggerShould>(message, exception);
+            loggerFactory.Information<CustomLoggerShould>(TestMessage);
+            loggerFactory.Information<CustomLoggerShould>(TestException);
+            loggerFactory.Information<CustomLoggerShould>(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Information<CustomLoggerShould>(message), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Information<CustomLoggerShould>(exception), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Information<CustomLoggerShould>(message, exception), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Information<CustomLoggerShould>(TestMessage), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Information<CustomLoggerShould>(TestException), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Information<CustomLoggerShould>(TestMessage, TestException), Times.Once);
 
             mockLoggerFactory.ResetCalls();
 
-            loggerFactory.Information(message);
-            loggerFactory.Information(exception);
-            loggerFactory.Information(message, exception);
+            loggerFactory.Information(TestMessage);
+            loggerFactory.Information(TestException);
+            loggerFactory.Information(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Information(message), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Information(exception), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Information(message, exception), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Information(TestMessage), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Information(TestException), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Information(TestMessage, TestException), Times.Once);
         }
 
         [Fact]
         public void LogMessage_AsWarning_OncePerMethodOverload()
         {
-            loggerFactory.Warning<CustomLoggerShould>(message);
-            loggerFactory.Warning<CustomLoggerShould>(exception);
-            loggerFactory.Warning<CustomLoggerShould>(message, exception);
+            loggerFactory.Warning<CustomLoggerShould>(TestMessage);
+            loggerFactory.Warning<CustomLoggerShould>(TestException);
+            loggerFactory.Warning<CustomLoggerShould>(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Warning<CustomLoggerShould>(message), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Warning<CustomLoggerShould>(exception), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Warning<CustomLoggerShould>(message, exception), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Warning<CustomLoggerShould>(TestMessage), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Warning<CustomLoggerShould>(TestException), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Warning<CustomLoggerShould>(TestMessage, TestException), Times.Once);
 
             mockLoggerFactory.ResetCalls();
 
-            loggerFactory.Warning(message);
-            loggerFactory.Warning(exception);
-            loggerFactory.Warning(message, exception);
+            loggerFactory.Warning(TestMessage);
+            loggerFactory.Warning(TestException);
+            loggerFactory.Warning(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Warning(message), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Warning(exception), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Warning(message, exception), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Warning(TestMessage), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Warning(TestException), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Warning(TestMessage, TestException), Times.Once);
         }
 
         [Fact]
         public void LogMessage_AsError_OncePerMethodOverload()
         {
-            loggerFactory.Error<CustomLoggerShould>(message);
-            loggerFactory.Error<CustomLoggerShould>(exception);
-            loggerFactory.Error<CustomLoggerShould>(message, exception);
+            loggerFactory.Error<CustomLoggerShould>(TestMessage);
+            loggerFactory.Error<CustomLoggerShould>(TestException);
+            loggerFactory.Error<CustomLoggerShould>(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Error<CustomLoggerShould>(message), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Error<CustomLoggerShould>(exception), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Error<CustomLoggerShould>(message, exception), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Error<CustomLoggerShould>(TestMessage), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Error<CustomLoggerShould>(TestException), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Error<CustomLoggerShould>(TestMessage, TestException), Times.Once);
 
             mockLoggerFactory.ResetCalls();
             
-            loggerFactory.Error(message);
-            loggerFactory.Error(exception);
-            loggerFactory.Error(message, exception);
+            loggerFactory.Error(TestMessage);
+            loggerFactory.Error(TestException);
+            loggerFactory.Error(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Error(message), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Error(exception), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Error(message, exception), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Error(TestMessage), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Error(TestException), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Error(TestMessage, TestException), Times.Once);
         }
 
         [Fact]
         public void LogMessage_AsCritical_OncePerMethodOverload()
         {
-            loggerFactory.Critical<CustomLoggerShould>(message);
-            loggerFactory.Critical<CustomLoggerShould>(exception);
-            loggerFactory.Critical<CustomLoggerShould>(message, exception);
+            loggerFactory.Critical<CustomLoggerShould>(TestMessage);
+            loggerFactory.Critical<CustomLoggerShould>(TestException);
+            loggerFactory.Critical<CustomLoggerShould>(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Critical<CustomLoggerShould>(message), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Critical<CustomLoggerShould>(exception), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Critical<CustomLoggerShould>(message, exception), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Critical<CustomLoggerShould>(TestMessage), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Critical<CustomLoggerShould>(TestException), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Critical<CustomLoggerShould>(TestMessage, TestException), Times.Once);
 
             mockLoggerFactory.ResetCalls();
 
-            loggerFactory.Critical(message);
-            loggerFactory.Critical(exception);
-            loggerFactory.Critical(message, exception);
+            loggerFactory.Critical(TestMessage);
+            loggerFactory.Critical(TestException);
+            loggerFactory.Critical(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Critical(message), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Critical(exception), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Critical(message, exception), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Critical(TestMessage), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Critical(TestException), Times.Once);
+            mockLoggerFactory.Verify(logger => logger.Critical(TestMessage, TestException), Times.Once);
         }
     }
 }
