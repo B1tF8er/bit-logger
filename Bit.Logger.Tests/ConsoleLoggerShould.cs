@@ -10,37 +10,36 @@ namespace Bit.Logger.Tests
     public class ConsoleLoggerShould
     {
         private readonly Mock<ILoggerFactory> mockLoggerFactory;
-        private readonly ILoggerFactory loggerFactory;
 
         public ConsoleLoggerShould()
         {
             mockLoggerFactory = new Mock<ILoggerFactory>(MockBehavior.Strict);
 
-            loggerFactory = mockLoggerFactory.Object;
-
             mockLoggerFactory
                 .SetupCallsWithSource<ConsoleLoggerShould>(TestMessage, TestException)
                 .SetupCallsWithoutSource(TestMessage, TestException)
                 .Setup(loggerFactory => loggerFactory.AddConsoleSource(It.IsAny<Configuration>()))
-                .Returns(loggerFactory);
+                .Returns(mockLoggerFactory.Object);
         }
 
         [Fact]
-        public void LogMessage_AsTrace_OncePerMethodOverload()
+        public void LogMessage_AsTrace_OncePerMethodOverload_WithSourceClass()
         {
-            loggerFactory.Trace<ConsoleLoggerShould>(TestMessage);
-            loggerFactory.Trace<ConsoleLoggerShould>(TestException);
-            loggerFactory.Trace<ConsoleLoggerShould>(TestMessage, TestException);
+            mockLoggerFactory.Object.Trace<ConsoleLoggerShould>(TestMessage);
+            mockLoggerFactory.Object.Trace<ConsoleLoggerShould>(TestException);
+            mockLoggerFactory.Object.Trace<ConsoleLoggerShould>(TestMessage, TestException);
 
             mockLoggerFactory.Verify(logger => logger.Trace<ConsoleLoggerShould>(TestMessage), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Trace<ConsoleLoggerShould>(TestException), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Trace<ConsoleLoggerShould>(TestMessage, TestException), Times.Once);
+        }
 
-            mockLoggerFactory.ResetCalls();
-
-            loggerFactory.Trace(TestMessage);
-            loggerFactory.Trace(TestException);
-            loggerFactory.Trace(TestMessage, TestException);
+        [Fact]
+        public void LogMessage_AsTrace_OncePerMethodOverload_WithoutSourceClass()
+        {
+            mockLoggerFactory.Object.Trace(TestMessage);
+            mockLoggerFactory.Object.Trace(TestException);
+            mockLoggerFactory.Object.Trace(TestMessage, TestException);
 
             mockLoggerFactory.Verify(logger => logger.Trace(TestMessage), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Trace(TestException), Times.Once);
@@ -48,21 +47,23 @@ namespace Bit.Logger.Tests
         }
 
         [Fact]
-        public void LogMessage_AsDebug_OncePerMethodOverload()
+        public void LogMessage_AsDebug_OncePerMethodOverload_WithSourceClass()
         {
-            loggerFactory.Debug<ConsoleLoggerShould>(TestMessage);
-            loggerFactory.Debug<ConsoleLoggerShould>(TestException);
-            loggerFactory.Debug<ConsoleLoggerShould>(TestMessage, TestException);
+            mockLoggerFactory.Object.Debug<ConsoleLoggerShould>(TestMessage);
+            mockLoggerFactory.Object.Debug<ConsoleLoggerShould>(TestException);
+            mockLoggerFactory.Object.Debug<ConsoleLoggerShould>(TestMessage, TestException);
 
             mockLoggerFactory.Verify(logger => logger.Debug<ConsoleLoggerShould>(TestMessage), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Debug<ConsoleLoggerShould>(TestException), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Debug<ConsoleLoggerShould>(TestMessage, TestException), Times.Once);
+        }
 
-            mockLoggerFactory.ResetCalls();
-
-            loggerFactory.Debug(TestMessage);
-            loggerFactory.Debug(TestException);
-            loggerFactory.Debug(TestMessage, TestException);
+        [Fact]
+        public void LogMessage_AsDebug_OncePerMethodOverload_WithoutSourceClass()
+        {
+            mockLoggerFactory.Object.Debug(TestMessage);
+            mockLoggerFactory.Object.Debug(TestException);
+            mockLoggerFactory.Object.Debug(TestMessage, TestException);
 
             mockLoggerFactory.Verify(logger => logger.Debug(TestMessage), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Debug(TestException), Times.Once);
@@ -70,21 +71,23 @@ namespace Bit.Logger.Tests
         }
 
         [Fact]
-        public void LogMessage_AsVerbose_OncePerMethodOverload()
+        public void LogMessage_AsVerbose_OncePerMethodOverload_WithSourceClass()
         {
-            loggerFactory.Verbose<ConsoleLoggerShould>(TestMessage);
-            loggerFactory.Verbose<ConsoleLoggerShould>(TestException);
-            loggerFactory.Verbose<ConsoleLoggerShould>(TestMessage, TestException);
+            mockLoggerFactory.Object.Verbose<ConsoleLoggerShould>(TestMessage);
+            mockLoggerFactory.Object.Verbose<ConsoleLoggerShould>(TestException);
+            mockLoggerFactory.Object.Verbose<ConsoleLoggerShould>(TestMessage, TestException);
 
             mockLoggerFactory.Verify(logger => logger.Verbose<ConsoleLoggerShould>(TestMessage), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Verbose<ConsoleLoggerShould>(TestException), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Verbose<ConsoleLoggerShould>(TestMessage, TestException), Times.Once);
+        }
 
-            mockLoggerFactory.ResetCalls();
-            
-            loggerFactory.Verbose(TestMessage);
-            loggerFactory.Verbose(TestException);
-            loggerFactory.Verbose(TestMessage, TestException);
+        [Fact]
+        public void LogMessage_AsVerbose_OncePerMethodOverload_WithoutSourceClass()
+        {
+            mockLoggerFactory.Object.Verbose(TestMessage);
+            mockLoggerFactory.Object.Verbose(TestException);
+            mockLoggerFactory.Object.Verbose(TestMessage, TestException);
 
             mockLoggerFactory.Verify(logger => logger.Verbose(TestMessage), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Verbose(TestException), Times.Once);
@@ -92,21 +95,23 @@ namespace Bit.Logger.Tests
         }
 
         [Fact]
-        public void LogMessage_AsInformation_OncePerMethodOverload()
+        public void LogMessage_AsInformation_OncePerMethodOverload_WithSourceClass()
         {
-            loggerFactory.Information<ConsoleLoggerShould>(TestMessage);
-            loggerFactory.Information<ConsoleLoggerShould>(TestException);
-            loggerFactory.Information<ConsoleLoggerShould>(TestMessage, TestException);
+            mockLoggerFactory.Object.Information<ConsoleLoggerShould>(TestMessage);
+            mockLoggerFactory.Object.Information<ConsoleLoggerShould>(TestException);
+            mockLoggerFactory.Object.Information<ConsoleLoggerShould>(TestMessage, TestException);
 
             mockLoggerFactory.Verify(logger => logger.Information<ConsoleLoggerShould>(TestMessage), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Information<ConsoleLoggerShould>(TestException), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Information<ConsoleLoggerShould>(TestMessage, TestException), Times.Once);
+        }
 
-            mockLoggerFactory.ResetCalls();
-
-            loggerFactory.Information(TestMessage);
-            loggerFactory.Information(TestException);
-            loggerFactory.Information(TestMessage, TestException);
+        [Fact]
+        public void LogMessage_AsInformation_OncePerMethodOverload_WithoutSourceClass()
+        {
+            mockLoggerFactory.Object.Information(TestMessage);
+            mockLoggerFactory.Object.Information(TestException);
+            mockLoggerFactory.Object.Information(TestMessage, TestException);
 
             mockLoggerFactory.Verify(logger => logger.Information(TestMessage), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Information(TestException), Times.Once);
@@ -114,21 +119,23 @@ namespace Bit.Logger.Tests
         }
 
         [Fact]
-        public void LogMessage_AsWarning_OncePerMethodOverload()
+        public void LogMessage_AsWarning_OncePerMethodOverload_WithSourceClass()
         {
-            loggerFactory.Warning<ConsoleLoggerShould>(TestMessage);
-            loggerFactory.Warning<ConsoleLoggerShould>(TestException);
-            loggerFactory.Warning<ConsoleLoggerShould>(TestMessage, TestException);
+            mockLoggerFactory.Object.Warning<ConsoleLoggerShould>(TestMessage);
+            mockLoggerFactory.Object.Warning<ConsoleLoggerShould>(TestException);
+            mockLoggerFactory.Object.Warning<ConsoleLoggerShould>(TestMessage, TestException);
 
             mockLoggerFactory.Verify(logger => logger.Warning<ConsoleLoggerShould>(TestMessage), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Warning<ConsoleLoggerShould>(TestException), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Warning<ConsoleLoggerShould>(TestMessage, TestException), Times.Once);
+        }
 
-            mockLoggerFactory.ResetCalls();
-
-            loggerFactory.Warning(TestMessage);
-            loggerFactory.Warning(TestException);
-            loggerFactory.Warning(TestMessage, TestException);
+        [Fact]
+        public void LogMessage_AsWarning_OncePerMethodOverload_WithoutSourceClass()
+        {
+            mockLoggerFactory.Object.Warning(TestMessage);
+            mockLoggerFactory.Object.Warning(TestException);
+            mockLoggerFactory.Object.Warning(TestMessage, TestException);
 
             mockLoggerFactory.Verify(logger => logger.Warning(TestMessage), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Warning(TestException), Times.Once);
@@ -136,21 +143,23 @@ namespace Bit.Logger.Tests
         }
 
         [Fact]
-        public void LogMessage_AsError_OncePerMethodOverload()
+        public void LogMessage_AsError_OncePerMethodOverload_WithSourceClass()
         {
-            loggerFactory.Error<ConsoleLoggerShould>(TestMessage);
-            loggerFactory.Error<ConsoleLoggerShould>(TestException);
-            loggerFactory.Error<ConsoleLoggerShould>(TestMessage, TestException);
+            mockLoggerFactory.Object.Error<ConsoleLoggerShould>(TestMessage);
+            mockLoggerFactory.Object.Error<ConsoleLoggerShould>(TestException);
+            mockLoggerFactory.Object.Error<ConsoleLoggerShould>(TestMessage, TestException);
 
             mockLoggerFactory.Verify(logger => logger.Error<ConsoleLoggerShould>(TestMessage), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Error<ConsoleLoggerShould>(TestException), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Error<ConsoleLoggerShould>(TestMessage, TestException), Times.Once);
+        }
 
-            mockLoggerFactory.ResetCalls();
-            
-            loggerFactory.Error(TestMessage);
-            loggerFactory.Error(TestException);
-            loggerFactory.Error(TestMessage, TestException);
+        [Fact]
+        public void LogMessage_AsError_OncePerMethodOverload_WithoutSourceClass()
+        {
+            mockLoggerFactory.Object.Error(TestMessage);
+            mockLoggerFactory.Object.Error(TestException);
+            mockLoggerFactory.Object.Error(TestMessage, TestException);
 
             mockLoggerFactory.Verify(logger => logger.Error(TestMessage), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Error(TestException), Times.Once);
@@ -158,21 +167,23 @@ namespace Bit.Logger.Tests
         }
 
         [Fact]
-        public void LogMessage_AsCritical_OncePerMethodOverload()
+        public void LogMessage_AsCritical_OncePerMethodOverload_WithSourceClass()
         {
-            loggerFactory.Critical<ConsoleLoggerShould>(TestMessage);
-            loggerFactory.Critical<ConsoleLoggerShould>(TestException);
-            loggerFactory.Critical<ConsoleLoggerShould>(TestMessage, TestException);
+            mockLoggerFactory.Object.Critical<ConsoleLoggerShould>(TestMessage);
+            mockLoggerFactory.Object.Critical<ConsoleLoggerShould>(TestException);
+            mockLoggerFactory.Object.Critical<ConsoleLoggerShould>(TestMessage, TestException);
 
             mockLoggerFactory.Verify(logger => logger.Critical<ConsoleLoggerShould>(TestMessage), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Critical<ConsoleLoggerShould>(TestException), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Critical<ConsoleLoggerShould>(TestMessage, TestException), Times.Once);
+        }
 
-            mockLoggerFactory.ResetCalls();
-
-            loggerFactory.Critical(TestMessage);
-            loggerFactory.Critical(TestException);
-            loggerFactory.Critical(TestMessage, TestException);
+        [Fact]
+        public void LogMessage_AsCritical_OncePerMethodOverload_WithoutSourceClass()
+        {
+            mockLoggerFactory.Object.Critical(TestMessage);
+            mockLoggerFactory.Object.Critical(TestException);
+            mockLoggerFactory.Object.Critical(TestMessage, TestException);
 
             mockLoggerFactory.Verify(logger => logger.Critical(TestMessage), Times.Once);
             mockLoggerFactory.Verify(logger => logger.Critical(TestException), Times.Once);
