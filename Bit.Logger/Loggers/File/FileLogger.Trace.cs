@@ -2,25 +2,26 @@ namespace Bit.Logger.Loggers.File
 {
     using Bit.Logger.Config;
     using System;
+    using static Bit.Logger.Loggers.Arguments.LogArguments;
 
     internal partial class FileLogger : ILogger, IConfiguration
     {
         public void Trace<TClass>(string message) where TClass : class =>
-            WriteToFile<TClass>(Level.Trace, message);
+            WriteToFile(TraceMessage<TClass>(message));
 
         public void Trace(string message) =>
-            WriteToFile(Level.Trace, message);
+            WriteToFile(TraceMessage(message));
 
         public void Trace<TClass>(Exception exception) where TClass : class =>
-            WriteToFile<TClass>(Level.Trace, exception: exception);
+            WriteToFile(TraceException<TClass>(exception));
 
         public void Trace(Exception exception) =>
-            WriteToFile(Level.Trace, exception: exception);
+            WriteToFile(TraceException(exception));
 
         public void Trace<TClass>(string message, Exception exception) where TClass : class =>
-            WriteToFile<TClass>(Level.Trace, message, exception);
+            WriteToFile(TraceMessageAndException<TClass>(message, exception));
 
         public void Trace(string message, Exception exception) =>
-            WriteToFile(Level.Trace, message, exception);
+            WriteToFile(TraceMessageAndException(message, exception));
     }
 }

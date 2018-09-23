@@ -2,25 +2,26 @@ namespace Bit.Logger.Loggers.Database
 {
     using Bit.Logger.Config;
     using System;
+    using static Bit.Logger.Loggers.Arguments.LogArguments;
 
     internal partial class DatabaseLogger : ILogger, IConfiguration
     {
         public void Critical<TClass>(string message) where TClass : class =>
-            WriteToDatabase<TClass>(Level.Critical, message);
+            WriteToDatabase(CriticalMessage<TClass>(message));
 
         public void Critical(string message) =>
-            WriteToDatabase(Level.Critical, message);
+            WriteToDatabase(CriticalMessage(message));
 
         public void Critical<TClass>(Exception exception) where TClass : class =>
-            WriteToDatabase<TClass>(Level.Critical, exception: exception);
+            WriteToDatabase(CriticalException<TClass>(exception));
 
         public void Critical(Exception exception) =>
-            WriteToDatabase(Level.Critical, exception: exception);
+            WriteToDatabase(CriticalException(exception));
 
         public void Critical<TClass>(string message, Exception exception) where TClass : class =>
-            WriteToDatabase<TClass>(Level.Critical, message, exception);
+            WriteToDatabase(CriticalMessageAndException<TClass>(message, exception));
 
         public void Critical(string message, Exception exception) =>
-            WriteToDatabase(Level.Critical, message, exception);
+            WriteToDatabase(CriticalMessageAndException(message, exception));
     }
 }

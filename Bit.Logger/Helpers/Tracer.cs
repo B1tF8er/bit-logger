@@ -18,7 +18,7 @@
         private static StackFrame GetStackFrame()
         {
             var stackTrace = new StackTrace();
-            var stackFrame = stackTrace.GetFrame(7);
+            var stackFrame = stackTrace.GetFrame(8);
             return stackFrame;
         }
     }

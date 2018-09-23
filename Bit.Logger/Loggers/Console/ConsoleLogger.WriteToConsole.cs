@@ -7,31 +7,7 @@ namespace Bit.Logger.Loggers.Console
 
     internal partial class ConsoleLogger : ILogger, IConfiguration
     {
-        private void WriteToConsole<TClass>(Level level, string message = default(string), Exception exception = default(Exception)) where TClass : class
-            => Write(
-                new LogArguments
-                {
-                    Level = level,
-                    ClassName = typeof(TClass).FullName,
-                    MethodName = GetMethodName(),
-                    Message = message,
-                    Exception = exception
-                }
-            );
-
-        private void WriteToConsole(Level level, string message = default(string), Exception exception = default(Exception))
-            => Write(
-                new LogArguments
-                {
-                    Level = level,
-                    ClassName = GetClassName(),
-                    MethodName = GetMethodName(),
-                    Message = message,
-                    Exception = exception
-                }
-            );
-
-        private void Write(LogArguments logArguments)
+        private void WriteToConsole(LogArguments logArguments)
         {
             if (Configuration.Level <= logArguments.Level)
             {

@@ -2,25 +2,26 @@ namespace Bit.Logger.Loggers.Database
 {
     using Bit.Logger.Config;
     using System;
+    using static Bit.Logger.Loggers.Arguments.LogArguments;
 
     internal partial class DatabaseLogger : ILogger, IConfiguration
     {
         public void Information<TClass>(string message) where TClass : class =>
-            WriteToDatabase<TClass>(Level.Information, message);
+            WriteToDatabase(InformationMessage<TClass>(message));
 
         public void Information(string message) =>
-            WriteToDatabase(Level.Information, message);
+            WriteToDatabase(InformationMessage(message));
 
         public void Information<TClass>(Exception exception) where TClass : class =>
-            WriteToDatabase<TClass>(Level.Information, exception: exception);
+            WriteToDatabase(InformationException<TClass>(exception));
 
         public void Information(Exception exception) =>
-            WriteToDatabase(Level.Information, exception: exception);
+            WriteToDatabase(InformationException(exception));
 
         public void Information<TClass>(string message, Exception exception) where TClass : class =>
-            WriteToDatabase<TClass>(Level.Information, message, exception);
+            WriteToDatabase(InformationMessageAndException<TClass>(message, exception));
 
         public void Information(string message, Exception exception) =>
-            WriteToDatabase(Level.Information, message, exception);
+            WriteToDatabase(InformationMessageAndException(message, exception));
     }
 }

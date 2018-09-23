@@ -39,32 +39,8 @@ namespace Bit.Logger.Loggers.File
                 return logPath;
             }
         }
-        
-        private void WriteToFile<TClass>(Level level, string message = default(string), Exception exception = default(Exception)) where TClass : class 
-            => Write(
-                new LogArguments
-                {
-                    Level = level,
-                    ClassName = typeof(TClass).FullName,
-                    MethodName = GetMethodName(),
-                    Message = message,
-                    Exception = exception
-                }
-            );
 
-        private void WriteToFile(Level level, string message = default(string), Exception exception = default(Exception))
-            => Write(
-                new LogArguments
-                {
-                    Level = level,
-                    ClassName = GetClassName(),
-                    MethodName = GetMethodName(),
-                    Message = message,
-                    Exception = exception
-                }
-            );
-
-        private void Write(LogArguments logArguments)
+        private void WriteToFile(LogArguments logArguments)
         {
             if (Configuration.Level <= logArguments.Level)
             {

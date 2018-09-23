@@ -2,25 +2,26 @@ namespace Bit.Logger.Loggers.Console
 {
     using Bit.Logger.Config;
     using System;
+    using static Bit.Logger.Loggers.Arguments.LogArguments;
 
     internal partial class ConsoleLogger : ILogger, IConfiguration
     {
         public void Critical<TClass>(string message) where TClass : class =>
-            WriteToConsole<TClass>(Level.Critical, message);
+            WriteToConsole(CriticalMessage<TClass>(message));
 
         public void Critical(string message) =>
-            WriteToConsole(Level.Critical, message);
+            WriteToConsole(CriticalMessage(message));
 
         public void Critical<TClass>(Exception exception) where TClass : class =>
-            WriteToConsole<TClass>(Level.Critical, exception: exception);
+            WriteToConsole(CriticalException<TClass>(exception));
 
         public void Critical(Exception exception) =>
-            WriteToConsole(Level.Critical, exception: exception);
+            WriteToConsole(CriticalException(exception));
 
         public void Critical<TClass>(string message, Exception exception) where TClass : class =>
-            WriteToConsole<TClass>(Level.Critical, message, exception);
+            WriteToConsole(CriticalMessageAndException<TClass>(message, exception));
 
         public void Critical(string message, Exception exception) =>
-            WriteToConsole(Level.Critical, message, exception);
+            WriteToConsole(CriticalMessageAndException(message, exception));
     }
 }

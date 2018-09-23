@@ -2,25 +2,26 @@ namespace Bit.Logger.Loggers.Console
 {
     using Bit.Logger.Config;
     using System;
+    using static Bit.Logger.Loggers.Arguments.LogArguments;
 
     internal partial class ConsoleLogger : ILogger, IConfiguration
     {
         public void Information<TClass>(string message) where TClass : class =>
-            WriteToConsole<TClass>(Level.Information, message);
+            WriteToConsole(InformationMessage<TClass>(message));
 
         public void Information(string message) =>
-            WriteToConsole(Level.Information, message);
+            WriteToConsole(InformationMessage(message));
 
         public void Information<TClass>(Exception exception) where TClass : class =>
-            WriteToConsole<TClass>(Level.Information, exception: exception);
+            WriteToConsole(InformationException<TClass>(exception));
 
         public void Information(Exception exception) =>
-            WriteToConsole(Level.Information, exception: exception);
+            WriteToConsole(InformationException(exception));
 
         public void Information<TClass>(string message, Exception exception) where TClass : class =>
-            WriteToConsole<TClass>(Level.Information, message, exception);
+            WriteToConsole(InformationMessageAndException<TClass>(message, exception));
 
         public void Information(string message, Exception exception) =>
-            WriteToConsole(Level.Information, message, exception);
+            WriteToConsole(InformationMessageAndException(message, exception));
     }
 }

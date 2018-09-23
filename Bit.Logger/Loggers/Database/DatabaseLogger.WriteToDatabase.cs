@@ -8,31 +8,7 @@ namespace Bit.Logger.Loggers.Database
 
     internal partial class DatabaseLogger : ILogger, IConfiguration
     {
-        private void WriteToDatabase<TClass>(Level level, string message = default(string), Exception exception = default(Exception)) where TClass : class
-            => Write(
-                new LogArguments
-                {
-                    Level = level,
-                    ClassName = typeof(TClass).FullName,
-                    MethodName = GetMethodName(),
-                    Message = message,
-                    Exception = exception
-                }
-            );
-            
-        private void WriteToDatabase(Level level, string message = default(string), Exception exception = default(Exception))
-            => Write(
-                new LogArguments
-                {
-                    Level = level,
-                    ClassName = GetClassName(),
-                    MethodName = GetMethodName(),
-                    Message = message,
-                    Exception = exception
-                }
-            );
-
-        private void Write(LogArguments logArguments)
+        private void WriteToDatabase(LogArguments logArguments)
         {
             if (Configuration.Level <= logArguments.Level)
             {

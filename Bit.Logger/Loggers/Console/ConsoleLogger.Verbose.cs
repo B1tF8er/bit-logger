@@ -2,25 +2,26 @@ namespace Bit.Logger.Loggers.Console
 {
     using Bit.Logger.Config;
     using System;
+    using static Bit.Logger.Loggers.Arguments.LogArguments;
 
     internal partial class ConsoleLogger : ILogger, IConfiguration
     {
         public void Verbose<TClass>(string message) where TClass : class =>
-            WriteToConsole<TClass>(Level.Verbose, message);
+            WriteToConsole(VerboseMessage<TClass>(message));
 
         public void Verbose(string message) =>
-            WriteToConsole(Level.Verbose, message);
+            WriteToConsole(VerboseMessage(message));
 
         public void Verbose<TClass>(Exception exception) where TClass : class =>
-            WriteToConsole<TClass>(Level.Verbose, exception: exception);
+            WriteToConsole(VerboseException<TClass>(exception));
 
         public void Verbose(Exception exception) =>
-            WriteToConsole(Level.Verbose, exception: exception);
+            WriteToConsole(VerboseException(exception));
 
         public void Verbose<TClass>(string message, Exception exception) where TClass : class =>
-            WriteToConsole<TClass>(Level.Verbose, message, exception);
+            WriteToConsole(VerboseMessageAndException<TClass>(message, exception));
 
         public void Verbose(string message, Exception exception) =>
-            WriteToConsole(Level.Verbose, message, exception);
+            WriteToConsole(VerboseMessageAndException(message, exception));
     }
 }
