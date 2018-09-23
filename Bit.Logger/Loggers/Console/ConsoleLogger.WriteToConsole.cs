@@ -24,7 +24,7 @@ namespace Bit.Logger.Loggers.Console
                 new LogArguments
                 {
                     Level = level,
-                    ClassName = GetClass().FullName,
+                    ClassName = GetClassName(),
                     MethodName = GetMethodName(),
                     Message = message,
                     Exception = exception

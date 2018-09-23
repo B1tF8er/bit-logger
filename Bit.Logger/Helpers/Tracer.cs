@@ -2,14 +2,18 @@
 {
     using System;
     using System.Diagnostics;
+    using System.Reflection;
 
     internal static class Tracer
     {
-        internal static Type GetClass() =>
-            GetStackFrame().GetType();
+        internal static string GetClassName() =>
+            GetMethodBase().DeclaringType.FullName;
 
         internal static string GetMethodName() =>
-            GetStackFrame().GetMethod().Name;
+            GetMethodBase().Name;
+
+        private static MethodBase GetMethodBase() =>
+            GetStackFrame().GetMethod();
 
         private static StackFrame GetStackFrame()
         {

@@ -57,7 +57,7 @@ namespace Bit.Logger.Loggers.File
                 new LogArguments
                 {
                     Level = level,
-                    ClassName = GetClass().FullName,
+                    ClassName = GetClassName(),
                     MethodName = GetMethodName(),
                     Message = message,
                     Exception = exception
