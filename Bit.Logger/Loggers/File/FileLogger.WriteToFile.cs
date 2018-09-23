@@ -1,6 +1,7 @@
 namespace Bit.Logger.Loggers.File
 {
     using Bit.Logger.Config;
+    using Bit.Logger.Loggers.Arguments;
     using System;
     using System.IO;
     using System.Reflection;
@@ -39,41 +40,44 @@ namespace Bit.Logger.Loggers.File
             }
         }
         
-        private void WriteToFile<TClass>(Level level, string message = default(string), Exception exception = default(Exception))
-            where TClass : class
-        {
-            if (Configuration.Level <= level)
-            {
-                using (var logWriter = new StreamWriter(LogPath, true, Encoding.UTF8))
+        private void WriteToFile<TClass>(Level level, string message = default(string), Exception exception = default(Exception)) where TClass : class 
+            => Write(
+                new LogArguments
                 {
-                    logWriter.WriteLine(
-                        string.Format(Configuration.FormatProvider, Configuration.Format,
-                            level,
-                            DateTime.Now,
-                            typeof(TClass).FullName,
-                            GetMethodName(),
-                            message,
-                            exception
-                        )
-                    );
+                    Level = level,
+                    ClassName = typeof(TClass).FullName,
+                    MethodName = GetMethodName(),
+                    Message = message,
+                    Exception = exception
                 }
-            }
-        }
+            );
 
         private void WriteToFile(Level level, string message = default(string), Exception exception = default(Exception))
+            => Write(
+                new LogArguments
+                {
+                    Level = level,
+                    ClassName = GetClass().FullName,
+                    MethodName = GetMethodName(),
+                    Message = message,
+                    Exception = exception
+                }
+            );
+
+        private void Write(LogArguments logArguments)
         {
-            if (Configuration.Level <= level)
+            if (Configuration.Level <= logArguments.Level)
             {
                 using (var logWriter = new StreamWriter(LogPath, true, Encoding.UTF8))
                 {
                     logWriter.WriteLine(
                         string.Format(Configuration.FormatProvider, Configuration.Format,
-                            level,
+                            logArguments.Level,
                             DateTime.Now,
-                            GetClass().FullName,
-                            GetMethodName(),
-                            message,
-                            exception
+                            logArguments.ClassName,
+                            logArguments.MethodName,
+                            logArguments.Message,
+                            logArguments.Exception
                         )
                     );
                 }

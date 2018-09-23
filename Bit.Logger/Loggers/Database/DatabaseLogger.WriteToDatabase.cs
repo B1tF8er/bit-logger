@@ -1,48 +1,52 @@
 namespace Bit.Logger.Loggers.Database
 {
     using Bit.Logger.Config;
+    using Bit.Logger.Loggers.Arguments;
     using Bit.Logger.Models;
     using System;
     using static Bit.Logger.Helpers.Tracer;
 
     internal partial class DatabaseLogger : ILogger, IConfiguration
     {
-        private void WriteToDatabase<TClass>(Level level, string message = default(string), Exception exception = default(Exception))
-            where TClass : class
-        {
-            if (Configuration.Level <= level)
-            {
-                using (var context = new LoggingContext())
+        private void WriteToDatabase<TClass>(Level level, string message = default(string), Exception exception = default(Exception)) where TClass : class
+            => Write(
+                new LogArguments
                 {
-                    context.Logs.Add(new Log
-                    {
-                        Id = $"{Guid.NewGuid()}",
-                        Level = Configuration.ShowLevel ? level.ToString() : null,
-                        Message = message,
-                        Date = GetDate(),
-                        Class = typeof(TClass).FullName,
-                        Method = GetMethodName(),
-                        Exception = exception?.ToString() ?? null
-                    });
+                    Level = level,
+                    ClassName = typeof(TClass).FullName,
+                    MethodName = GetMethodName(),
+                    Message = message,
+                    Exception = exception
                 }
-            }
-        }
-
+            );
+            
         private void WriteToDatabase(Level level, string message = default(string), Exception exception = default(Exception))
+            => Write(
+                new LogArguments
+                {
+                    Level = level,
+                    ClassName = GetClass().FullName,
+                    MethodName = GetMethodName(),
+                    Message = message,
+                    Exception = exception
+                }
+            );
+
+        private void Write(LogArguments logArguments)
         {
-            if (Configuration.Level <= level)
+            if (Configuration.Level <= logArguments.Level)
             {
                 using (var context = new LoggingContext())
                 {
                     context.Logs.Add(new Log
                     {
                         Id = $"{Guid.NewGuid()}",
-                        Level = Configuration.ShowLevel ? level.ToString() : null,
-                        Message = message,
+                        Level = Configuration.ShowLevel ? logArguments.Level.ToString() : null,
+                        Message = logArguments.Message,
                         Date = GetDate(),
-                        Class = GetClass().FullName,
-                        Method = GetMethodName(),
-                        Exception = exception?.ToString() ?? null
+                        Class = logArguments.ClassName,
+                        Method = logArguments.MethodName,
+                        Exception = logArguments.Exception?.ToString() ?? null
                     });
                 }
             }
