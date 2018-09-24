@@ -32,7 +32,7 @@ namespace Bit.Logger.FormatProviders
                 return datetime.ApplyDateFormat(DateType.Time);
             }
 
-            if (format == "short")
+            if (format == "caller")
                 return argument?.ToString().ApplyCallerFormat() ?? string.Empty;
 
             if (format == "exception")

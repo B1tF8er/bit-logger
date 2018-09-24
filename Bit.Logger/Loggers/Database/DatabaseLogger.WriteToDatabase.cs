@@ -17,7 +17,7 @@ namespace Bit.Logger.Loggers.Database
             
             using (var context = new LoggingContext())
             {
-                context.Logs.Add(new Log
+                var log = new Log
                 {
                     Id = $"{Guid.NewGuid()}",
                     Level = Configuration.ShowLevel ? logArguments.Level.ToString() : null,
@@ -26,7 +26,9 @@ namespace Bit.Logger.Loggers.Database
                     Class = logArguments.ClassName,
                     Method = logArguments.MethodName,
                     Exception = logArguments.Exception?.ToString() ?? null
-                });
+                };
+                
+                context.Logs.Add(log);
             }
         }
 

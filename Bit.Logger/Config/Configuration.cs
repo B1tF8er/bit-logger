@@ -35,7 +35,7 @@ namespace Bit.Logger.Config
                     else if (ShowTime)
                         _format += "{1:time} ";
 
-                    _format += "[{2:short}::{3}] {4} {5:exception}";
+                    _format += "[{2:caller}::{3:method}] {4:message} {5:exception}";
                 }
 
                 return _format;

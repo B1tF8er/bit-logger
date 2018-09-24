@@ -49,16 +49,16 @@ namespace Bit.Logger.Loggers.File
 
             using (var logWriter = new StreamWriter(LogPath, true, Encoding.UTF8))
             {
-                logWriter.WriteLine(
-                    string.Format(Configuration.FormatProvider, Configuration.Format,
-                        logArguments.Level,
-                        DateTime.Now,
-                        logArguments.ClassName,
-                        logArguments.MethodName,
-                        logArguments.Message,
-                        logArguments.Exception
-                    )
+                var log = string.Format(Configuration.FormatProvider, Configuration.Format,
+                    logArguments.Level,
+                    DateTime.Now,
+                    logArguments.ClassName,
+                    logArguments.MethodName,
+                    logArguments.Message,
+                    logArguments.Exception
                 );
+
+                logWriter.WriteLine(log);
             }
         }
     }
