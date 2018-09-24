@@ -42,21 +42,23 @@ namespace Bit.Logger.Loggers.File
 
         private void WriteToFile(LogArguments logArguments)
         {
-            if (Configuration.Level <= logArguments.Level)
+            var isLevelAllowed = Configuration.Level <= logArguments.Level;
+
+            if (!isLevelAllowed)
+                return;
+
+            using (var logWriter = new StreamWriter(LogPath, true, Encoding.UTF8))
             {
-                using (var logWriter = new StreamWriter(LogPath, true, Encoding.UTF8))
-                {
-                    logWriter.WriteLine(
-                        string.Format(Configuration.FormatProvider, Configuration.Format,
-                            logArguments.Level,
-                            DateTime.Now,
-                            logArguments.ClassName,
-                            logArguments.MethodName,
-                            logArguments.Message,
-                            logArguments.Exception
-                        )
-                    );
-                }
+                logWriter.WriteLine(
+                    string.Format(Configuration.FormatProvider, Configuration.Format,
+                        logArguments.Level,
+                        DateTime.Now,
+                        logArguments.ClassName,
+                        logArguments.MethodName,
+                        logArguments.Message,
+                        logArguments.Exception
+                    )
+                );
             }
         }
     }

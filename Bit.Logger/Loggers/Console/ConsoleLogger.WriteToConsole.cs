@@ -9,19 +9,21 @@ namespace Bit.Logger.Loggers.Console
     {
         private void WriteToConsole(LogArguments logArguments)
         {
-            if (Configuration.Level <= logArguments.Level)
-            {
-                Console.WriteLine(
-                    string.Format(Configuration.FormatProvider, Configuration.Format,
-                        logArguments.Level,
-                        DateTime.Now,
-                        logArguments.ClassName,
-                        logArguments.MethodName,    
-                        logArguments.Message,    
-                        logArguments.Exception
-                    )
-                );
-            }
+            var isLevelAllowed = Configuration.Level <= logArguments.Level;
+
+            if (!isLevelAllowed)
+                return;
+
+            Console.WriteLine(
+                string.Format(Configuration.FormatProvider, Configuration.Format,
+                    logArguments.Level,
+                    DateTime.Now,
+                    logArguments.ClassName,
+                    logArguments.MethodName,    
+                    logArguments.Message,    
+                    logArguments.Exception
+                )
+            );
         }
     }
 }

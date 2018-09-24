@@ -10,21 +10,23 @@ namespace Bit.Logger.Loggers.Database
     {
         private void WriteToDatabase(LogArguments logArguments)
         {
-            if (Configuration.Level <= logArguments.Level)
+            var isLevelAllowed = Configuration.Level <= logArguments.Level;
+
+            if (!isLevelAllowed)
+                return;
+            
+            using (var context = new LoggingContext())
             {
-                using (var context = new LoggingContext())
+                context.Logs.Add(new Log
                 {
-                    context.Logs.Add(new Log
-                    {
-                        Id = $"{Guid.NewGuid()}",
-                        Level = Configuration.ShowLevel ? logArguments.Level.ToString() : null,
-                        Message = logArguments.Message,
-                        Date = GetDate(),
-                        Class = logArguments.ClassName,
-                        Method = logArguments.MethodName,
-                        Exception = logArguments.Exception?.ToString() ?? null
-                    });
-                }
+                    Id = $"{Guid.NewGuid()}",
+                    Level = Configuration.ShowLevel ? logArguments.Level.ToString() : null,
+                    Message = logArguments.Message,
+                    Date = GetDate(),
+                    Class = logArguments.ClassName,
+                    Method = logArguments.MethodName,
+                    Exception = logArguments.Exception?.ToString() ?? null
+                });
             }
         }
 
