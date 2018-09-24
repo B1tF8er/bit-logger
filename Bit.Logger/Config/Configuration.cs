@@ -3,6 +3,7 @@ namespace Bit.Logger.Config
     using Bit.Logger.FormatProviders;
     using System;
     using System.Text;
+    using static Bit.Logger.Helpers.StringExtensions;
 
     public class Configuration
     {
@@ -16,18 +17,12 @@ namespace Bit.Logger.Config
 
         public IFormatProvider FormatProvider { get; set; } = new DefaultFormatProvider();
 
-        private string _format = default(string);
+        private string format = default(string);
 
         public string Format
         {
-            get => _format is null ? GetDefaultFormat() : _format;
-            set
-            {
-                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentNullException(nameof(Format));
-
-                _format = value;
-            }
+            get => format is null ? GetDefaultFormat() : format;
+            set => format = value.IsNullOrEmptyOrWhiteSpace() ? throw new ArgumentNullException(nameof(format)) : value;
         }
 
         public override string ToString() => $"Level:{Level}, Format:{Format}";
