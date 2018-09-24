@@ -8,10 +8,9 @@ namespace Bit.Logger.FormatProviders.FormatterStrategy
         {
             var callerName = argument as string;
             
-            if (callerName is null)
-                return string.Empty;
+            callerName = callerName?.Split(".").LastOrDefault() ?? string.Empty;
 
-            return $"{callerName.Split(".").LastOrDefault()}";
+            return callerName;
         }
     }
 }

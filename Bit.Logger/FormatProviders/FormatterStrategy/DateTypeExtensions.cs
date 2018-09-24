@@ -2,7 +2,7 @@ namespace Bit.Logger.FormatProviders.FormatterStrategy
 {
     using static Constants;
 
-    internal static class DateFormatterExtensions
+    internal static class DateTypeExtensions
     {
         internal static string GetFormatFor(DateType dateType)
         {

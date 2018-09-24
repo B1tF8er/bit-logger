@@ -1,7 +1,7 @@
 namespace Bit.Logger.FormatProviders.FormatterStrategy
 {
     using System;
-    using static DateFormatterExtensions;
+    using static DateTypeExtensions;
 
     internal class DateTimeFormatterStrategy : IFormatterStrategy
     {
@@ -9,10 +9,7 @@ namespace Bit.Logger.FormatProviders.FormatterStrategy
         {
             var datetime = argument as Nullable<DateTime>;
 
-            if (datetime is null)
-                return string.Empty;
-
-            return datetime?.ToString(GetFormatFor(DateType.DateTime));
+            return datetime?.ToString(GetFormatFor(DateType.DateTime)) ?? string.Empty;
         }
     }
 }

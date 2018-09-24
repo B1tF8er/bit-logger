@@ -4,12 +4,9 @@ namespace Bit.Logger.FormatProviders.FormatterStrategy
     {
         public string ApplyFormatTo<TArgument>(TArgument argument)
         {
-            var level = argument.ToString();
+            var level = argument.ToString()?.ToUpper() ?? string.Empty;
 
-            if (level is null)
-                return string.Empty;
-
-            return $"<{level.ToUpper()}>";
+            return $"<{level}>";
         }
     }
 }
