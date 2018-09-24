@@ -2,6 +2,7 @@ namespace Bit.Logger.Config
 {
     using Bit.Logger.FormatProviders;
     using System;
+    using System.Text;
 
     public class Configuration
     {
@@ -19,27 +20,7 @@ namespace Bit.Logger.Config
 
         public string Format
         {
-            get
-            {
-                if (_format == null)
-                {
-                    _format = string.Empty;
-
-                    if (ShowLevel)
-                        _format += "{0:level} ";
-                    
-                    if (ShowDate && ShowTime)
-                        _format += "{1:datetime} ";
-                    else if (ShowDate)
-                        _format += "{1:date} ";
-                    else if (ShowTime)
-                        _format += "{1:time} ";
-
-                    _format += "[{2:caller}::{3:method}] {4:message} {5:exception}";
-                }
-
-                return _format;
-            }
+            get => _format is null ? GetDefaultFormat() : _format;
             set
             {
                 if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
@@ -50,5 +31,30 @@ namespace Bit.Logger.Config
         }
 
         public override string ToString() => $"Level:{Level}, Format:{Format}";
+
+        private string GetDefaultFormat()
+        {
+            var formatBuilder = new StringBuilder();
+
+            return formatBuilder
+                .Append(ShowLevel ? "{0:level} " : string.Empty)
+                .Append(GetDefaultDateTimeFormat())
+                .Append("[{2:caller}::{3:method}] {4:message} {5:exception}")
+                .ToString();
+        }
+
+        private string GetDefaultDateTimeFormat()
+        {
+            var datetimeFormat = string.Empty;
+
+            if (ShowDate && ShowTime)
+                datetimeFormat += "{1:datetime} ";
+            else if (ShowDate)
+                datetimeFormat += "{1:date} ";
+            else if (ShowTime)
+                datetimeFormat += "{1:time} ";
+
+            return datetimeFormat;
+        }
     }
 }
