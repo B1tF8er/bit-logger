@@ -22,14 +22,14 @@ namespace Bit.Logger.FormatProviders
 
             if (format == "date")
             {
-                var datetime = Convert.ToDateTime(argument);
-                return datetime.ApplyDateFormat(DateType.Date);
+                var date = Convert.ToDateTime(argument);
+                return date.ApplyDateFormat(DateType.Date);
             }
 
             if (format == "time")
             {
-                var datetime = Convert.ToDateTime(argument);
-                return datetime.ApplyDateFormat(DateType.Time);
+                var time = Convert.ToDateTime(argument);
+                return time.ApplyDateFormat(DateType.Time);
             }
 
             if (format == "caller")
@@ -37,7 +37,7 @@ namespace Bit.Logger.FormatProviders
 
             if (format == "exception")
             {
-                var exception = (Exception)argument;
+                var exception = argument as Exception;
                 return exception?.ApplyExceptionFormat() ?? string.Empty;
             }
 
