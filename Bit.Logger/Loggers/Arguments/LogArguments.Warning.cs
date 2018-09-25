@@ -1,7 +1,7 @@
 namespace Bit.Logger.Loggers.Arguments
 {
-    using static Bit.Logger.Helpers.Tracer;
     using System;
+    using static Bit.Logger.Helpers.Tracer;
 
     internal partial class LogArguments
     {

@@ -1,9 +1,8 @@
 namespace Bit.Logger.Loggers.Console
 {
+    using Arguments;
     using Bit.Logger.Config;
-    using Bit.Logger.Loggers.Arguments;
     using System;
-    using static Bit.Logger.Helpers.Tracer;
 
     internal partial class ConsoleLogger : ILogger, IConfiguration
     {

@@ -1,10 +1,10 @@
 namespace Bit.Logger.Loggers.Database
 {
+    using Arguments;
     using Bit.Logger.Config;
-    using Bit.Logger.Loggers.Arguments;
     using Bit.Logger.Models;
     using System;
-    using static Bit.Logger.Helpers.Tracer;
+    using static Bit.Logger.FormatProviders.FormatterStrategy.Constants;
 
     internal partial class DatabaseLogger : ILogger, IConfiguration
     {
@@ -35,11 +35,11 @@ namespace Bit.Logger.Loggers.Database
         private string GetDate()
         {
             if (Configuration.ShowDate && Configuration.ShowTime)
-                return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                return DateTime.Now.ToString(DateTimeFormat);
             else if (Configuration.ShowDate)
-                return DateTime.Now.ToString("yyyy-MM-dd");
+                return DateTime.Now.ToString(DateFormat);
             else if (Configuration.ShowTime)
-                return DateTime.Now.ToString("HH:mm:ss");
+                return DateTime.Now.ToString(TimeFormat);
             else
                 return null;
         }

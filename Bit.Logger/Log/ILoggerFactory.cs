@@ -1,6 +1,6 @@
 namespace Bit.Logger
 {
-    using Bit.Logger.Config;
+    using Config;
     using System.Collections.Generic;
 
     public interface ILoggerFactory : ILogger

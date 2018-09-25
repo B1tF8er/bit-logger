@@ -1,7 +1,7 @@
 namespace Bit.Logger.Loggers.File
 {
+    using Arguments;
     using Bit.Logger.Config;
-    using Bit.Logger.Loggers.Arguments;
     using System;
     using System.IO;
     using System.Reflection;

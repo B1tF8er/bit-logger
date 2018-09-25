@@ -1,7 +1,5 @@
 namespace Bit.Logger.FormatProviders.FormatterStrategy
 {
-    using Bit.Logger.FormatProviders.FormatterStrategy;
-
     internal static class FormatterExtensions
     {
         internal static string ApplyFormat(this object argument, string format)

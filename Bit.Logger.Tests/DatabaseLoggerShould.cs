@@ -1,7 +1,6 @@
 namespace Bit.Logger.Tests
 {
-    using Bit.Logger;
-    using Bit.Logger.Config;
+    using Config;
     using Moq;
     using System;
     using Xunit;
