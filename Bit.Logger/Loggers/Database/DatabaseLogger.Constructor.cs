@@ -1,6 +1,6 @@
 namespace Bit.Logger.Loggers.Database
 {
-    using Bit.Logger.Config;
+    using Config;
 
     internal partial class DatabaseLogger : ILogger, IConfiguration
     {

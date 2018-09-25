@@ -1,6 +1,6 @@
 namespace Bit.Logger.Loggers.Console
 {
-    using Bit.Logger.Config;
+    using Config;
 
     internal partial class ConsoleLogger : ILogger, IConfiguration
     {

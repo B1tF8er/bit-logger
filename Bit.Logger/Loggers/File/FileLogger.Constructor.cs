@@ -1,6 +1,6 @@
 namespace Bit.Logger.Loggers.File
 {
-    using Bit.Logger.Config;
+    using Config;
 
     internal partial class FileLogger : ILogger, IConfiguration
     {

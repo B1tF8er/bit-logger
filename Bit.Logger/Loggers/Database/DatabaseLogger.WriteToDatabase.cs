@@ -1,10 +1,10 @@
 namespace Bit.Logger.Loggers.Database
 {
     using Arguments;
-    using Bit.Logger.Config;
-    using Bit.Logger.Models;
+    using Config;
+    using Models;
     using System;
-    using static Bit.Logger.Helpers.DateFormatter;
+    using static Helpers.DateFormatter;
 
     internal partial class DatabaseLogger : ILogger, IConfiguration
     {

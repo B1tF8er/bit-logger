@@ -1,11 +1,11 @@
 namespace Bit.Logger.Loggers.File
 {
     using Arguments;
-    using Bit.Logger.Config;
+    using Config;
     using System;
     using System.IO;
     using System.Text;
-    using static Bit.Logger.Helpers.LogPathResolver;
+    using static Helpers.LogPathResolver;
 
     internal partial class FileLogger : ILogger, IConfiguration
     {
