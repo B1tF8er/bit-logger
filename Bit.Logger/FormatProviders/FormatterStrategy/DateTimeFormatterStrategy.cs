@@ -1,7 +1,7 @@
 namespace Bit.Logger.FormatProviders.FormatterStrategy
 {
     using System;
-    using static DateTypeExtensions;
+    using static Bit.Logger.Helpers.DateTypeExtensions;
 
     internal class DateTimeFormatterStrategy : IFormatterStrategy
     {

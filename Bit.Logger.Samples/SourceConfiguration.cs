@@ -3,6 +3,7 @@ namespace Bit.Logger.Samples
     using Bit.Logger.Config;
     using System;
     using System.Collections.Generic;
+    using static Bit.Logger.DateType;
 
     internal static class SourceConfiguration
     {
@@ -15,13 +16,13 @@ namespace Bit.Logger.Samples
         internal static Func<Configuration> CreateDatabaseConfiguration = () => new Configuration
         {
             Level = Level.Critical,
-            ShowTime = false
+            DateTypeFormat = Date
         };
         
         internal static Func<Configuration> CreateFileConfiguration = () => new Configuration
         {
             Level = Level.Information,
-            ShowDate = false
+            DateTypeFormat = Time
         };
 
         internal static Func<CustomConsoleSource> CreateCustomConsoleSource = () => new CustomConsoleSource(new Configuration

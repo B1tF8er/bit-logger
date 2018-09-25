@@ -1,4 +1,4 @@
-namespace Bit.Logger.FormatProviders.FormatterStrategy
+namespace Bit.Logger.Helpers
 {
     using static Constants;
 

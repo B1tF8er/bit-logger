@@ -1,15 +1,14 @@
 namespace Bit.Logger.Config
 {
     using Bit.Logger.FormatProviders;
+    using Bit.Logger.FormatProviders.FormatterStrategy;
     using System;
     using System.Text;
     using static Bit.Logger.Helpers.StringExtensions;
 
     public class Configuration
     {
-        public bool ShowDate { get; set; } = true;
-
-        public bool ShowTime { get; set; } = true;
+        public DateType DateTypeFormat { get; set; } = DateType.DateTime;
 
         public bool ShowLevel { get; set; } = true;
 
@@ -33,23 +32,9 @@ namespace Bit.Logger.Config
 
             return formatBuilder
                 .Append(ShowLevel ? "{0:level} " : string.Empty)
-                .Append(GetDefaultDateTimeFormat())
+                .Append("{1:"+ DateTypeFormat.ToString().ToLower() +"} ")
                 .Append("[{2:caller}::{3:method}] {4:message} {5:exception}")
                 .ToString();
-        }
-
-        private string GetDefaultDateTimeFormat()
-        {
-            var datetimeFormat = string.Empty;
-
-            if (ShowDate && ShowTime)
-                datetimeFormat += "{1:datetime} ";
-            else if (ShowDate)
-                datetimeFormat += "{1:date} ";
-            else if (ShowTime)
-                datetimeFormat += "{1:time} ";
-
-            return datetimeFormat;
         }
     }
 }

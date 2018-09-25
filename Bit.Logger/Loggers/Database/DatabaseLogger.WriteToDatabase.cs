@@ -22,7 +22,7 @@ namespace Bit.Logger.Loggers.Database
                     Id = $"{Guid.NewGuid()}",
                     Level = Configuration.ShowLevel ? logArguments.Level.ToString() : null,
                     Message = logArguments.Message,
-                    Date = GetDateFormatFrom(Configuration),
+                    Date = GetFormattedDateFrom(Configuration.DateTypeFormat),
                     Class = logArguments.ClassName,
                     Method = logArguments.MethodName,
                     Exception = logArguments.Exception?.ToString() ?? null

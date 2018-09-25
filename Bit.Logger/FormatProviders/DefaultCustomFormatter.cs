@@ -1,7 +1,7 @@
 namespace Bit.Logger.FormatProviders
 {
     using System;
-    using static FormatterStrategy.FormatterExtensions;
+    using static FormatterStrategy.FormatterStrategyExtensions;
 
     public class DefaultCustomFormatter : ICustomFormatter
     {
