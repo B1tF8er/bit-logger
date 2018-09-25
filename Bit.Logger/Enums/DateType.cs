@@ -1,4 +1,4 @@
-namespace Bit.Logger
+namespace Bit.Logger.Enums
 {
     public enum DateType
     {

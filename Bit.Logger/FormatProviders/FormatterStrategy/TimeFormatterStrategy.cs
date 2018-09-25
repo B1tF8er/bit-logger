@@ -1,7 +1,8 @@
 namespace Bit.Logger.FormatProviders.FormatterStrategy
 {
+    using Enums;
     using System;
-    using static Bit.Logger.Helpers.DateTypeExtensions;
+    using static Helpers.DateTypeExtensions;
 
     internal class TimeFormatterStrategy : IFormatterStrategy
     {

@@ -1,7 +1,7 @@
 
 namespace Bit.Logger.FormatProviders.FormatterStrategy
 {
-    using Bit.Logger.Helpers;
+    using static Helpers.StringExtensions;
 
     internal class LevelFormatterStrategy : IFormatterStrategy
     {

@@ -1,5 +1,6 @@
 namespace Bit.Logger.Helpers
 {
+    using Enums;
     using static Constants;
 
     internal static class DateTypeExtensions

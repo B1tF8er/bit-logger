@@ -1,7 +1,7 @@
 namespace Bit.Logger.Loggers.Arguments
 {
+    using Enums;
     using System;
-    using static Bit.Logger.Level;
 
     internal partial class LogArguments
     {

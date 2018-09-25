@@ -1,8 +1,9 @@
 namespace Bit.Logger.Helpers
 {
-    using Bit.Logger.Config;
+    using Enums;
+    using Config;
     using System;
-    using static Bit.Logger.FormatProviders.FormatterStrategy.FormatterStrategyExtensions;
+    using static FormatProviders.FormatterStrategy.FormatterStrategyExtensions;
 
     internal static class DateFormatter
     {

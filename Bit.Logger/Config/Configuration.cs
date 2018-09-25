@@ -1,10 +1,11 @@
 namespace Bit.Logger.Config
 {
-    using Bit.Logger.FormatProviders;
-    using Bit.Logger.FormatProviders.FormatterStrategy;
+    using Enums;
+    using FormatProviders;
+    using FormatProviders.FormatterStrategy;
     using System;
     using System.Text;
-    using static Bit.Logger.Helpers.StringExtensions;
+    using static Helpers.StringExtensions;
 
     public class Configuration
     {

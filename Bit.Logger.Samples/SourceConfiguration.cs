@@ -1,9 +1,10 @@
 namespace Bit.Logger.Samples
 {
     using Bit.Logger.Config;
+    using Bit.Logger.Enums;
     using System;
     using System.Collections.Generic;
-    using static Bit.Logger.DateType;
+    using static Bit.Logger.Enums.DateType;
 
     internal static class SourceConfiguration
     {

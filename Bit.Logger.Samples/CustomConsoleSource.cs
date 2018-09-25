@@ -1,6 +1,7 @@
 namespace Bit.Logger.Samples
 {
     using Bit.Logger.Config;
+    using Bit.Logger.Enums;
     using System;
     
     internal class CustomConsoleSource : ILogger, IConfiguration
