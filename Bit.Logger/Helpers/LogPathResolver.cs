@@ -5,7 +5,7 @@ namespace Bit.Logger.Helpers
     using System.Reflection;
     using System.Text;
 
-    internal static class LogPathCreator
+    internal static class LogPathResolver
     {
         private const string logName = "BitLogger";
 
@@ -15,28 +15,28 @@ namespace Bit.Logger.Helpers
 
         private static string logDirectory = default(string);
 
-        private static string logPath = default(string);
+        private static string currentLogPath = default(string);
 
-        internal static string LogPath => GetLogPath();
+        internal static string CurrentLogPath => GetCurrentLogPath();
 
-        private static string GetLogPath()
+        private static string GetCurrentLogPath()
         {
             var currentHour = DateTime.Now.ToString(dateFormat);
             var hourChanged = currentHour != lastHour;
 
-            if (logPath is null || hourChanged)
+            if (currentLogPath is null || hourChanged)
             {
-                logPath = Path.Combine(logDirectory, $"{currentHour}.log");
+                currentLogPath = Path.Combine(logDirectory, $"{currentHour}.log");
                 lastHour = currentHour;
             }
 
-            return logPath;
+            return currentLogPath;
         }
 
-        static LogPathCreator()
+        static LogPathResolver()
         {
             GetLogDirectory();
-            CreateLogDirectory();
+            CreateLogDirectoryIfItDoesNotExist();
         }
 
         private static void GetLogDirectory()
@@ -45,7 +45,7 @@ namespace Bit.Logger.Helpers
             logDirectory = Path.Combine(assemblyLocation, logName);
         }
 
-        private static void CreateLogDirectory()
+        private static void CreateLogDirectoryIfItDoesNotExist()
         {
             if (Directory.Exists(logDirectory))
                 return;

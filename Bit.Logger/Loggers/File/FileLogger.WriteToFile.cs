@@ -5,7 +5,7 @@ namespace Bit.Logger.Loggers.File
     using System;
     using System.IO;
     using System.Text;
-    using static Bit.Logger.Helpers.LogPathCreator;
+    using static Bit.Logger.Helpers.LogPathResolver;
 
     internal partial class FileLogger : ILogger, IConfiguration
     {
@@ -16,7 +16,7 @@ namespace Bit.Logger.Loggers.File
             if (!isLevelAllowed)
                 return;
 
-            using (var logWriter = new StreamWriter(LogPath, true, Encoding.UTF8))
+            using (var logWriter = new StreamWriter(CurrentLogPath, true, Encoding.UTF8))
             {
                 var log = string.Format(Configuration.FormatProvider, Configuration.Format,
                     logArguments.Level,
