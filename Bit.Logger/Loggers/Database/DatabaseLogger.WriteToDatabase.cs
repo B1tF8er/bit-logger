@@ -4,7 +4,7 @@ namespace Bit.Logger.Loggers.Database
     using Bit.Logger.Config;
     using Bit.Logger.Models;
     using System;
-    using static Bit.Logger.FormatProviders.FormatterStrategy.Constants;
+    using static Bit.Logger.Helpers.DateFormatter;
 
     internal partial class DatabaseLogger : ILogger, IConfiguration
     {
@@ -22,7 +22,7 @@ namespace Bit.Logger.Loggers.Database
                     Id = $"{Guid.NewGuid()}",
                     Level = Configuration.ShowLevel ? logArguments.Level.ToString() : null,
                     Message = logArguments.Message,
-                    Date = GetDate(),
+                    Date = GetDateFormatFrom(Configuration),
                     Class = logArguments.ClassName,
                     Method = logArguments.MethodName,
                     Exception = logArguments.Exception?.ToString() ?? null
@@ -30,18 +30,6 @@ namespace Bit.Logger.Loggers.Database
                 
                 context.Logs.Add(log);
             }
-        }
-
-        private string GetDate()
-        {
-            if (Configuration.ShowDate && Configuration.ShowTime)
-                return DateTime.Now.ToString(DateTimeFormat);
-            else if (Configuration.ShowDate)
-                return DateTime.Now.ToString(DateFormat);
-            else if (Configuration.ShowTime)
-                return DateTime.Now.ToString(TimeFormat);
-            else
-                return null;
         }
     }
 }
