@@ -8,185 +8,185 @@ namespace Bit.Logger.Tests
 
     public class FileLoggerShould
     {
-        private readonly Mock<ILoggerFactory> mockLoggerFactory;
+        private readonly Mock<ILoggerFactory> sut;
 
         public FileLoggerShould()
         {
-            mockLoggerFactory = new Mock<ILoggerFactory>(MockBehavior.Strict);
+            sut = new Mock<ILoggerFactory>(MockBehavior.Strict);
 
-            mockLoggerFactory
-                .SetupCallsWithSource<FileLoggerShould>(TestMessage, TestException)
-                .SetupCallsWithoutSource(TestMessage, TestException)
-                .Setup(loggerFactory => loggerFactory.AddFileSource(It.IsAny<Configuration>()))
-                .Returns(mockLoggerFactory.Object);
+            sut
+                .SetupCallsWithSource<FileLoggerShould>()
+                .SetupCallsWithoutSource()
+                .Setup(l => l.AddFileSource(It.IsAny<Configuration>()))
+                .Returns(sut.Object);
         }
 
         [Fact]
         public void LogMessage_AsTrace_OncePerMethodOverload_WithSourceClass()
         {
-            mockLoggerFactory.Object.Trace<FileLoggerShould>(TestMessage);
-            mockLoggerFactory.Object.Trace<FileLoggerShould>(TestException);
-            mockLoggerFactory.Object.Trace<FileLoggerShould>(TestMessage, TestException);
+            sut.Object.Trace<FileLoggerShould>(TestMessage);
+            sut.Object.Trace<FileLoggerShould>(TestException);
+            sut.Object.Trace<FileLoggerShould>(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Trace<FileLoggerShould>(TestMessage), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Trace<FileLoggerShould>(TestException), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Trace<FileLoggerShould>(TestMessage, TestException), Times.Once);
+            sut.Verify(l => l.Trace<FileLoggerShould>(TestMessage), Times.Once);
+            sut.Verify(l => l.Trace<FileLoggerShould>(TestException), Times.Once);
+            sut.Verify(l => l.Trace<FileLoggerShould>(TestMessage, TestException), Times.Once);
         }
 
         [Fact]
         public void LogMessage_AsTrace_OncePerMethodOverload_WithoutSourceClass()
         {
-            mockLoggerFactory.Object.Trace(TestMessage);
-            mockLoggerFactory.Object.Trace(TestException);
-            mockLoggerFactory.Object.Trace(TestMessage, TestException);
+            sut.Object.Trace(TestMessage);
+            sut.Object.Trace(TestException);
+            sut.Object.Trace(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Trace(TestMessage), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Trace(TestException), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Trace(TestMessage, TestException), Times.Once);
+            sut.Verify(l => l.Trace(TestMessage), Times.Once);
+            sut.Verify(l => l.Trace(TestException), Times.Once);
+            sut.Verify(l => l.Trace(TestMessage, TestException), Times.Once);
         }
 
         [Fact]
         public void LogMessage_AsDebug_OncePerMethodOverload_WithSourceClass()
         {
-            mockLoggerFactory.Object.Debug<FileLoggerShould>(TestMessage);
-            mockLoggerFactory.Object.Debug<FileLoggerShould>(TestException);
-            mockLoggerFactory.Object.Debug<FileLoggerShould>(TestMessage, TestException);
+            sut.Object.Debug<FileLoggerShould>(TestMessage);
+            sut.Object.Debug<FileLoggerShould>(TestException);
+            sut.Object.Debug<FileLoggerShould>(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Debug<FileLoggerShould>(TestMessage), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Debug<FileLoggerShould>(TestException), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Debug<FileLoggerShould>(TestMessage, TestException), Times.Once);
+            sut.Verify(l => l.Debug<FileLoggerShould>(TestMessage), Times.Once);
+            sut.Verify(l => l.Debug<FileLoggerShould>(TestException), Times.Once);
+            sut.Verify(l => l.Debug<FileLoggerShould>(TestMessage, TestException), Times.Once);
         }
 
         [Fact]
         public void LogMessage_AsDebug_OncePerMethodOverload_WithoutSourceClass()
         {
-            mockLoggerFactory.Object.Debug(TestMessage);
-            mockLoggerFactory.Object.Debug(TestException);
-            mockLoggerFactory.Object.Debug(TestMessage, TestException);
+            sut.Object.Debug(TestMessage);
+            sut.Object.Debug(TestException);
+            sut.Object.Debug(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Debug(TestMessage), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Debug(TestException), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Debug(TestMessage, TestException), Times.Once);
+            sut.Verify(l => l.Debug(TestMessage), Times.Once);
+            sut.Verify(l => l.Debug(TestException), Times.Once);
+            sut.Verify(l => l.Debug(TestMessage, TestException), Times.Once);
         }
 
         [Fact]
         public void LogMessage_AsVerbose_OncePerMethodOverload_WithSourceClass()
         {
-            mockLoggerFactory.Object.Verbose<FileLoggerShould>(TestMessage);
-            mockLoggerFactory.Object.Verbose<FileLoggerShould>(TestException);
-            mockLoggerFactory.Object.Verbose<FileLoggerShould>(TestMessage, TestException);
+            sut.Object.Verbose<FileLoggerShould>(TestMessage);
+            sut.Object.Verbose<FileLoggerShould>(TestException);
+            sut.Object.Verbose<FileLoggerShould>(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Verbose<FileLoggerShould>(TestMessage), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Verbose<FileLoggerShould>(TestException), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Verbose<FileLoggerShould>(TestMessage, TestException), Times.Once);
+            sut.Verify(l => l.Verbose<FileLoggerShould>(TestMessage), Times.Once);
+            sut.Verify(l => l.Verbose<FileLoggerShould>(TestException), Times.Once);
+            sut.Verify(l => l.Verbose<FileLoggerShould>(TestMessage, TestException), Times.Once);
         }
 
         [Fact]
         public void LogMessage_AsVerbose_OncePerMethodOverload_WithoutSourceClass()
         {
-            mockLoggerFactory.Object.Verbose(TestMessage);
-            mockLoggerFactory.Object.Verbose(TestException);
-            mockLoggerFactory.Object.Verbose(TestMessage, TestException);
+            sut.Object.Verbose(TestMessage);
+            sut.Object.Verbose(TestException);
+            sut.Object.Verbose(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Verbose(TestMessage), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Verbose(TestException), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Verbose(TestMessage, TestException), Times.Once);
+            sut.Verify(l => l.Verbose(TestMessage), Times.Once);
+            sut.Verify(l => l.Verbose(TestException), Times.Once);
+            sut.Verify(l => l.Verbose(TestMessage, TestException), Times.Once);
         }
 
         [Fact]
         public void LogMessage_AsInformation_OncePerMethodOverload_WithSourceClass()
         {
-            mockLoggerFactory.Object.Information<FileLoggerShould>(TestMessage);
-            mockLoggerFactory.Object.Information<FileLoggerShould>(TestException);
-            mockLoggerFactory.Object.Information<FileLoggerShould>(TestMessage, TestException);
+            sut.Object.Information<FileLoggerShould>(TestMessage);
+            sut.Object.Information<FileLoggerShould>(TestException);
+            sut.Object.Information<FileLoggerShould>(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Information<FileLoggerShould>(TestMessage), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Information<FileLoggerShould>(TestException), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Information<FileLoggerShould>(TestMessage, TestException), Times.Once);
+            sut.Verify(l => l.Information<FileLoggerShould>(TestMessage), Times.Once);
+            sut.Verify(l => l.Information<FileLoggerShould>(TestException), Times.Once);
+            sut.Verify(l => l.Information<FileLoggerShould>(TestMessage, TestException), Times.Once);
         }
 
         [Fact]
         public void LogMessage_AsInformation_OncePerMethodOverload_WithoutSourceClass()
         {
-            mockLoggerFactory.Object.Information(TestMessage);
-            mockLoggerFactory.Object.Information(TestException);
-            mockLoggerFactory.Object.Information(TestMessage, TestException);
+            sut.Object.Information(TestMessage);
+            sut.Object.Information(TestException);
+            sut.Object.Information(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Information(TestMessage), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Information(TestException), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Information(TestMessage, TestException), Times.Once);
+            sut.Verify(l => l.Information(TestMessage), Times.Once);
+            sut.Verify(l => l.Information(TestException), Times.Once);
+            sut.Verify(l => l.Information(TestMessage, TestException), Times.Once);
         }
 
         [Fact]
         public void LogMessage_AsWarning_OncePerMethodOverload_WithSourceClass()
         {
-            mockLoggerFactory.Object.Warning<FileLoggerShould>(TestMessage);
-            mockLoggerFactory.Object.Warning<FileLoggerShould>(TestException);
-            mockLoggerFactory.Object.Warning<FileLoggerShould>(TestMessage, TestException);
+            sut.Object.Warning<FileLoggerShould>(TestMessage);
+            sut.Object.Warning<FileLoggerShould>(TestException);
+            sut.Object.Warning<FileLoggerShould>(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Warning<FileLoggerShould>(TestMessage), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Warning<FileLoggerShould>(TestException), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Warning<FileLoggerShould>(TestMessage, TestException), Times.Once);
+            sut.Verify(l => l.Warning<FileLoggerShould>(TestMessage), Times.Once);
+            sut.Verify(l => l.Warning<FileLoggerShould>(TestException), Times.Once);
+            sut.Verify(l => l.Warning<FileLoggerShould>(TestMessage, TestException), Times.Once);
         }
 
         [Fact]
         public void LogMessage_AsWarning_OncePerMethodOverload_WithoutSourceClass()
         {
-            mockLoggerFactory.Object.Warning(TestMessage);
-            mockLoggerFactory.Object.Warning(TestException);
-            mockLoggerFactory.Object.Warning(TestMessage, TestException);
+            sut.Object.Warning(TestMessage);
+            sut.Object.Warning(TestException);
+            sut.Object.Warning(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Warning(TestMessage), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Warning(TestException), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Warning(TestMessage, TestException), Times.Once);
+            sut.Verify(l => l.Warning(TestMessage), Times.Once);
+            sut.Verify(l => l.Warning(TestException), Times.Once);
+            sut.Verify(l => l.Warning(TestMessage, TestException), Times.Once);
         }
 
         [Fact]
         public void LogMessage_AsError_OncePerMethodOverload_WithSourceClass()
         {
-            mockLoggerFactory.Object.Error<FileLoggerShould>(TestMessage);
-            mockLoggerFactory.Object.Error<FileLoggerShould>(TestException);
-            mockLoggerFactory.Object.Error<FileLoggerShould>(TestMessage, TestException);
+            sut.Object.Error<FileLoggerShould>(TestMessage);
+            sut.Object.Error<FileLoggerShould>(TestException);
+            sut.Object.Error<FileLoggerShould>(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Error<FileLoggerShould>(TestMessage), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Error<FileLoggerShould>(TestException), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Error<FileLoggerShould>(TestMessage, TestException), Times.Once);
+            sut.Verify(l => l.Error<FileLoggerShould>(TestMessage), Times.Once);
+            sut.Verify(l => l.Error<FileLoggerShould>(TestException), Times.Once);
+            sut.Verify(l => l.Error<FileLoggerShould>(TestMessage, TestException), Times.Once);
         }
 
         [Fact]
         public void LogMessage_AsError_OncePerMethodOverload_WithoutSourceClass()
         {
-            mockLoggerFactory.Object.Error(TestMessage);
-            mockLoggerFactory.Object.Error(TestException);
-            mockLoggerFactory.Object.Error(TestMessage, TestException);
+            sut.Object.Error(TestMessage);
+            sut.Object.Error(TestException);
+            sut.Object.Error(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Error(TestMessage), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Error(TestException), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Error(TestMessage, TestException), Times.Once);
+            sut.Verify(l => l.Error(TestMessage), Times.Once);
+            sut.Verify(l => l.Error(TestException), Times.Once);
+            sut.Verify(l => l.Error(TestMessage, TestException), Times.Once);
         }
 
         [Fact]
         public void LogMessage_AsCritical_OncePerMethodOverload_WithSourceClass()
         {
-            mockLoggerFactory.Object.Critical<FileLoggerShould>(TestMessage);
-            mockLoggerFactory.Object.Critical<FileLoggerShould>(TestException);
-            mockLoggerFactory.Object.Critical<FileLoggerShould>(TestMessage, TestException);
+            sut.Object.Critical<FileLoggerShould>(TestMessage);
+            sut.Object.Critical<FileLoggerShould>(TestException);
+            sut.Object.Critical<FileLoggerShould>(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Critical<FileLoggerShould>(TestMessage), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Critical<FileLoggerShould>(TestException), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Critical<FileLoggerShould>(TestMessage, TestException), Times.Once);
+            sut.Verify(l => l.Critical<FileLoggerShould>(TestMessage), Times.Once);
+            sut.Verify(l => l.Critical<FileLoggerShould>(TestException), Times.Once);
+            sut.Verify(l => l.Critical<FileLoggerShould>(TestMessage, TestException), Times.Once);
         }
 
         [Fact]
         public void LogMessage_AsCritical_OncePerMethodOverload_WithoutSourceClass()
         {
-            mockLoggerFactory.Object.Critical(TestMessage);
-            mockLoggerFactory.Object.Critical(TestException);
-            mockLoggerFactory.Object.Critical(TestMessage, TestException);
+            sut.Object.Critical(TestMessage);
+            sut.Object.Critical(TestException);
+            sut.Object.Critical(TestMessage, TestException);
 
-            mockLoggerFactory.Verify(logger => logger.Critical(TestMessage), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Critical(TestException), Times.Once);
-            mockLoggerFactory.Verify(logger => logger.Critical(TestMessage, TestException), Times.Once);
+            sut.Verify(l => l.Critical(TestMessage), Times.Once);
+            sut.Verify(l => l.Critical(TestException), Times.Once);
+            sut.Verify(l => l.Critical(TestMessage, TestException), Times.Once);
         }
     }
 }
