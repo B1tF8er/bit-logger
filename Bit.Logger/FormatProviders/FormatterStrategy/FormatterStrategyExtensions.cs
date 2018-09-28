@@ -1,27 +1,29 @@
 namespace Bit.Logger.FormatProviders.FormatterStrategy
 {
+    using static Helpers.Constants;
+
     internal static class FormatterStrategyExtensions
     {
         internal static string ApplyFormat(this object argument, string format)
         {
             var formatterStrategy = default(IFormatterStrategy);
 
-            if (format == "level")
+            if (format == Level)
                 formatterStrategy = new LevelFormatterStrategy();
 
-            if (format == "datetime")
+            if (format == DateTime)
                 formatterStrategy = new DateTimeFormatterStrategy();
 
-            if (format == "date")
+            if (format == Date)
                 formatterStrategy = new DateFormatterStrategy();
 
-            if (format == "time")
+            if (format == Time)
                 formatterStrategy = new TimeFormatterStrategy();
 
-            if (format == "caller")
+            if (format == Caller)
                 formatterStrategy = new CallerFormatterStrategy();
 
-            if (format == "exception")
+            if (format == Exception)
                 formatterStrategy = new ExceptionFormatterStrategy();
 
             return formatterStrategy?.ApplyFormatTo(argument) ?? argument?.ToString() ?? string.Empty;
