@@ -4,7 +4,7 @@ namespace Bit.Logger.Loggers.Arguments
     using System;
     using static Helpers.Tracer;
 
-    internal partial class LogArguments
+    internal partial struct LogArguments
     {
         internal static LogArguments CriticalMessage(string message) =>
             new LogArguments

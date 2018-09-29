@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <Authors>Jorge Yañez</Authors>
     <Description>Logger for .NET Core Apps</Description>
     <PackageProjectUrl>https://github.com/B1tF8er/bit-logger</PackageProjectUrl>

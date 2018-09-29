@@ -3,17 +3,13 @@ namespace Bit.Logger.Loggers.Arguments
     using Enums;
     using System;
 
-    internal partial class LogArguments
+    internal partial struct LogArguments
     {
         internal Level Level { get; private set; }
-
         internal string ClassName { get; private set; }
-
         internal string MethodName { get; private set; }
-
-        internal string Message { get; private set; } = default(string);
-
-        internal Exception Exception { get; private set; } = default(Exception);
+        internal string Message { get; private set; }
+        internal Exception Exception { get; private set; }
 
         internal LogArguments(Level level, string className, string methodName, string message)
         {
@@ -21,6 +17,7 @@ namespace Bit.Logger.Loggers.Arguments
             ClassName = className;
             MethodName = methodName;
             Message = message;
+            Exception = null;
         }
 
         internal LogArguments(Level level, string className, string methodName, Exception exception)
@@ -28,6 +25,7 @@ namespace Bit.Logger.Loggers.Arguments
             Level = level;
             ClassName = className;
             MethodName = methodName;
+            Message = null;
             Exception = exception;
         }
 
