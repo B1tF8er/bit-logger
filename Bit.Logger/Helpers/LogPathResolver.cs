@@ -3,26 +3,25 @@ namespace Bit.Logger.Helpers
     using System;
     using System.IO;
     using System.Reflection;
-    using System.Text;
     using static Constants;
 
     internal static class LogPathResolver
     {
-        private static string logDirectory = default(string);
+        private static readonly string logDirectory;
         
         internal static string CurrentLogPath(DateTime logDate) =>
             Path.Combine(logDirectory, $"{logDate.ToString(LogNameFormat)}.log");
         
         static LogPathResolver()
         {
-            GetLogDirectory();
+            logDirectory = GetLogDirectory();
             CreateLogDirectoryIfItDoesNotExist();
         }
 
-        private static void GetLogDirectory()
+        private static string GetLogDirectory()
         {
             var assemblyLocation = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            logDirectory = Path.Combine(assemblyLocation, LogName);
+            return Path.Combine(assemblyLocation, LogName);
         }
 
         private static void CreateLogDirectoryIfItDoesNotExist()
