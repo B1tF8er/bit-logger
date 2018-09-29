@@ -8,58 +8,58 @@ namespace Bit.Logger.Loggers.Arguments
     {
         internal static LogArguments TraceMessage(string message) =>
             new LogArguments
-            {
-                Level = Level.Trace,
-                ClassName = GetClassName(),
-                MethodName = GetMethodName(),
-                Message = message
-            };
+            (
+                Level.Critical,
+                GetClassName(),
+                GetMethodName(),
+                message
+            );
 
         internal static LogArguments TraceException(Exception exception) =>
             new LogArguments
-            {
-                Level = Level.Trace,
-                ClassName = GetClassName(),
-                MethodName = GetMethodName(),
-                Exception = exception
-            };
+            (
+                Level.Critical,
+                GetClassName(),
+                GetMethodName(),
+                exception
+            );
 
         internal static LogArguments TraceMessageAndException(string message, Exception exception) =>
             new LogArguments
-            {
-                Level = Level.Trace,
-                ClassName = GetClassName(),
-                MethodName = GetMethodName(),
-                Message = message,
-                Exception = exception
-            };
+            (
+                Level.Critical,
+                GetClassName(),
+                GetMethodName(),
+                message,
+                exception
+            );
 
         internal static LogArguments TraceMessage<TClass>(string message) where TClass : class =>
             new LogArguments
-            {
-                Level = Level.Trace,
-                ClassName = typeof(TClass).FullName,
-                MethodName = GetMethodName(),
-                Message = message
-            };
+            (
+                Level.Critical,
+                typeof(TClass).FullName,
+                GetMethodName(),
+                message
+            );
 
         internal static LogArguments TraceException<TClass>(Exception exception) where TClass : class =>
             new LogArguments
-            {
-                Level = Level.Trace,
-                ClassName = typeof(TClass).FullName,
-                MethodName = GetMethodName(),
-                Exception = exception
-            };
+            (
+                Level.Critical,
+                typeof(TClass).FullName,
+                GetMethodName(),
+                exception
+            );
 
         internal static LogArguments TraceMessageAndException<TClass>(string message, Exception exception) where TClass : class =>
             new LogArguments
-            {
-                Level = Level.Trace,
-                ClassName = typeof(TClass).FullName,
-                MethodName = GetMethodName(),
-                Message = message,
-                Exception = exception
-            };
+            (
+                Level.Critical,
+                typeof(TClass).FullName,
+                GetMethodName(),
+                message,
+                exception
+            );
     }
 }

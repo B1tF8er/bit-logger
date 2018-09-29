@@ -8,58 +8,58 @@ namespace Bit.Logger.Loggers.Arguments
     {
         internal static LogArguments WarningMessage(string message) =>
             new LogArguments
-            {
-                Level = Level.Warning,
-                ClassName = GetClassName(),
-                MethodName = GetMethodName(),
-                Message = message
-            };
+            (
+                Level.Critical,
+                GetClassName(),
+                GetMethodName(),
+                message
+            );
 
         internal static LogArguments WarningException(Exception exception) =>
             new LogArguments
-            {
-                Level = Level.Warning,
-                ClassName = GetClassName(),
-                MethodName = GetMethodName(),
-                Exception = exception
-            };
+            (
+                Level.Critical,
+                GetClassName(),
+                GetMethodName(),
+                exception
+            );
 
         internal static LogArguments WarningMessageAndException(string message, Exception exception) =>
             new LogArguments
-            {
-                Level = Level.Warning,
-                ClassName = GetClassName(),
-                MethodName = GetMethodName(),
-                Message = message,
-                Exception = exception
-            };
+            (
+                Level.Critical,
+                GetClassName(),
+                GetMethodName(),
+                message,
+                exception
+            );
 
         internal static LogArguments WarningMessage<TClass>(string message) where TClass : class =>
             new LogArguments
-            {
-                Level = Level.Warning,
-                ClassName = typeof(TClass).FullName,
-                MethodName = GetMethodName(),
-                Message = message
-            };
+            (
+                Level.Critical,
+                typeof(TClass).FullName,
+                GetMethodName(),
+                message
+            );
 
         internal static LogArguments WarningException<TClass>(Exception exception) where TClass : class =>
             new LogArguments
-            {
-                Level = Level.Warning,
-                ClassName = typeof(TClass).FullName,
-                MethodName = GetMethodName(),
-                Exception = exception
-            };
+            (
+                Level.Critical,
+                typeof(TClass).FullName,
+                GetMethodName(),
+                exception
+            );
 
         internal static LogArguments WarningMessageAndException<TClass>(string message, Exception exception) where TClass : class =>
             new LogArguments
-            {
-                Level = Level.Warning,
-                ClassName = typeof(TClass).FullName,
-                MethodName = GetMethodName(),
-                Message = message,
-                Exception = exception
-            };
+            (
+                Level.Critical,
+                typeof(TClass).FullName,
+                GetMethodName(),
+                message,
+                exception
+            );
     }
 }
