@@ -7,8 +7,8 @@ namespace Bit.Logger.Samples
     internal class CustomConsoleSource : ILogger, IConfiguration
     {
         public Configuration Configuration { get; }
-
-        public CustomConsoleSource(Configuration configuration = default(Configuration)) =>
+ 
+        public CustomConsoleSource(Configuration configuration = default) =>
             Configuration = configuration ?? new Configuration();
 
         public void Critical<TClass>(string message) where TClass : class

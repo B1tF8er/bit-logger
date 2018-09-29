@@ -6,7 +6,7 @@ namespace Bit.Logger.FormatProviders.FormatterStrategy
     {
         internal static string ApplyFormat(this object argument, string format)
         {
-            var formatterStrategy = default(IFormatterStrategy);
+            IFormatterStrategy formatterStrategy = default;
 
             if (format == Level)
                 formatterStrategy = new LevelFormatterStrategy();

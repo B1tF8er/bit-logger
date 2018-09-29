@@ -83,7 +83,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void SetCustom_FormatProvider()
         {
-            var expected = default(IFormatProvider);
+            IFormatProvider expected = default;
             sut.Object.FormatProvider = expected;
 
             var actual = sut.Object.FormatProvider;

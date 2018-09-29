@@ -18,7 +18,7 @@ namespace Bit.Logger.Config
 
         public IFormatProvider FormatProvider { get; set; } = new DefaultFormatProvider();
 
-        private string format = default(string);
+        private string format = default;
 
         public string Format
         {
