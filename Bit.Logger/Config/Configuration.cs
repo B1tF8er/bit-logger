@@ -5,8 +5,8 @@ namespace Bit.Logger.Config
     using FormatProviders.FormatterStrategy;
     using System;
     using System.Text;
-    using static Helpers.Constants;
     using static Helpers.StringExtensions;
+    using static Helpers.Tokens;
 
     public class Configuration
     {
@@ -33,11 +33,11 @@ namespace Bit.Logger.Config
             var formatBuilder = new StringBuilder();
 
             return formatBuilder
-                .Append(ShowLevel ? "{0:" + Helpers.Constants.Level + "} " : string.Empty)
+                .Append(ShowLevel ? "{0:" + Helpers.Tokens.Level + "} " : string.Empty)
                 .Append("{1:"+ DateTypeFormat.ToString().ToLower() +"} ")
                 .Append("[{2:" + Caller + "}::{3:" + Method + "}] ")
                 .Append("{4:" + Message + "} ")
-                .Append("{5:" + Helpers.Constants.Exception + "}")
+                .Append("{5:" + Helpers.Tokens.Exception + "}")
                 .ToString();
         }
     }

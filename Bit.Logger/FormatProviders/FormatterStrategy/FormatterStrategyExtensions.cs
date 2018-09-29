@@ -1,6 +1,6 @@
 namespace Bit.Logger.FormatProviders.FormatterStrategy
 {
-    using static Helpers.Constants;
+    using static Helpers.Tokens;
 
     internal static class FormatterStrategyExtensions
     {

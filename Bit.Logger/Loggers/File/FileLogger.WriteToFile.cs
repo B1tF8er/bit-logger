@@ -16,11 +16,13 @@ namespace Bit.Logger.Loggers.File
             if (!isLevelAllowed)
                 return;
 
-            using (var logWriter = new StreamWriter(CurrentLogPath, true, Encoding.UTF8))
+            var logDate = DateTime.Now;
+
+            using (var logWriter = new StreamWriter(CurrentLogPath(logDate), true, Encoding.UTF8))
             {
                 var log = string.Format(Configuration.FormatProvider, Configuration.Format,
                     logArguments.Level,
-                    DateTime.Now,
+                    logDate,
                     logArguments.ClassName,
                     logArguments.MethodName,
                     logArguments.Message,
