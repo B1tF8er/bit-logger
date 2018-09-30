@@ -26,8 +26,6 @@ namespace Bit.Logger.Config
             set => format = value.IsNullOrEmptyOrWhiteSpace() ? throw new ArgumentNullException(nameof(format)) : value;
         }
 
-        public override string ToString() => $"Level:{Level}, Format:{Format}";
-
         private string GetDefaultFormat()
         {
             var formatBuilder = new StringBuilder();
@@ -40,5 +38,7 @@ namespace Bit.Logger.Config
                 .Append("{5:" + Helpers.Tokens.Exception + "}")
                 .ToString();
         }
+
+        public override string ToString() => $"Level:{Level}, Format:{Format}";
     }
 }

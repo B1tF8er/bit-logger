@@ -7,5 +7,6 @@ namespace Bit.Logger.Helpers
         internal const string TimeFormat = "HH:mm:ss";
         internal const string LogName = "BitLogger";
         internal const string LogNameFormat = "yyyy_MM_dd_HH";
+        internal const string ConnectionString = "Data Source=logging.db";
     }
 }
