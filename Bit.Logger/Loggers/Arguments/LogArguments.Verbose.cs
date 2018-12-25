@@ -9,7 +9,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments VerboseMessage(string message) =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Verbose,
                 GetClassName(),
                 GetMethodName(),
                 message
@@ -18,7 +18,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments VerboseException(Exception exception) =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Verbose,
                 GetClassName(),
                 GetMethodName(),
                 exception
@@ -27,7 +27,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments VerboseMessageAndException(string message, Exception exception) =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Verbose,
                 GetClassName(),
                 GetMethodName(),
                 message,
@@ -37,7 +37,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments VerboseMessage<TClass>(string message) where TClass : class =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Verbose,
                 typeof(TClass).FullName,
                 GetMethodName(),
                 message
@@ -46,7 +46,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments VerboseException<TClass>(Exception exception) where TClass : class =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Verbose,
                 typeof(TClass).FullName,
                 GetMethodName(),
                 exception
@@ -55,7 +55,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments VerboseMessageAndException<TClass>(string message, Exception exception) where TClass : class =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Verbose,
                 typeof(TClass).FullName,
                 GetMethodName(),
                 message,

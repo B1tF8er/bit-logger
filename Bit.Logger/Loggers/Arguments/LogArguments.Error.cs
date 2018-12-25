@@ -9,7 +9,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments ErrorMessage(string message) =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Error,
                 GetClassName(),
                 GetMethodName(),
                 message
@@ -18,7 +18,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments ErrorException(Exception exception) =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Error,
                 GetClassName(),
                 GetMethodName(),
                 exception
@@ -27,7 +27,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments ErrorMessageAndException(string message, Exception exception) =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Error,
                 GetClassName(),
                 GetMethodName(),
                 message,
@@ -37,7 +37,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments ErrorMessage<TClass>(string message) where TClass : class =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Error,
                 typeof(TClass).FullName,
                 GetMethodName(),
                 message
@@ -46,7 +46,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments ErrorException<TClass>(Exception exception) where TClass : class =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Error,
                 typeof(TClass).FullName,
                 GetMethodName(),
                 exception
@@ -55,7 +55,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments ErrorMessageAndException<TClass>(string message, Exception exception) where TClass : class =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Error,
                 typeof(TClass).FullName,
                 GetMethodName(),
                 message,

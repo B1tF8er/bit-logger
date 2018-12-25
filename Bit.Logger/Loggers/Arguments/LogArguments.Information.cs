@@ -9,7 +9,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments InformationMessage(string message) =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Information,
                 GetClassName(),
                 GetMethodName(),
                 message
@@ -18,7 +18,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments InformationException(Exception exception) =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Information,
                 GetClassName(),
                 GetMethodName(),
                 exception
@@ -27,7 +27,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments InformationMessageAndException(string message, Exception exception) =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Information,
                 GetClassName(),
                 GetMethodName(),
                 message,
@@ -37,7 +37,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments InformationMessage<TClass>(string message) where TClass : class =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Information,
                 typeof(TClass).FullName,
                 GetMethodName(),
                 message
@@ -46,7 +46,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments InformationException<TClass>(Exception exception) where TClass : class =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Information,
                 typeof(TClass).FullName,
                 GetMethodName(),
                 exception
@@ -55,7 +55,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments InformationMessageAndException<TClass>(string message, Exception exception) where TClass : class =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Information,
                 typeof(TClass).FullName,
                 GetMethodName(),
                 message,

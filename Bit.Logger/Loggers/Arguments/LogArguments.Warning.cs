@@ -9,7 +9,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments WarningMessage(string message) =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Warning,
                 GetClassName(),
                 GetMethodName(),
                 message
@@ -18,7 +18,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments WarningException(Exception exception) =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Warning,
                 GetClassName(),
                 GetMethodName(),
                 exception
@@ -27,7 +27,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments WarningMessageAndException(string message, Exception exception) =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Warning,
                 GetClassName(),
                 GetMethodName(),
                 message,
@@ -37,7 +37,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments WarningMessage<TClass>(string message) where TClass : class =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Warning,
                 typeof(TClass).FullName,
                 GetMethodName(),
                 message
@@ -46,7 +46,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments WarningException<TClass>(Exception exception) where TClass : class =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Warning,
                 typeof(TClass).FullName,
                 GetMethodName(),
                 exception
@@ -55,7 +55,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments WarningMessageAndException<TClass>(string message, Exception exception) where TClass : class =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Warning,
                 typeof(TClass).FullName,
                 GetMethodName(),
                 message,

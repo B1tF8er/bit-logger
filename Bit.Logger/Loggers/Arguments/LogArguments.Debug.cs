@@ -9,7 +9,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments DebugMessage(string message) =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Debug,
                 GetClassName(),
                 GetMethodName(),
                 message
@@ -18,7 +18,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments DebugException(Exception exception) =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Debug,
                 GetClassName(),
                 GetMethodName(),
                 exception
@@ -27,7 +27,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments DebugMessageAndException(string message, Exception exception) =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Debug,
                 GetClassName(),
                 GetMethodName(),
                 message,
@@ -37,7 +37,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments DebugMessage<TClass>(string message) where TClass : class =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Debug,
                 typeof(TClass).FullName,
                 GetMethodName(),
                 message
@@ -46,7 +46,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments DebugException<TClass>(Exception exception) where TClass : class =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Debug,
                 typeof(TClass).FullName,
                 GetMethodName(),
                 exception
@@ -55,7 +55,7 @@ namespace Bit.Logger.Loggers.Arguments
         internal static LogArguments DebugMessageAndException<TClass>(string message, Exception exception) where TClass : class =>
             new LogArguments
             (
-                Level.Critical,
+                Level.Debug,
                 typeof(TClass).FullName,
                 GetMethodName(),
                 message,
