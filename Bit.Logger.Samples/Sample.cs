@@ -2,6 +2,7 @@ namespace Bit.Logger.Samples
 {
     using Bit.Logger;
     using System;
+    using System.Linq;
 
     internal class Sample
     {
@@ -14,6 +15,7 @@ namespace Bit.Logger.Samples
         {
             BasicTest();
             AllPossibleLevels();
+            OneThousandMessages();
         }
 
         private void BasicTest()
@@ -51,6 +53,14 @@ namespace Bit.Logger.Samples
                 .SampleMessageLogs<Sample>()
                 .SampleExceptionLogs<Sample>()
                 .SampleMessageAndExceptionLogs<Sample>();
+        }
+
+        private void OneThousandMessages()
+        {
+            var range = Enumerable.Range(1, 1001);
+
+            foreach (var r in range)
+                logger.Information(r.ToString());
         }
     }
 }
