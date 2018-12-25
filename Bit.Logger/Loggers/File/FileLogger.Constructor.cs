@@ -3,11 +3,11 @@ namespace Bit.Logger.Loggers.File
     using Config;
     using LogBuffer;
 
-    internal partial class FileLogger : ILogger, IConfiguration
+    internal partial class FileLogger : ILogger, IConfiguration, ILogBuffer<string>
     {
         public Configuration Configuration { get; }
 
-        private LogBuffer<string> LogBuffer { get; }
+        public LogBuffer<string> LogBuffer { get; }
 
         public FileLogger(Configuration configuration)
         {

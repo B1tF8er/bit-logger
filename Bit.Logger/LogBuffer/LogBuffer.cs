@@ -5,13 +5,13 @@
     using System.Linq;
     using static Helpers.Constants;
 
-    internal class LogBuffer<TLog>
+    public class LogBuffer<TLog>
     {
         private Dictionary<string, TLog> Logs { get; }
 
         private object Padlock { get; }
 
-        internal LogBuffer()
+        public LogBuffer()
         {
             Logs = new Dictionary<string, TLog>();
             Padlock = new object();
