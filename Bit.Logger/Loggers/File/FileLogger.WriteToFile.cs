@@ -27,7 +27,7 @@ namespace Bit.Logger.Loggers.File
                 logArguments.MethodName,
                 logArguments.Message,
                 logArguments.Exception
-            );
+            ).Trim();
             
             CreateFileBuffer(logDate, log);
         }

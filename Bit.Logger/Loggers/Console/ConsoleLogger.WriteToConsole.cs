@@ -20,7 +20,7 @@ namespace Bit.Logger.Loggers.Console
                 logArguments.MethodName,    
                 logArguments.Message,    
                 logArguments.Exception
-            );
+            ).Trim();
 
             Console.WriteLine(log);
         }
