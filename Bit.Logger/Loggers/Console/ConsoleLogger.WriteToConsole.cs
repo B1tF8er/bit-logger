@@ -2,7 +2,9 @@ namespace Bit.Logger.Loggers.Console
 {
     using Arguments;
     using Config;
+    using Enums;
     using System;
+    using static Helpers.ConsoleColorSelector;
 
     internal partial class ConsoleLogger : ILogger, IConfiguration
     {
@@ -13,7 +15,9 @@ namespace Bit.Logger.Loggers.Console
             if (!isLevelAllowed)
                 return;
 
+            Console.ForegroundColor = logArguments.Level.GetForegroundColor();
             Console.WriteLine(CreateLogWith(logArguments));
+            Console.ResetColor();
         }
 
         private string CreateLogWith(LogArguments logArguments)
