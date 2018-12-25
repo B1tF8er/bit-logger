@@ -34,8 +34,9 @@
         {
             var hasLogs = Logs.Any();
             var underThreshold = Logs.Count <= LogsThreshold;
+            var notEnoughLogs = hasLogs && underThreshold;
 
-            if (hasLogs && underThreshold)
+            if (!hasLogs || notEnoughLogs)
                 return;
 
             IEnumerable<TLog> sortedLogs;
