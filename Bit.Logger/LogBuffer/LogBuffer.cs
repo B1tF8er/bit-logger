@@ -1,31 +1,21 @@
 ﻿namespace Bit.Logger.LogBuffer
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
     using static Helpers.Constants;
 
-    internal class LogBuffer<TLog> : ILogBuffer<TLog>
+    internal class LogBuffer<TLog>
     {
-        public IDictionary<string, TLog> Logs { get; set; } 
+        private ConcurrentDictionary<string, TLog> Logs { get; }
 
-        public object Padlock { get; }
-
-        internal LogBuffer()
-        {
-            Logs = new Dictionary<string, TLog>();
-            Padlock = new object();
-        }
+        internal LogBuffer() =>
+            Logs = new ConcurrentDictionary<string, TLog>();
 
         internal LogBuffer<TLog> Add(TLog log)
         {
-            var key = DateTime.Now.ToString(AsKey);
-
-            lock (Padlock)
-            {
-                if (!Logs.ContainsKey(key))
-                    Logs.Add(key, log);
-            }
+            Logs.AddOrUpdate(DateTime.Now.ToString(AsKey), log, (key, oldLog) => log);
 
             return this;
         }
@@ -39,15 +29,9 @@
             if (!hasLogs || notEnoughLogs)
                 return;
 
-            IEnumerable<TLog> sortedLogs;
+            writeAction(Logs.OrderBy(kv => kv.Key).Select(kv => kv.Value));
 
-            lock (Padlock)
-            {
-                sortedLogs = Logs.OrderBy(kv => kv.Key).Select(kv => kv.Value);
-                Logs = new Dictionary<string, TLog>();
-            }
-
-            writeAction(sortedLogs);
+            Logs.Clear();
         }
     }
 }
