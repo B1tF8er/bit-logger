@@ -70,19 +70,6 @@ namespace Bit.Logger.Samples
             return logger;
         }
 
-        internal static ILoggerFactory SampleMessageAndExceptionLogs(this ILoggerFactory logger)
-        {
-            logger.Trace(TraceMessage, TraceException);
-            logger.Debug(DebugMessage, DebugException);
-            logger.Verbose(VerboseMessage, VerboseException);
-            logger.Information(InformationMessage, InformationException);
-            logger.Warning(WarningMessage, WarningException);
-            logger.Error(ErrorMessage, ErrorException);
-            logger.Critical(CriticalMessage, CriticalException);
-
-            return logger;
-        }
-
         internal static ILoggerFactory SampleMessageAndExceptionLogs<TClass>(this ILoggerFactory logger) where TClass : class
         {
             logger.Trace<TClass>(TraceMessage, TraceException);
@@ -92,6 +79,19 @@ namespace Bit.Logger.Samples
             logger.Warning<TClass>(WarningMessage, WarningException);
             logger.Error<TClass>(ErrorMessage, ErrorException);
             logger.Critical<TClass>(CriticalMessage, CriticalException);
+
+            return logger;
+        }
+
+        internal static ILoggerFactory SampleMessageAndExceptionLogs(this ILoggerFactory logger)
+        {
+            logger.Trace(TraceMessage, TraceException);
+            logger.Debug(DebugMessage, DebugException);
+            logger.Verbose(VerboseMessage, VerboseException);
+            logger.Information(InformationMessage, InformationException);
+            logger.Warning(WarningMessage, WarningException);
+            logger.Error(ErrorMessage, ErrorException);
+            logger.Critical(CriticalMessage, CriticalException);
 
             return logger;
         }
