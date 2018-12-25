@@ -78,7 +78,7 @@ namespace Bit.Logger.Loggers.File
 
             logsOrderedByDate = Logs
                 .OrderBy(kv => kv.Key)
-                .Select(kv => kv.Value);
+                .Select(kv => $"{kv.Value}{Environment.NewLine}");
 
             return logsOrderedByDate;
         }
