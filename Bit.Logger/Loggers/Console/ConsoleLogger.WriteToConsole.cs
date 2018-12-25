@@ -13,16 +13,19 @@ namespace Bit.Logger.Loggers.Console
             if (!isLevelAllowed)
                 return;
 
-            var log = string.Format(Configuration.FormatProvider, Configuration.Format,
+            Console.WriteLine(CreateLogWith(logArguments));
+        }
+
+        private string CreateLogWith(LogArguments logArguments)
+        {
+            return string.Format(Configuration.FormatProvider, Configuration.Format,
                 logArguments.Level,
                 DateTime.Now,
                 logArguments.ClassName,
-                logArguments.MethodName,    
-                logArguments.Message,    
+                logArguments.MethodName,
+                logArguments.Message,
                 logArguments.Exception
             ).Trim();
-
-            Console.WriteLine(log);
         }
     }
 }

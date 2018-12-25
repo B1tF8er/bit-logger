@@ -1,22 +1,18 @@
 namespace Bit.Logger.Loggers.File
 {
     using Config;
-    using FileBuffer;
-    using System.Collections.Generic;
+    using LogBuffer;
 
-    internal partial class FileLogger : ILogger, IConfiguration, IFileBuffer
+    internal partial class FileLogger : ILogger, IConfiguration
     {
-        public IDictionary<string, string> Logs { get; set; }
-
-        public object Padlock { get; }
-
         public Configuration Configuration { get; }
+
+        private LogBuffer<string> LogBuffer { get; }
 
         public FileLogger(Configuration configuration)
         {
             Configuration = configuration ?? new Configuration();
-            Logs = new Dictionary<string, string>();
-            Padlock = this;
+            LogBuffer = new LogBuffer<string>();
         }
     }
 }
