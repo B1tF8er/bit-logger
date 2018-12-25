@@ -15,7 +15,9 @@
 
         internal LogBuffer<TLog> Add(TLog log)
         {
-            Logs.AddOrUpdate(DateTime.Now.ToString(AsKey), log, (key, oldLog) => log);
+            var key = $"{DateTime.Now.ToString(AsKey)}-{Guid.NewGuid()}";
+            
+            Logs.TryAdd(key, log);
 
             return this;
         }
@@ -32,9 +34,13 @@
             return this;
         }
 
-        internal LogBuffer<TLog> Write(Action<IEnumerable<TLog>> write)
+        internal LogBuffer<TLog> Write(Action<IEnumerable<TLog>> write, Func<KeyValuePair<string, TLog>, TLog> selector)
         {
-            write(Logs.OrderBy(kv => kv.Key).Select(kv => kv.Value));
+            Func<KeyValuePair<string, TLog>, string> keySelector = kv => kv.Key.Split('-').First();
+
+            var sortedLogs = Logs.OrderByDescending(keySelector).Select(selector);
+
+            write(sortedLogs);
 
             return this;
         }

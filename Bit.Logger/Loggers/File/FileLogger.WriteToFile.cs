@@ -21,7 +21,7 @@ namespace Bit.Logger.Loggers.File
             LogBuffer
                 .Add(CreateLogWith(logArguments))
                 .Validate()
-                ?.Write(BulkWriteToFileAsync)
+                ?.Write(BulkWriteToFileAsync, kv => $"{kv.Value}{Environment.NewLine}")
                 .Clear();
         }
 

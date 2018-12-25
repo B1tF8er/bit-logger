@@ -9,6 +9,6 @@ namespace Bit.Logger.Helpers
         internal const string LogNameFormat = "yyyy_MM_dd_HH";
         internal const string ConnectionString = "Data Source=logging.db";
         internal const string AsKey = "yyyy-MM-dd HH:mm:ss.fff";
-        internal const int LogsThreshold = 1000;
+        internal const int LogsThreshold = 500;
     }
 }

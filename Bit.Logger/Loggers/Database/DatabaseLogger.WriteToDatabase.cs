@@ -19,7 +19,7 @@ namespace Bit.Logger.Loggers.Database
             LogBuffer
                 .Add(CreateLogWith(logArguments))
                 .Validate()
-                ?.Write(BulkWriteToDatabaseAsync)
+                ?.Write(BulkWriteToDatabaseAsync, kv => kv.Value)
                 .Clear();
         }
 
