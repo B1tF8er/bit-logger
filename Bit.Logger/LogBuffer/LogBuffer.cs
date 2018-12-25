@@ -1,34 +1,42 @@
 ﻿namespace Bit.Logger.LogBuffer
 {
     using System;
-    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
     using static Helpers.Constants;
 
     internal class LogBuffer<TLog>
     {
-        private ConcurrentDictionary<string, TLog> Logs { get; }
+        private Dictionary<string, TLog> Logs { get; }
 
-        internal LogBuffer() =>
-            Logs = new ConcurrentDictionary<string, TLog>();
+        private object Padlock { get; }
+
+        internal LogBuffer()
+        {
+            Logs = new Dictionary<string, TLog>();
+            Padlock = new object();
+        }
 
         internal LogBuffer<TLog> Add(TLog log)
         {
             var key = $"{DateTime.Now.ToString(AsKey)}-{Guid.NewGuid()}";
-            
-            Logs.TryAdd(key, log);
+
+            lock (Padlock)
+                Logs.TryAdd(key, log);
 
             return this;
         }
 
         internal LogBuffer<TLog> Validate()
         {
-            var hasLogs = Logs.Any();
-            var underThreshold = Logs.Count <= LogsThreshold;
-            var notEnoughLogs = hasLogs && underThreshold;
+            var count = 0;
 
-            if (!hasLogs || notEnoughLogs)
+            lock (Padlock)
+                count = Logs.Count;
+
+            var underThreshold = count <= LogsThreshold;
+
+            if (underThreshold)
                 return null;
 
             return this;
@@ -36,9 +44,12 @@
 
         internal LogBuffer<TLog> Write(Action<IEnumerable<TLog>> write, Func<KeyValuePair<string, TLog>, TLog> selector)
         {
+            IEnumerable<TLog> sortedLogs;
+
             Func<KeyValuePair<string, TLog>, string> keySelector = kv => kv.Key.Split('-').First();
 
-            var sortedLogs = Logs.OrderByDescending(keySelector).Select(selector);
+            lock (Padlock)
+                sortedLogs = Logs.OrderByDescending(keySelector).Select(selector);
 
             write(sortedLogs);
 
@@ -47,7 +58,8 @@
 
         internal LogBuffer<TLog> Clear()
         {
-            Logs.Clear();
+            lock (Padlock)
+                Logs.Clear();
 
             return this;
         }
