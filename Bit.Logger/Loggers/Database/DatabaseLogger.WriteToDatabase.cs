@@ -16,7 +16,11 @@ namespace Bit.Logger.Loggers.Database
             if (!isLevelAllowed)
                 return;
 
-            LogBuffer.Add(CreateLogWith(logArguments)).ThenWriteUsing(BulkWriteToDatabaseAsync);
+            LogBuffer
+                .Add(CreateLogWith(logArguments))
+                .Validate()
+                ?.Write(BulkWriteToDatabaseAsync)
+                .Clear();
         }
 
         private Log CreateLogWith(LogArguments logArguments)

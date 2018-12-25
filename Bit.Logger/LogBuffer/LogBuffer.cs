@@ -20,18 +20,30 @@
             return this;
         }
 
-        internal void ThenWriteUsing(Action<IEnumerable<TLog>> writeAction)
+        internal LogBuffer<TLog> Validate()
         {
             var hasLogs = Logs.Any();
             var underThreshold = Logs.Count <= LogsThreshold;
             var notEnoughLogs = hasLogs && underThreshold;
 
             if (!hasLogs || notEnoughLogs)
-                return;
+                return null;
 
-            writeAction(Logs.OrderBy(kv => kv.Key).Select(kv => kv.Value));
+            return this;
+        }
 
+        internal LogBuffer<TLog> Write(Action<IEnumerable<TLog>> write)
+        {
+            write(Logs.OrderBy(kv => kv.Key).Select(kv => kv.Value));
+
+            return this;
+        }
+
+        internal LogBuffer<TLog> Clear()
+        {
             Logs.Clear();
+
+            return this;
         }
     }
 }

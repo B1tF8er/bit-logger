@@ -18,7 +18,11 @@ namespace Bit.Logger.Loggers.File
             if (!isLevelAllowed)
                 return;
 
-            LogBuffer.Add(CreateLogWith(logArguments)).ThenWriteUsing(BulkWriteToFileAsync);
+            LogBuffer
+                .Add(CreateLogWith(logArguments))
+                .Validate()
+                ?.Write(BulkWriteToFileAsync)
+                .Clear();
         }
 
         private string CreateLogWith(LogArguments logArguments)
