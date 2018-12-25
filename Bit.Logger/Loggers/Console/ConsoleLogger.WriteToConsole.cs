@@ -2,9 +2,9 @@ namespace Bit.Logger.Loggers.Console
 {
     using Arguments;
     using Config;
-    using Enums;
     using System;
     using static Helpers.ConsoleColorSelector;
+    using static Helpers.LogArgumentsExtensions;
 
     internal partial class ConsoleLogger : ILogger, IConfiguration
     {
@@ -16,20 +16,8 @@ namespace Bit.Logger.Loggers.Console
                 return;
 
             Console.ForegroundColor = logArguments.Level.GetForegroundColor();
-            Console.WriteLine(CreateLogWith(logArguments));
+            Console.WriteLine(logArguments.ToStringLogUsing(Configuration));
             Console.ResetColor();
-        }
-
-        private string CreateLogWith(LogArguments logArguments)
-        {
-            return string.Format(Configuration.FormatProvider, Configuration.Format,
-                logArguments.Level,
-                DateTime.Now,
-                logArguments.ClassName,
-                logArguments.MethodName,
-                logArguments.Message,
-                logArguments.Exception
-            ).Trim();
         }
     }
 }

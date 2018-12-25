@@ -7,6 +7,7 @@ namespace Bit.Logger.Loggers.File
     using System.IO;
     using System.Text;
     using static Helpers.EnumerableExtensions;
+    using static Helpers.LogArgumentsExtensions;
     using static Helpers.LogPathResolver;
 
     internal partial class FileLogger : ILogger, IConfiguration
@@ -19,22 +20,10 @@ namespace Bit.Logger.Loggers.File
                 return;
 
             LogBuffer
-                .Add(CreateLogWith(logArguments))
+                .Add(logArguments.ToStringLogUsing(Configuration))
                 .Validate()
                 ?.Write(BulkWriteToFileAsync, kv => $"{kv.Value}{Environment.NewLine}")
                 .Clear();
-        }
-
-        private string CreateLogWith(LogArguments logArguments)
-        {
-            return string.Format(Configuration.FormatProvider, Configuration.Format,
-                logArguments.Level,
-                DateTime.Now,
-                logArguments.ClassName,
-                logArguments.MethodName,
-                logArguments.Message,
-                logArguments.Exception
-            ).Trim();
         }
 
         private async void BulkWriteToFileAsync(IEnumerable<string> logs)
