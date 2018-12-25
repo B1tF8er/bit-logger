@@ -1,6 +1,5 @@
 ﻿namespace Bit.Logger.Helpers
 {
-    using System;
     using System.Diagnostics;
     using System.Reflection;
 

@@ -2,7 +2,6 @@ namespace Bit.Logger.Loggers.File
 {
     using Config;
     using FileBuffer;
-    using System;
     using System.Collections.Generic;
 
     internal partial class FileLogger : ILogger, IConfiguration, IFileBuffer

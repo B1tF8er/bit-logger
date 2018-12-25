@@ -1,7 +1,6 @@
 namespace Bit.Logger
 {
     using System;
-    using System.Linq;
 
     public partial class Logger : ILoggerFactory
     {

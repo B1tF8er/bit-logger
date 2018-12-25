@@ -1,7 +1,5 @@
 namespace Bit.Logger.Models
 {
-    using System;
-
     public class Log
     {
         public string Id { get; set; }

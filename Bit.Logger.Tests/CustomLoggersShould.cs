@@ -1,8 +1,6 @@
 namespace Bit.Logger.Tests
 {
-    using Config;
     using Moq;
-    using System;
     using System.Collections.Generic;
     using Xunit;
     using static Constants;

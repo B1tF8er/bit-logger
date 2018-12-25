@@ -1,8 +1,6 @@
 namespace Bit.Logger.Tests
 {
-    using Config;
     using Moq;
-    using System;
     using Xunit;
     using static Constants;
 
@@ -17,7 +15,7 @@ namespace Bit.Logger.Tests
             sut
                 .SetupCallsWithSource<CustomLoggerShould>()
                 .SetupCallsWithoutSource()
-                .Setup(l =>  l.AddSource(It.IsAny<ILogger>()))
+                .Setup(l => l.AddSource(It.IsAny<ILogger>()))
                 .Returns(sut.Object);
         }
 

@@ -1,7 +1,6 @@
 namespace Bit.Logger.Helpers
 {
     using Enums;
-    using Config;
     using System;
     using static FormatProviders.FormatterStrategy.FormatterStrategyExtensions;
 

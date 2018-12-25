@@ -1,7 +1,6 @@
 namespace Bit.Logger.Tests
 {
     using Moq;
-    using System;
     using static Constants;
 
     internal static class SetupExtensions

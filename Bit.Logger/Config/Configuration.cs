@@ -2,7 +2,6 @@ namespace Bit.Logger.Config
 {
     using Enums;
     using FormatProviders;
-    using FormatProviders.FormatterStrategy;
     using System;
     using System.Text;
     using static Helpers.StringExtensions;
