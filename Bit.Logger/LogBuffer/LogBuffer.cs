@@ -32,9 +32,10 @@
 
         internal void ThenWriteUsing(Action<IEnumerable<TLog>> writeAction)
         {
-            var thresholdSurpassed = Logs.Count >= LogsThreshold;
+            var hasLogs = Logs.Any();
+            var underThreshold = Logs.Count <= LogsThreshold;
 
-            if (!Logs.Any() && !thresholdSurpassed)
+            if (hasLogs && underThreshold)
                 return;
 
             IEnumerable<TLog> sortedLogs;
