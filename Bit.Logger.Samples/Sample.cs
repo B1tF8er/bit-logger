@@ -57,10 +57,18 @@ namespace Bit.Logger.Samples
 
         private void OneThousandMessages()
         {
-            var range = Enumerable.Range(1, 1001);
+            foreach (var r in Enumerable.Range(1, 1001))
+            {
+                var number = r.ToString();
 
-            foreach (var r in range)
-                logger.Information(r.ToString());
+                logger.Trace(number);
+                logger.Debug(number);
+                logger.Verbose(number);
+                logger.Information(number);
+                logger.Warning(number);
+                logger.Error(number);
+                logger.Critical(number);
+            }
         }
     }
 }
