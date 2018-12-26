@@ -4,7 +4,7 @@ namespace Bit.Logger.Loggers.Database
     using System;
     using static Arguments.LogArguments;
 
-    internal partial class DatabaseLogger : ILogger, IConfiguration
+    internal partial class DatabaseLogger
     {
         public void Critical<TClass>(string message) where TClass : class =>
             WriteToDatabase(CriticalMessage<TClass>(message));

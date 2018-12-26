@@ -4,7 +4,7 @@ namespace Bit.Logger.Loggers.Console
     using System;
     using static Arguments.LogArguments;
 
-    internal partial class ConsoleLogger : ILogger, IConfiguration
+    internal partial class ConsoleLogger
     {
         public void Error<TClass>(string message) where TClass : class =>
             WriteToConsole(ErrorMessage<TClass>(message));

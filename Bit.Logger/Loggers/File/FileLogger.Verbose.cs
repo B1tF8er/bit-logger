@@ -4,7 +4,7 @@ namespace Bit.Logger.Loggers.File
     using System;
     using static Arguments.LogArguments;
 
-    internal partial class FileLogger : ILogger, IConfiguration
+    internal partial class FileLogger
     {
         public void Verbose<TClass>(string message) where TClass : class =>
             WriteToFile(VerboseMessage<TClass>(message));

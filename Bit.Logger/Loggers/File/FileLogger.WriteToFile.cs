@@ -6,7 +6,7 @@ namespace Bit.Logger.Loggers.File
     using System;
     using static Helpers.LogArgumentsExtensions;
 
-    internal partial class FileLogger : ILogger, IConfiguration
+    internal partial class FileLogger
     {
         private void WriteToFile(LogArguments logArguments)
         {

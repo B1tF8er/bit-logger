@@ -2,7 +2,7 @@ namespace Bit.Logger
 {
     using System;
 
-    public partial class Logger : ILoggerFactory
+    public partial class Logger
     {
         public void Error<TClass>(string message) where TClass : class =>
             Loggers.ForEach(logger => logger.Error<TClass>(message));

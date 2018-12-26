@@ -6,7 +6,7 @@ namespace Bit.Logger.Loggers.Console
     using System;
     using static Helpers.LogArgumentsExtensions;
 
-    internal partial class ConsoleLogger : ILogger, IConfiguration
+    internal partial class ConsoleLogger
     {
         private void WriteToConsole(LogArguments logArguments)
         {

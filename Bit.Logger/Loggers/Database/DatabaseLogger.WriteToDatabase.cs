@@ -5,7 +5,7 @@ namespace Bit.Logger.Loggers.Database
     using Config;
     using static Helpers.LogArgumentsExtensions;
 
-    internal partial class DatabaseLogger : ILogger, IConfiguration
+    internal partial class DatabaseLogger
     {
         private void WriteToDatabase(LogArguments logArguments)
         {
