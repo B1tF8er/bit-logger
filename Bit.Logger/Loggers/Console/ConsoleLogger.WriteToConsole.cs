@@ -3,8 +3,10 @@ namespace Bit.Logger.Loggers.Console
     using Arguments;
     using Config;
     using System;
+    using System.Collections.Generic;
     using static Helpers.ConsoleColorSelector;
     using static Helpers.LogArgumentsExtensions;
+    using static Helpers.StringExtensions;
 
     internal partial class ConsoleLogger : ILogger, IConfiguration
     {
@@ -15,9 +17,21 @@ namespace Bit.Logger.Loggers.Console
             if (!isLevelAllowed)
                 return;
 
-            Console.ForegroundColor = logArguments.Level.GetForegroundColor();
-            Console.WriteLine(logArguments.ToStringLogUsing(Configuration));
-            Console.ResetColor();
+            LogBuffer
+                .Add(logArguments.ToStringLogUsing(Configuration))
+                .Validate()
+                ?.Write(BulkWriteToConsole, kv => kv.Value)
+                .Clear();
+        }
+
+        private void BulkWriteToConsole(IEnumerable<string> logs)
+        {
+            foreach (var log in logs)
+            {
+                Console.ForegroundColor = log.GetLevel().GetForegroundColor();
+                Console.WriteLine(log);
+                Console.ResetColor();
+            }
         }
     }
 }
