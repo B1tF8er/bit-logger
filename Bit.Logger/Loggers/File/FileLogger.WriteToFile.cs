@@ -8,18 +8,11 @@ namespace Bit.Logger.Loggers.File
 
     internal partial class FileLogger
     {
-        private void WriteToFile(LogArguments logArguments)
-        {
-            var isLevelAllowed = Configuration.Level <= logArguments.Level;
-
-            if (!isLevelAllowed)
-                return;
-
-            LogBuffer
-                .Add(logArguments.ToStringLogUsing(Configuration))
+        private void WriteToFile(LogArguments args) => LogBuffer
+                .Check(args.IsLevelAllowed(Configuration.Level))
+                ?.Add(args.ToStringLogUsing(Configuration))
                 .Validate()
                 ?.Write(BulkWriter.ToFileAsync, kv => $"{kv.Value}{Environment.NewLine}")
                 .Clear();
-        }
     }
 }

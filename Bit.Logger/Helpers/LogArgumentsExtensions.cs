@@ -1,6 +1,7 @@
 namespace Bit.Logger.Helpers
 {
     using Config;
+    using Enums;
     using Models;
     using Loggers.Arguments;
     using System;
@@ -8,30 +9,33 @@ namespace Bit.Logger.Helpers
 
     internal static class LogArgumentsExtensions
     {
-        internal static string ToStringLogUsing(this LogArguments logArguments, Configuration configuration)
+        internal static string ToStringLogUsing(this ref LogArguments args, Configuration configuration)
         {
             return string.Format(configuration.FormatProvider, configuration.Format,
-                logArguments.Level,
+                args.Level,
                 DateTime.Now,
-                logArguments.ClassName,
-                logArguments.MethodName,
-                logArguments.Message,
-                logArguments.Exception
+                args.ClassName,
+                args.MethodName,
+                args.Message,
+                args.Exception
             ).Trim();
         }
 
-        internal static Log ToDatabaseLogUsing(this LogArguments logArguments, Configuration configuration)
+        internal static Log ToDatabaseLogUsing(this ref LogArguments args, Configuration configuration)
         {
             return new Log
             {
                 Id = $"{Guid.NewGuid()}",
-                Level = configuration.ShowLevel ? logArguments.Level.ToString() : null,
-                Message = logArguments.Message,
+                Level = configuration.ShowLevel ? args.Level.ToString() : null,
+                Message = args.Message,
                 Date = GetFormattedDateFrom(configuration.DateTypeFormat),
-                Class = logArguments.ClassName,
-                Method = logArguments.MethodName,
-                Exception = logArguments.Exception?.ToString() ?? null
+                Class = args.ClassName,
+                Method = args.MethodName,
+                Exception = args.Exception?.ToString() ?? null
             };
         }
+
+        internal static bool IsLevelAllowed(this ref LogArguments args, Level level) =>
+            level <= args.Level;
     }
 }

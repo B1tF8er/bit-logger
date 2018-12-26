@@ -17,6 +17,9 @@
             Padlock = new object();
         }
 
+        internal LogBuffer<TLog> Check(bool isAllowed) =>
+            isAllowed ? this : null;
+
         internal LogBuffer<TLog> Add(TLog log)
         {
             var key = $"{DateTime.Now.ToString(AsKey)}-{Guid.NewGuid()}";
