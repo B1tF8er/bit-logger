@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/B1tF8er/bit-logger.svg?branch=master)](https://travis-ci.com/B1tF8er/bit-logger)
+
 # Logger for .NET Core
 Logger for .NET Core Apps that enables logging to different outputs
 
