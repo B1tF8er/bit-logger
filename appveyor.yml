@@ -15,6 +15,6 @@ test_script:
 
 after_test:
   # Build and pack source
-  - ps: iex ((Get-ChildItem ($env:USERPROFILE + '\.nuget\packages\OpenCover'))[0].FullName + '\tools\OpenCover.Console.exe' + ' -register:user -target:"./Bit.Logger.Tests/Bit.Logger.Tests.csproj" -oldstyle -output:coverage.xml -returntargetcode -filter:"+[Bit.Logger*]* -[*Tests]*"')
+  - ps: iex ((Get-ChildItem ($env:USERPROFILE + '\.nuget\packages\OpenCover'))[0].FullName + '\tools\OpenCover.Console.exe' + ' -register:user -target:"Bit.Logger.Tests\Bit.Logger.Tests.csproj" -oldstyle -output:coverage.xml -returntargetcode')
   - ps: iex ((Get-ChildItem ($env:USERPROFILE + '\.nuget\packages\coveralls.io'))[0].FullName + '\tools\coveralls.net.exe' + ' --opencover coverage.xml')
   - dotnet publish Bit.Logger -f netcoreapp2.1 -c Release
