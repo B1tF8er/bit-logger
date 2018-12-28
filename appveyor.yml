@@ -7,7 +7,6 @@ environment:
 
 before_test:
   - dotnet --info
-  - VersionNumber.bat
   - dotnet restore
 
 test_script:
