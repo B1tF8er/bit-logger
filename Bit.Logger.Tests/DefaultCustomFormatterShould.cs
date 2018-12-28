@@ -18,42 +18,42 @@ namespace Bit.Logger.Tests
 
         [Theory]
         [MemberData(nameof(DefaultCustomFormatterTestData.LevelsTestData), MemberType = typeof(DefaultCustomFormatterTestData))]
-        public void Format_Argument_AsLevel(string format, Level level, string expected)
+        public void Format_Argument_AsLevel(string format, object argument, string expected)
         {
-            var actual = sut.Object.Format(format, level, default(IFormatProvider));
+            var actual = sut.Object.Format(format, argument, default(IFormatProvider));
 
             Assert.Equal(expected, actual);
         }
 
         [Theory]
         [MemberData(nameof(DefaultCustomFormatterTestData.DateTimeTestData), MemberType = typeof(DefaultCustomFormatterTestData))]
-        public void Format_Argument_AsDateTime(string format, DateTime date, string expectedFormat)
+        public void Format_Argument_AsDateTime(string format, DateTime? argument, string expectedFormat)
         {
-            var expected = date.ToString(expectedFormat);
+            var expected = argument?.ToString(expectedFormat) ?? string.Empty;
 
-            var actual = sut.Object.Format(format, date, default(IFormatProvider));
+            var actual = sut.Object.Format(format, argument, default(IFormatProvider));
 
             Assert.Equal(expected, actual);
         }
 
         [Theory]
         [MemberData(nameof(DefaultCustomFormatterTestData.DateTestData), MemberType = typeof(DefaultCustomFormatterTestData))]
-        public void Format_Argument_AsDate(string format, DateTime date, string expectedFormat)
+        public void Format_Argument_AsDate(string format, DateTime? argument, string expectedFormat)
         {
-            var expected = date.ToString(expectedFormat);
+            var expected = argument?.ToString(expectedFormat) ?? string.Empty;
 
-            var actual = sut.Object.Format(format, date, default(IFormatProvider));
+            var actual = sut.Object.Format(format, argument, default(IFormatProvider));
 
             Assert.Equal(expected, actual);
         }
 
         [Theory]
         [MemberData(nameof(DefaultCustomFormatterTestData.TimeTestData), MemberType = typeof(DefaultCustomFormatterTestData))]
-        public void Format_Argument_AsTime(string format, DateTime date, string expectedFormat)
+        public void Format_Argument_AsTime(string format, DateTime? argument, string expectedFormat)
         {
-            var expected = date.ToString(expectedFormat);
+            var expected = argument?.ToString(expectedFormat) ?? string.Empty;
 
-            var actual = sut.Object.Format(format, date, default(IFormatProvider));
+            var actual = sut.Object.Format(format, argument, default(IFormatProvider));
 
             Assert.Equal(expected, actual);
         }

@@ -7,7 +7,7 @@ namespace Bit.Logger.FormatProviders.FormatterStrategy
     {
         public string ApplyFormatTo<TArgument>(TArgument argument)
         {
-            var level = argument.ToString()?.ToUpper() ?? string.Empty;
+            var level = argument == null ? string.Empty : argument.ToString().ToUpper();
 
             if (level.IsNullOrEmptyOrWhiteSpace())
                 return string.Empty;

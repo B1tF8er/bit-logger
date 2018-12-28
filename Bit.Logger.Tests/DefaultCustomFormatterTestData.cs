@@ -64,6 +64,13 @@ namespace Bit.Logger.Tests
                 Level.Warning,
                 $"<{Level.Warning.ToString().ToUpper()}>"
             };
+
+            yield return new object[]
+            {
+                LevelToken,
+                null,
+                string.Empty
+            };
         }
 
         public static IEnumerable<object[]> DateTimeTestData()
@@ -86,6 +93,13 @@ namespace Bit.Logger.Tests
             {
                 DateTimeToken,
                 DateTime.Now.AddDays(1),
+                DateTimeFormat
+            };
+
+            yield return new object[]
+            {
+                DateTimeToken,
+                null,
                 DateTimeFormat
             };
         }
@@ -112,6 +126,13 @@ namespace Bit.Logger.Tests
                 DateTime.Now.AddDays(1),
                 DateFormat
             };
+
+            yield return new object[]
+            {
+                DateToken,
+                null,
+                DateFormat
+            };
         }
 
         public static IEnumerable<object[]> TimeTestData()
@@ -134,6 +155,13 @@ namespace Bit.Logger.Tests
             {
                 TimeToken,
                 DateTime.Now.AddDays(1),
+                TimeFormat
+            };
+
+            yield return new object[]
+            {
+                TimeToken,
+                null,
                 TimeFormat
             };
         }
@@ -160,6 +188,20 @@ namespace Bit.Logger.Tests
                 "Caller.Three",
                 "Three"
             };
+
+            yield return new object[]
+            {
+                CallerToken,
+                "Caller.",
+                string.Empty
+            };
+
+            yield return new object[]
+            {
+                CallerToken,
+                null,
+                string.Empty
+            };
         }
 
         public static IEnumerable<object[]> ExceptionsTestData()
@@ -167,28 +209,35 @@ namespace Bit.Logger.Tests
             yield return new object[]
             {
                 ExceptionToken,
-                TestEx("first"),
-                $"Exception: {TestEx("first")}"
+                TestException("first"),
+                $"Exception: {TestException("first")}"
             };
 
             yield return new object[]
             {
                 ExceptionToken,
-                TestEx("second"),
-                $"Exception: {TestEx("second")}"
+                TestException("second"),
+                $"Exception: {TestException("second")}"
             };
 
             yield return new object[]
             {
                 ExceptionToken,
-                TestEx("third"),
-                $"Exception: {TestEx("third")}"
+                TestException("third"),
+                $"Exception: {TestException("third")}"
+            };
+
+            yield return new object[]
+            {
+                ExceptionToken,
+                null,
+                string.Empty
             };
         }
 
-        private static Exception TestEx(string msg)
+        private static Exception TestException(string message)
         {
-            return new Exception(msg);
+            return new Exception(message);
         }
     }
 }
