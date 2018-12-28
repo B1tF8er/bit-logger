@@ -60,18 +60,18 @@ namespace Bit.Logger.Tests
 
         [Theory]
         [MemberData(nameof(DefaultCustomFormatterTestData.CallersTestData), MemberType = typeof(DefaultCustomFormatterTestData))]
-        public void Format_Argument_AsCaller(string format, string caller, string expected)
+        public void Format_Argument_AsCaller(string format, string argument, string expected)
         {
-            var actual = sut.Object.Format(format, caller, default(IFormatProvider));
+            var actual = sut.Object.Format(format, argument, default(IFormatProvider));
 
             Assert.Equal(expected, actual);
         }
 
         [Theory]
         [MemberData(nameof(DefaultCustomFormatterTestData.ExceptionsTestData), MemberType = typeof(DefaultCustomFormatterTestData))]
-        public void Format_Argument_AsException(string format, Exception exception, string expected)
+        public void Format_Argument_AsException(string format, Exception argument, string expected)
         {
-            var actual = sut.Object.Format(format, exception, default(IFormatProvider));
+            var actual = sut.Object.Format(format, argument, default(IFormatProvider));
 
             Assert.Equal(expected, actual);
         }
