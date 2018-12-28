@@ -266,6 +266,32 @@ namespace Bit.Logger.Tests
             sut.Object.Critical(TestMessage, TestException);
         }
 
+        [Fact]
+        public void LogFiveHundredMessages_AsInformation_WithSourceClass()
+        {
+            SetBaseLoggers();
+
+            foreach (var r in Enumerable.Range(0, 501))
+            {
+                sut.Object.Information<LoggerShould>(TestMessage);
+                sut.Object.Information<LoggerShould>(TestException);
+                sut.Object.Information<LoggerShould>(TestMessage, TestException);
+            }
+        }
+
+        [Fact]
+        public void LogFiveHundredMessages_AsInformation_WithoutSourceClass()
+        {
+            SetBaseLoggers();
+
+            foreach (var r in Enumerable.Range(0, 501))
+            {
+                sut.Object.Information(TestMessage);
+                sut.Object.Information(TestException);
+                sut.Object.Information(TestMessage, TestException);
+            }
+        }
+
         private void SetBaseLoggers()
         {
             sut.Object.AddConsoleSource(It.IsAny<Configuration>());
