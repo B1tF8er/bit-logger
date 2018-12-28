@@ -13,7 +13,7 @@ namespace Bit.Logger.Tests
 
         public DefaultCustomFormatterShould()
         {
-            sut = new Mock<DefaultCustomFormatter>();
+            sut = new Mock<DefaultCustomFormatter>(MockBehavior.Strict);
         }
 
         [Theory]

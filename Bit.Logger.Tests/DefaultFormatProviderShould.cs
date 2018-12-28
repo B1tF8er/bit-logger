@@ -12,7 +12,7 @@ namespace Bit.Logger.Tests
 
         public DefaultFormatProviderShould()
         {
-            sut = new Mock<DefaultFormatProvider>();
+            sut = new Mock<DefaultFormatProvider>(MockBehavior.Strict);
         }
 
         [Fact]
