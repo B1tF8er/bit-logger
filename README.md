@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/B1tF8er/bit-logger.svg?branch=master)](https://travis-ci.com/B1tF8er/bit-logger)
 [![Build status](https://ci.appveyor.com/api/projects/status/qgv3t8hq7c5i659h?svg=true)](https://ci.appveyor.com/project/B1tF8er/bit-logger)
-<a href='https://coveralls.io/github/B1tF8er/bit-logger?branch=master'><img src='https://coveralls.io/repos/github/B1tF8er/bit-logger/badge.svg?branch=master' alt='Coverage Status' /></a>
+[![Coverage Status](https://coveralls.io/repos/github/B1tF8er/bit-logger/badge.svg?branch=master)](https://coveralls.io/github/B1tF8er/bit-logger?branch=master)
 
 # Logger for .NET Core
 Logger for .NET Core Apps that enables logging to different outputs
