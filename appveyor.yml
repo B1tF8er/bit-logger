@@ -1,0 +1,21 @@
+os: Visual Studio 2017
+build: off
+
+environment:
+  COVERALLS_REPO_TOKEN:
+    secure: 0n47+7c3YiptuHdHw7IBRhdFghphRyIbAQ2u0HiUV8D8mE2AqBK17naDGOuvM1/q
+cd
+before_test:
+  - dotnet --info
+  - VersionNumber.bat
+  - dotnet restore
+
+test_script:
+  # Build sample
+  - dotnet test Bit.Logger.Tests
+
+after_test:
+  # Build and pack source
+  - ps: iex ((Get-ChildItem ($env:USERPROFILE + '\.nuget\packages\OpenCover'))[0].FullName + '\tools\OpenCover.Console.exe' + ' -register:user -target:"dotnet test Bit.Logger.Tests" -searchdirs:".\Bit.Logger.Tests\bin\Debug\netcoreapp2.1;" -oldstyle -output:coverage.xml -skipautoprops -returntargetcode -filter:"+[Bit.Logger*]* -[*Tests]*"')
+  - ps: iex ((Get-ChildItem ($env:USERPROFILE + '\.nuget\packages\coveralls.io'))[0].FullName + '\tools\coveralls.net.exe' + ' --opencover coverage.xml')
+  - dotnet publish Bit.Logger -f netcoreapp2.1 -c Release
