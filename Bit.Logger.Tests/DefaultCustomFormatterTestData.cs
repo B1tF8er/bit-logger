@@ -12,49 +12,57 @@ namespace Bit.Logger.Tests
             yield return new object[]
             {
                 LevelToken,
-                Level.Critical
+                Level.Critical,
+                $"<{Level.Critical.ToString().ToUpper()}>"
             };
 
             yield return new object[]
             {
                 LevelToken,
-                Level.Debug
+                Level.Debug,
+                $"<{Level.Debug.ToString().ToUpper()}>"
             };
 
             yield return new object[]
             {
                 LevelToken,
-                Level.Error
+                Level.Error,
+                $"<{Level.Error.ToString().ToUpper()}>"
             };
 
             yield return new object[]
             {
                 LevelToken,
-                Level.Information
+                Level.Information,
+                $"<{Level.Information.ToString().ToUpper()}>"
             };
 
             yield return new object[]
             {
                 LevelToken,
-                Level.None
+                Level.None,
+                $"<{Level.None.ToString().ToUpper()}>"
             };
 
             yield return new object[]
             {
                 LevelToken,
-                Level.Trace
+                Level.Trace,
+                $"<{Level.Trace.ToString().ToUpper()}>"
             };
 
             yield return new object[]
             {
                 LevelToken,
-                Level.Verbose
+                Level.Verbose,
+                $"<{Level.Verbose.ToString().ToUpper()}>"
             };
 
             yield return new object[]
             {
                 LevelToken,
-                Level.Warning
+                Level.Warning,
+                $"<{Level.Warning.ToString().ToUpper()}>"
             };
         }
 
@@ -63,22 +71,22 @@ namespace Bit.Logger.Tests
             yield return new object[]
             {
                 DateTimeToken,
-                DateTimeFormat,
-                DateTime.Now
+                DateTime.Now,
+                DateTimeFormat
             };
 
             yield return new object[]
             {
                 DateTimeToken,
-                DateTimeFormat,
-                DateTime.Now.AddHours(1)
+                DateTime.Now.AddHours(1),
+                DateTimeFormat
             };
 
             yield return new object[]
             {
                 DateTimeToken,
-                DateTimeFormat,
-                DateTime.Now.AddDays(1)
+                DateTime.Now.AddDays(1),
+                DateTimeFormat
             };
         }
 
@@ -87,22 +95,22 @@ namespace Bit.Logger.Tests
             yield return new object[]
             {
                 DateToken,
-                DateFormat,
-                DateTime.Now
+                DateTime.Now,
+                DateFormat
             };
 
             yield return new object[]
             {
                 DateToken,
-                DateFormat,
-                DateTime.Now.AddHours(1)
+                DateTime.Now.AddHours(1),
+                DateFormat
             };
 
             yield return new object[]
             {
                 DateToken,
-                DateFormat,
-                DateTime.Now.AddDays(1)
+                DateTime.Now.AddDays(1),
+                DateFormat
             };
         }
 
@@ -111,23 +119,76 @@ namespace Bit.Logger.Tests
             yield return new object[]
             {
                 TimeToken,
-                TimeFormat,
-                DateTime.Now
+                DateTime.Now,
+                TimeFormat
             };
 
             yield return new object[]
             {
                 TimeToken,
-                TimeFormat,
-                DateTime.Now.AddHours(1)
+                DateTime.Now.AddHours(1),
+                TimeFormat
             };
 
             yield return new object[]
             {
                 TimeToken,
-                TimeFormat,
-                DateTime.Now.AddDays(1)
+                DateTime.Now.AddDays(1),
+                TimeFormat
             };
+        }
+
+        public static IEnumerable<object[]> CallersTestData()
+        {
+            yield return new object[]
+            {
+                CallerToken,
+                "Caller.One",
+                "One"
+            };
+
+            yield return new object[]
+            {
+                CallerToken,
+                "Caller.Two",
+                "Two"
+            };
+
+            yield return new object[]
+            {
+                CallerToken,
+                "Caller.Three",
+                "Three"
+            };
+        }
+
+        public static IEnumerable<object[]> ExceptionsTestData()
+        {
+            yield return new object[]
+            {
+                ExceptionToken,
+                TestEx("first"),
+                $"Exception: {TestEx("first")}"
+            };
+
+            yield return new object[]
+            {
+                ExceptionToken,
+                TestEx("second"),
+                $"Exception: {TestEx("second")}"
+            };
+
+            yield return new object[]
+            {
+                ExceptionToken,
+                TestEx("third"),
+                $"Exception: {TestEx("third")}"
+            };
+        }
+
+        private static Exception TestEx(string msg)
+        {
+            return new Exception(msg);
         }
     }
 }
