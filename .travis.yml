@@ -1,2 +1,4 @@
 language: csharp
 solution: Bit.Logger.sln
+dotnet: none #2.1.300
+mono: none #5.10.0
