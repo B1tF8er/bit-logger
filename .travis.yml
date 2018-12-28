@@ -1,4 +1,9 @@
 language: csharp
-solution: Bit.Logger.sln
-dotnet: none #2.1.300
-mono: none #5.10.0
+dist: trusty
+mono: none
+dotnet: 2.1.300
+install:
+- dotnet restore
+script:
+- dotnet build
+- dotnet test Bit.Logger.Tests/Bit.Logger.Tests.csproj
