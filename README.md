@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/B1tF8er/bit-logger.svg?branch=master)](https://travis-ci.com/B1tF8er/bit-logger)
+[![Build status](https://ci.appveyor.com/api/projects/status/qgv3t8hq7c5i659h?svg=true)](https://ci.appveyor.com/project/B1tF8er/bit-logger)
 [![Coverage Status](https://coveralls.io/repos/github/B1tF8er/bit-logger/badge.svg)](https://coveralls.io/github/B1tF8er/bit-logger)
 
 # Logger for .NET Core
