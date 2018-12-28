@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bit.Logger", "Bit.Logger\Bi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bit.Logger.Tests", "Bit.Logger.Tests\Bit.Logger.Tests.csproj", "{CD4400ED-D733-4454-BB7D-8349CF98A1E5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bit.Logger.Samples", "Bit.Logger.Samples\Bit.Logger.Samples.csproj", "{47EC62F4-33F7-4220-B7CA-BBFF3C5EC614}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{CD4400ED-D733-4454-BB7D-8349CF98A1E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD4400ED-D733-4454-BB7D-8349CF98A1E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD4400ED-D733-4454-BB7D-8349CF98A1E5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{47EC62F4-33F7-4220-B7CA-BBFF3C5EC614}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47EC62F4-33F7-4220-B7CA-BBFF3C5EC614}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47EC62F4-33F7-4220-B7CA-BBFF3C5EC614}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{47EC62F4-33F7-4220-B7CA-BBFF3C5EC614}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
