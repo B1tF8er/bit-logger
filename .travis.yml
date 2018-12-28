@@ -6,4 +6,4 @@ install:
 - dotnet restore
 script:
 - dotnet build
-- dotnet test Bit.Logger.Tests/Bit.Logger.Tests.csproj
+- dotnet test Bit.Logger.Tests
