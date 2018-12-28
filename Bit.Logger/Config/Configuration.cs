@@ -4,16 +4,18 @@ namespace Bit.Logger.Config
     using FormatProviders;
     using System;
     using System.Text;
+    using static Enums.DateType;
+    using static Enums.Level;
     using static Helpers.StringExtensions;
     using static Helpers.Tokens;
 
     public class Configuration
     {
-        public DateType DateTypeFormat { get; set; } = DateType.DateTime;
+        public DateType DateTypeFormat { get; set; } = DateTimeISO;
 
         public bool ShowLevel { get; set; } = true;
 
-        public Level Level { get; set; } = Level.Information;
+        public Level Level { get; set; } = Information;
 
         public IFormatProvider FormatProvider { get; set; } = new DefaultFormatProvider();
 

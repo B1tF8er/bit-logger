@@ -2,7 +2,8 @@ namespace Bit.Logger.Enums
 {
     public enum DateType
     {
-        DateTime,
+        Default,
+        DateTimeISO,
         Date,
         Time
     }

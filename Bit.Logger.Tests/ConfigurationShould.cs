@@ -21,7 +21,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void GetDefault_Format()
         {
-            var expected = "{0:level} {1:datetime} [{2:caller}::{3:method}] {4:message} {5:exception}";
+            var expected = "{0:level} {1:datetimeiso} [{2:caller}::{3:method}] {4:message} {5:exception}";
 
             var actual = sut.Object.Format;
 
@@ -138,7 +138,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void GetDefault_DateTypeFormat()
         {
-            var expected = DateType.DateTime;
+            var expected = DateTimeISO;
 
             var actual = sut.Object.DateTypeFormat;
 

@@ -11,7 +11,7 @@
 
         private object Padlock { get; }
 
-        public LogBuffer()
+        internal LogBuffer()
         {
             Logs = new Dictionary<string, TLog>();
             Padlock = new object();

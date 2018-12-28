@@ -1,7 +1,7 @@
 namespace Bit.Logger.FormatProviders.FormatterStrategy
 {
-    using Enums;
     using System;
+    using static Enums.DateType;
     using static Helpers.DateTypeExtensions;
 
     internal class DateTimeFormatterStrategy : IFormatterStrategy
@@ -10,7 +10,7 @@ namespace Bit.Logger.FormatProviders.FormatterStrategy
         {
             var datetime = argument as Nullable<DateTime>;
 
-            return datetime?.ToString(GetFormatFor(DateType.DateTime)) ?? string.Empty;
+            return datetime?.ToString(GetFormatFor(DateTimeISO)) ?? string.Empty;
         }
     }
 }

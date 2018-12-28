@@ -9,9 +9,10 @@ namespace Bit.Logger.Helpers
         {
             switch (dateType)
             {
-                case DateType.DateTime: return DateTimeFormat;
+                case DateType.DateTimeISO: return DateTimeFormat;
                 case DateType.Date: return DateFormat;
                 case DateType.Time: return TimeFormat;
+                case DateType.Default:
                 default: return string.Empty;
             }
         }
