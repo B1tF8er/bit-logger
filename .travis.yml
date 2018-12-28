@@ -8,5 +8,5 @@ install:
 
 script:
 - dotnet build Bit.Logger -c Release
-- dotnet test Bit.Logger.Tests -c Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-- dotnet publish Bit.Logger -f netcoreapp2.1 -c Release -o "../build/bit-logger"
+- dotnet test Bit.Logger.Tests -c Release
+- dotnet publish Bit.Logger -f netcoreapp2.1 -c Release
