@@ -18,8 +18,8 @@ namespace Bit.Logger.Helpers
             {
                 var patternBuilder = new StringBuilder();
 
-                foreach (var level in levels)
-                    patternBuilder.Append($@"\b{level}\b|");
+                foreach (var l in levels)
+                    patternBuilder.Append($@"\b{l}\b|");
 
                 return patternBuilder.ToString().Substring(0, patternBuilder.Length - 1);
             }
@@ -27,10 +27,12 @@ namespace Bit.Logger.Helpers
             var pattern = CreatePatternForLevels(Enum.GetValues(typeof(Level)).OfType<Level>());
             var match = Regex.Match(log, pattern, RegexOptions.IgnoreCase);
 
+            var level = Level.None;
+
             if (match.Success)
-                return (Level)Enum.Parse(typeof(Level), match.Value, ignoreCase: true);
-            else
-                return Level.None;
+                level = (Level)Enum.Parse(typeof(Level), match.Value, ignoreCase: true);
+
+            return level;
         }
     }
 }
