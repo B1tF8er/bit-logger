@@ -7,17 +7,20 @@ namespace Bit.Logger.Helpers
     {
         internal static ConsoleColor GetForegroundColor(this Level level)
         {
+            var consoleColor = ConsoleColor.White;
+
             switch (level)
             {
-                case Level.Trace: return ConsoleColor.DarkMagenta;
-                case Level.Debug: return ConsoleColor.Green;
-                case Level.Verbose: return ConsoleColor.DarkCyan;
-                case Level.Information: return ConsoleColor.Gray;
-                case Level.Warning: return ConsoleColor.Yellow;
-                case Level.Error: return ConsoleColor.Red;
-                case Level.Critical: return ConsoleColor.DarkRed;
-                default: return ConsoleColor.White;
+                case Level.Trace: consoleColor = ConsoleColor.DarkMagenta; break;
+                case Level.Debug: consoleColor = ConsoleColor.Green; break;
+                case Level.Verbose: consoleColor = ConsoleColor.DarkCyan; break;
+                case Level.Information: consoleColor = ConsoleColor.Gray; break;
+                case Level.Warning: consoleColor = ConsoleColor.Yellow; break;
+                case Level.Error: consoleColor = ConsoleColor.Red; break;
+                case Level.Critical: consoleColor = ConsoleColor.DarkRed; break;
             }
+
+            return consoleColor;
         }
     }
 }

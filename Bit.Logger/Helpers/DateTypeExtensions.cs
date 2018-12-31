@@ -7,14 +7,18 @@ namespace Bit.Logger.Helpers
     {
         internal static string GetFormatFor(DateType dateType)
         {
+            var format = string.Empty;
+
             switch (dateType)
             {
-                case DateType.DateTimeISO: return DateTimeFormat;
-                case DateType.Date: return DateFormat;
-                case DateType.Time: return TimeFormat;
+                case DateType.DateTimeISO: format = DateTimeFormat; break;
+                case DateType.Date: format = DateFormat; break;
+                case DateType.Time: format = TimeFormat; break;
                 case DateType.Default:
-                default: return string.Empty;
+                default: break;
             }
+
+            return format;
         }
     }
 }
