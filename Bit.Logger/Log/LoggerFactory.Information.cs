@@ -2,7 +2,8 @@ namespace Bit.Logger
 {
     using System;
 
-    public partial class Logger
+
+    public partial class LoggerFactory
     {
         public void Information<TClass>(string message) where TClass : class =>
             Loggers.ForEach(logger => logger.Information<TClass>(message));

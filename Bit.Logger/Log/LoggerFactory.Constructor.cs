@@ -9,11 +9,11 @@
     using System.Linq;
     using System.Text;
 
-    public partial class Logger : ILoggerFactory
+    public partial class LoggerFactory : ILoggerFactory
     {
         public List<ILogger> Loggers { get; }
 
-        public Logger() => Loggers = new List<ILogger>();
+        public LoggerFactory() => Loggers = new List<ILogger>();
 
         public ILoggerFactory AddConsoleSource(Configuration configuration = default)
         {

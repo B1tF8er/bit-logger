@@ -11,13 +11,13 @@ namespace Bit.Logger.Tests
     using static Constants;
     using static Enums.Level;
 
-    public class LoggerShould
+    public class LoggerFactoryShould
     {
-        private readonly Mock<Logger> sut;
+        private readonly Mock<LoggerFactory> sut;
 
-        public LoggerShould()
+        public LoggerFactoryShould()
         {
-            sut = new Mock<Logger>(MockBehavior.Default);
+            sut = new Mock<LoggerFactory>(MockBehavior.Default);
         }
 
         [Fact]
@@ -32,7 +32,7 @@ namespace Bit.Logger.Tests
         }
 
         [Fact]
-        public void AddConsoleSource_AndReturnDatabaseLogger()
+        public void AddDatabaseSource_AndReturnDatabaseLogger()
         {
             sut.Object.AddDatabaseSource(It.IsAny<Configuration>());
 
@@ -43,7 +43,7 @@ namespace Bit.Logger.Tests
         }
 
         [Fact]
-        public void AddConsoleSource_AndReturnFileLogger()
+        public void AddFileSource_AndReturnFileLogger()
         {
             sut.Object.AddFileSource(It.IsAny<Configuration>());
 
@@ -126,9 +126,9 @@ namespace Bit.Logger.Tests
         {
             SetBaseLoggers();
 
-            sut.Object.Trace<LoggerShould>(TestMessage);
-            sut.Object.Trace<LoggerShould>(TestException);
-            sut.Object.Trace<LoggerShould>(TestMessage, TestException);
+            sut.Object.Trace<LoggerFactoryShould>(TestMessage);
+            sut.Object.Trace<LoggerFactoryShould>(TestException);
+            sut.Object.Trace<LoggerFactoryShould>(TestMessage, TestException);
         }
 
         [Fact]
@@ -146,9 +146,9 @@ namespace Bit.Logger.Tests
         {
             SetBaseLoggers();
 
-            sut.Object.Debug<LoggerShould>(TestMessage);
-            sut.Object.Debug<LoggerShould>(TestException);
-            sut.Object.Debug<LoggerShould>(TestMessage, TestException);
+            sut.Object.Debug<LoggerFactoryShould>(TestMessage);
+            sut.Object.Debug<LoggerFactoryShould>(TestException);
+            sut.Object.Debug<LoggerFactoryShould>(TestMessage, TestException);
         }
 
         [Fact]
@@ -166,9 +166,9 @@ namespace Bit.Logger.Tests
         {
             SetBaseLoggers();
 
-            sut.Object.Verbose<LoggerShould>(TestMessage);
-            sut.Object.Verbose<LoggerShould>(TestException);
-            sut.Object.Verbose<LoggerShould>(TestMessage, TestException);
+            sut.Object.Verbose<LoggerFactoryShould>(TestMessage);
+            sut.Object.Verbose<LoggerFactoryShould>(TestException);
+            sut.Object.Verbose<LoggerFactoryShould>(TestMessage, TestException);
         }
 
         [Fact]
@@ -186,9 +186,9 @@ namespace Bit.Logger.Tests
         {
             SetBaseLoggers();
 
-            sut.Object.Information<LoggerShould>(TestMessage);
-            sut.Object.Information<LoggerShould>(TestException);
-            sut.Object.Information<LoggerShould>(TestMessage, TestException);
+            sut.Object.Information<LoggerFactoryShould>(TestMessage);
+            sut.Object.Information<LoggerFactoryShould>(TestException);
+            sut.Object.Information<LoggerFactoryShould>(TestMessage, TestException);
         }
 
         [Fact]
@@ -206,9 +206,9 @@ namespace Bit.Logger.Tests
         {
             SetBaseLoggers();
 
-            sut.Object.Warning<LoggerShould>(TestMessage);
-            sut.Object.Warning<LoggerShould>(TestException);
-            sut.Object.Warning<LoggerShould>(TestMessage, TestException);
+            sut.Object.Warning<LoggerFactoryShould>(TestMessage);
+            sut.Object.Warning<LoggerFactoryShould>(TestException);
+            sut.Object.Warning<LoggerFactoryShould>(TestMessage, TestException);
         }
 
         [Fact]
@@ -226,9 +226,9 @@ namespace Bit.Logger.Tests
         {
             SetBaseLoggers();
 
-            sut.Object.Error<LoggerShould>(TestMessage);
-            sut.Object.Error<LoggerShould>(TestException);
-            sut.Object.Error<LoggerShould>(TestMessage, TestException);
+            sut.Object.Error<LoggerFactoryShould>(TestMessage);
+            sut.Object.Error<LoggerFactoryShould>(TestException);
+            sut.Object.Error<LoggerFactoryShould>(TestMessage, TestException);
         }
 
         [Fact]
@@ -246,9 +246,9 @@ namespace Bit.Logger.Tests
         {
             SetBaseLoggers();
 
-            sut.Object.Critical<LoggerShould>(TestMessage);
-            sut.Object.Critical<LoggerShould>(TestException);
-            sut.Object.Critical<LoggerShould>(TestMessage, TestException);
+            sut.Object.Critical<LoggerFactoryShould>(TestMessage);
+            sut.Object.Critical<LoggerFactoryShould>(TestException);
+            sut.Object.Critical<LoggerFactoryShould>(TestMessage, TestException);
         }
 
         [Fact]
@@ -268,10 +268,10 @@ namespace Bit.Logger.Tests
 
             foreach (var r in Enumerable.Range(0, 501))
             {
-                sut.Object.Trace<LoggerShould>(TestMessage);
-                sut.Object.Debug<LoggerShould>(TestException);
-                sut.Object.Verbose<LoggerShould>(TestMessage, TestException);
-                sut.Object.Information<LoggerShould>(TestMessage);
+                sut.Object.Trace<LoggerFactoryShould>(TestMessage);
+                sut.Object.Debug<LoggerFactoryShould>(TestException);
+                sut.Object.Verbose<LoggerFactoryShould>(TestMessage, TestException);
+                sut.Object.Information<LoggerFactoryShould>(TestMessage);
             }
         }
 
