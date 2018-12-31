@@ -4,7 +4,7 @@ namespace Bit.Logger.Loggers.Database
     using LogBuffer;
     using Models;
 
-    internal partial class DatabaseLogger : ILogger, IConfiguration, ILogBuffer<Log>
+    internal partial class DatabaseLogger : IDatabaseLogger
     {
         public Configuration Configuration { get; }
 

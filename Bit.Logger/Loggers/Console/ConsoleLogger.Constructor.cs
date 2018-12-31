@@ -3,7 +3,7 @@ namespace Bit.Logger.Loggers.Console
     using Config;
     using LogBuffer;
 
-    internal partial class ConsoleLogger : ILogger, IConfiguration, ILogBuffer<string>
+    internal partial class ConsoleLogger : IConsoleLogger
     {
         public Configuration Configuration { get; }
 

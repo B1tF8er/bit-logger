@@ -28,9 +28,7 @@ namespace Bit.Logger.Tests
             var actual = sut.Object.Loggers.Single();
 
             Assert.NotNull(actual);
-            Assert.True(actual is ILogger);
-            Assert.True(actual is IConfiguration);
-            Assert.True(actual is ILogBuffer<string>);
+            Assert.True(actual is IConsoleLogger);
         }
 
         [Fact]
@@ -41,9 +39,7 @@ namespace Bit.Logger.Tests
             var actual = sut.Object.Loggers.Single();
 
             Assert.NotNull(actual);
-            Assert.True(actual is ILogger);
-            Assert.True(actual is IConfiguration);
-            Assert.True(actual is ILogBuffer<Log>);
+            Assert.True(actual is IDatabaseLogger);
         }
 
         [Fact]
@@ -54,9 +50,7 @@ namespace Bit.Logger.Tests
             var actual = sut.Object.Loggers.Single();
 
             Assert.NotNull(actual);
-            Assert.True(actual is ILogger);
-            Assert.True(actual is IConfiguration);
-            Assert.True(actual is ILogBuffer<string>);
+            Assert.True(actual is IFileLogger);
         }
 
         [Fact]

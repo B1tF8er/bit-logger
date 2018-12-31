@@ -106,11 +106,13 @@ namespace Bit.Logger.Tests
         public void SetCustom_Level()
         {
             var expected = Level.None;
+            sut.Object.Level = expected;
 
             var actual = sut.Object.Level;
 
             Assert.IsType<Level>(expected);
             Assert.IsType<Level>(actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -128,11 +130,13 @@ namespace Bit.Logger.Tests
         public void SetCustom_ShowLevel()
         {
             var expected = false;
+            sut.Object.ShowLevel = expected;
 
             var actual = sut.Object.ShowLevel;
 
             Assert.IsType<bool>(expected);
             Assert.IsType<bool>(actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -150,11 +154,13 @@ namespace Bit.Logger.Tests
         public void SetCustom_DateTypeFormat()
         {
             var expected = Time;
+            sut.Object.DateTypeFormat = expected;
 
             var actual = sut.Object.DateTypeFormat;
 
             Assert.IsType<DateType>(expected);
             Assert.IsType<DateType>(actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
