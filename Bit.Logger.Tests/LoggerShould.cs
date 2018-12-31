@@ -9,6 +9,8 @@ namespace Bit.Logger.Tests
     using System.Linq;
     using Xunit;
     using static Constants;
+    using static Enums.DateType;
+    using static Enums.Level;
 
     public class LoggerShould
     {
@@ -295,9 +297,15 @@ namespace Bit.Logger.Tests
 
         private void SetBaseLoggers()
         {
-            sut.Object.AddConsoleSource(It.IsAny<Configuration>());
-            sut.Object.AddDatabaseSource(It.IsAny<Configuration>());
-            sut.Object.AddFileSource(It.IsAny<Configuration>());
+            var configuration = new Configuration
+            {
+                Level = Trace,
+                DateTypeFormat = Default
+            };
+
+            sut.Object.AddConsoleSource(configuration);
+            sut.Object.AddDatabaseSource(configuration);
+            sut.Object.AddFileSource(configuration);
         }
     }
 }
