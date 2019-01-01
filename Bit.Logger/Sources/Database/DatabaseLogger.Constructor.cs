@@ -1,7 +1,8 @@
-namespace Bit.Logger.Loggers.Database
+namespace Bit.Logger.Sources.Database
 {
     using Buffer;
     using Config;
+    using Contract;
     using Models;
 
     internal partial class DatabaseLogger : IDatabaseLogger

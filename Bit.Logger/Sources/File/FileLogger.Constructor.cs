@@ -1,7 +1,8 @@
-namespace Bit.Logger.Loggers.File
+namespace Bit.Logger.Sources.File
 {
     using Buffer;
     using Config;
+    using Contract;
 
     internal partial class FileLogger : IFileLogger
     {

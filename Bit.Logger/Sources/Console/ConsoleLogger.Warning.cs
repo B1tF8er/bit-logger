@@ -1,4 +1,4 @@
-namespace Bit.Logger.Loggers.Console
+namespace Bit.Logger.Sources.Console
 {
     using Config;
     using System;

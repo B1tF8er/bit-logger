@@ -1,8 +1,7 @@
-namespace Bit.Logger
+namespace Bit.Logger.Contract
 {
     using Buffer;
     using Config;
-    using Contract;
 
     public interface IConsoleLogger : ILogger, IConfiguration, ILogBuffer<string>
     {

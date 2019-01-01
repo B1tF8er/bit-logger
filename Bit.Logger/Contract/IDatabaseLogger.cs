@@ -1,4 +1,4 @@
-namespace Bit.Logger
+namespace Bit.Logger.Contract
 {
     using Buffer;
     using Config;

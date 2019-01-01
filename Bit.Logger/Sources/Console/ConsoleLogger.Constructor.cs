@@ -1,7 +1,8 @@
-namespace Bit.Logger.Loggers.Console
+namespace Bit.Logger.Sources.Console
 {
     using Buffer;
     using Config;
+    using Contract;
 
     internal partial class ConsoleLogger : IConsoleLogger
     {

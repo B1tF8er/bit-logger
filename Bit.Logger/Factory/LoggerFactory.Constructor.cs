@@ -2,9 +2,9 @@
 {
     using Config;
     using Contract;
-    using Loggers.Console;
-    using Loggers.Database;
-    using Loggers.File;
+    using Sources.Console;
+    using Sources.Database;
+    using Sources.File;
     using System;
     using System.Collections.Generic;
     using System.Linq;

@@ -1,4 +1,4 @@
-namespace Bit.Logger.Loggers.File
+namespace Bit.Logger.Sources.File
 {
     using Arguments;
     using Config;

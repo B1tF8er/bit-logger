@@ -1,4 +1,4 @@
-namespace Bit.Logger.Loggers.Database
+namespace Bit.Logger.Sources.Database
 {
     using Arguments;
     using Config;
