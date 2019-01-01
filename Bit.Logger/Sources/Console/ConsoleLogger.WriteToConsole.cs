@@ -9,10 +9,10 @@ namespace Bit.Logger.Sources.Console
     internal partial class ConsoleLogger
     {
         private void WriteToConsole(LogArguments args) => LogBuffer
-                .Check(args.IsLevelAllowed(Configuration.Level))
-                ?.Add(args.ToStringLogUsing(Configuration))
-                .Validate()
-                ?.Write(BulkWriter.ToConsole, kv => kv.Value)
-                .Clear();
+            .Check(args.IsLevelAllowed(Configuration.Level))
+            ?.Add(args.ToStringLogUsing(Configuration))
+            .Validate()
+            ?.Write(BulkWriter.ToConsole, kv => kv.Value)
+            .Clear();
     }
 }
