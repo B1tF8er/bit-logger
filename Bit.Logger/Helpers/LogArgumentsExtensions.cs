@@ -1,9 +1,9 @@
 namespace Bit.Logger.Helpers
 {
+    using Arguments;
     using Config;
     using Enums;
     using Models;
-    using Loggers.Arguments;
     using System;
     using static Helpers.DateFormatter;
 

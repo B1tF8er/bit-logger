@@ -1,5 +1,6 @@
 namespace Bit.Logger.Tests
 {
+    using Factory;
     using Config;
     using Moq;
     using Xunit;

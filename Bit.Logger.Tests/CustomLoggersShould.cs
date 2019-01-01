@@ -1,5 +1,7 @@
 namespace Bit.Logger.Tests
 {
+    using Contract;
+    using Factory;
     using Moq;
     using System.Collections.Generic;
     using Xunit;

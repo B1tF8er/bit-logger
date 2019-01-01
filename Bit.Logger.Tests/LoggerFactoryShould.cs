@@ -1,8 +1,8 @@
 namespace Bit.Logger.Tests
 {
     using Config;
-    using LogBuffer;
-    using Models;
+    using Contract;
+    using Factory;
     using Moq;
     using System;
     using System.Collections.Generic;
