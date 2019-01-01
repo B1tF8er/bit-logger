@@ -122,169 +122,14 @@ namespace Bit.Logger.Tests
         }
 
         [Fact]
-        public void LogMessage_AsTrace_WithSourceClass()
-        {
-            SetBaseLoggers();
-
-            sut.Object.Trace<LoggerFactoryShould>(TestMessage);
-            sut.Object.Trace<LoggerFactoryShould>(TestException);
-            sut.Object.Trace<LoggerFactoryShould>(TestMessage, TestException);
-        }
-
-        [Fact]
-        public void LogMessage_AsTrace_WithoutSourceClass()
-        {
-            SetBaseLoggers();
-
-            sut.Object.Trace(TestMessage);
-            sut.Object.Trace(TestException);
-            sut.Object.Trace(TestMessage, TestException);
-        }
-
-        [Fact]
-        public void LogMessage_AsDebug_WithSourceClass()
-        {
-            SetBaseLoggers();
-
-            sut.Object.Debug<LoggerFactoryShould>(TestMessage);
-            sut.Object.Debug<LoggerFactoryShould>(TestException);
-            sut.Object.Debug<LoggerFactoryShould>(TestMessage, TestException);
-        }
-
-        [Fact]
-        public void LogMessage_AsDebug_WithoutSourceClass()
-        {
-            SetBaseLoggers();
-
-            sut.Object.Debug(TestMessage);
-            sut.Object.Debug(TestException);
-            sut.Object.Debug(TestMessage, TestException);
-        }
-
-        [Fact]
-        public void LogMessage_AsVerbose_WithSourceClass()
-        {
-            SetBaseLoggers();
-
-            sut.Object.Verbose<LoggerFactoryShould>(TestMessage);
-            sut.Object.Verbose<LoggerFactoryShould>(TestException);
-            sut.Object.Verbose<LoggerFactoryShould>(TestMessage, TestException);
-        }
-
-        [Fact]
-        public void LogMessage_AsVerbose_WithoutSourceClass()
-        {
-            SetBaseLoggers();
-
-            sut.Object.Verbose(TestMessage);
-            sut.Object.Verbose(TestException);
-            sut.Object.Verbose(TestMessage, TestException);
-        }
-
-        [Fact]
-        public void LogMessage_AsInformation_WithSourceClass()
-        {
-            SetBaseLoggers();
-
-            sut.Object.Information<LoggerFactoryShould>(TestMessage);
-            sut.Object.Information<LoggerFactoryShould>(TestException);
-            sut.Object.Information<LoggerFactoryShould>(TestMessage, TestException);
-        }
-
-        [Fact]
-        public void LogMessage_AsInformation_WithoutSourceClass()
-        {
-            SetBaseLoggers();
-
-            sut.Object.Information(TestMessage);
-            sut.Object.Information(TestException);
-            sut.Object.Information(TestMessage, TestException);
-        }
-
-        [Fact]
-        public void LogMessage_AsWarning_WithSourceClass()
-        {
-            SetBaseLoggers();
-
-            sut.Object.Warning<LoggerFactoryShould>(TestMessage);
-            sut.Object.Warning<LoggerFactoryShould>(TestException);
-            sut.Object.Warning<LoggerFactoryShould>(TestMessage, TestException);
-        }
-
-        [Fact]
-        public void LogMessage_AsWarning_WithoutSourceClass()
-        {
-            SetBaseLoggers();
-
-            sut.Object.Warning(TestMessage);
-            sut.Object.Warning(TestException);
-            sut.Object.Warning(TestMessage, TestException);
-        }
-
-        [Fact]
-        public void LogMessage_AsError_WithSourceClass()
-        {
-            SetBaseLoggers();
-
-            sut.Object.Error<LoggerFactoryShould>(TestMessage);
-            sut.Object.Error<LoggerFactoryShould>(TestException);
-            sut.Object.Error<LoggerFactoryShould>(TestMessage, TestException);
-        }
-
-        [Fact]
-        public void LogMessage_AsError_WithoutSourceClass()
-        {
-            SetBaseLoggers();
-
-            sut.Object.Error(TestMessage);
-            sut.Object.Error(TestException);
-            sut.Object.Error(TestMessage, TestException);
-        }
-
-        [Fact]
-        public void LogMessage_AsCritical_WithSourceClass()
-        {
-            SetBaseLoggers();
-
-            sut.Object.Critical<LoggerFactoryShould>(TestMessage);
-            sut.Object.Critical<LoggerFactoryShould>(TestException);
-            sut.Object.Critical<LoggerFactoryShould>(TestMessage, TestException);
-        }
-
-        [Fact]
-        public void LogMessage_AsCritical_WithoutSourceClass()
-        {
-            SetBaseLoggers();
-
-            sut.Object.Critical(TestMessage);
-            sut.Object.Critical(TestException);
-            sut.Object.Critical(TestMessage, TestException);
-        }
-
-        [Fact]
         public void LogFiveHundredMessages_WithSourceClass()
         {
             SetBaseLoggers();
 
-            foreach (var r in Enumerable.Range(0, 501))
+            foreach (var r in Enumerable.Range(0, 72))
             {
-                sut.Object.Trace<LoggerFactoryShould>(TestMessage);
-                sut.Object.Debug<LoggerFactoryShould>(TestException);
-                sut.Object.Verbose<LoggerFactoryShould>(TestMessage, TestException);
-                sut.Object.Information<LoggerFactoryShould>(TestMessage);
-            }
-        }
-
-        [Fact]
-        public void LogFiveHundredMessages_WithoutSourceClass()
-        {
-            SetBaseLoggers();
-
-            foreach (var r in Enumerable.Range(0, 501))
-            {
-                sut.Object.Warning(TestException);
-                sut.Object.Error(TestMessage, TestException);
-                sut.Object.Critical(TestMessage, TestException);
+                LogAllLevelsWithoutClass();
+                LogAllLevelsWithClass();
             }
         }
 
@@ -298,6 +143,28 @@ namespace Bit.Logger.Tests
             sut.Object.AddConsoleSource(configuration);
             sut.Object.AddDatabaseSource(configuration);
             sut.Object.AddFileSource(configuration);
+        }
+
+        private void LogAllLevelsWithoutClass()
+        {
+            sut.Object.Trace(TestMessage);
+            sut.Object.Debug(TestException);
+            sut.Object.Verbose(TestMessage, TestException);
+            sut.Object.Information(TestMessage);
+            sut.Object.Warning(TestException);
+            sut.Object.Error(TestMessage, TestException);
+            sut.Object.Critical(TestMessage, TestException);
+        }
+
+        private void LogAllLevelsWithClass()
+        {
+            sut.Object.Trace<LoggerFactoryShould>(TestMessage);
+            sut.Object.Debug<LoggerFactoryShould>(TestException);
+            sut.Object.Verbose<LoggerFactoryShould>(TestMessage, TestException);
+            sut.Object.Information<LoggerFactoryShould>(TestMessage);
+            sut.Object.Warning<LoggerFactoryShould>(TestException);
+            sut.Object.Error<LoggerFactoryShould>(TestMessage, TestException);
+            sut.Object.Critical<LoggerFactoryShould>(TestMessage, TestException);
         }
     }
 }
