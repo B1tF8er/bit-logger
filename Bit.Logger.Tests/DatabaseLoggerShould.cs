@@ -1,7 +1,7 @@
 namespace Bit.Logger.Tests
 {
-    using Factory;
     using Config;
+    using Contract;
     using Moq;
     using Xunit;
     using static Constants;

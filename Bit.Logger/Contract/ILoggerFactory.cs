@@ -1,7 +1,6 @@
-namespace Bit.Logger.Factory
+namespace Bit.Logger.Contract
 {
     using Config;
-    using Contract;
     using System.Collections.Generic;
 
     public interface ILoggerFactory : ILogger
