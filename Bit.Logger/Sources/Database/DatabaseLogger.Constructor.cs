@@ -7,14 +7,14 @@ namespace Bit.Logger.Sources.Database
 
     internal partial class DatabaseLogger : IDatabaseLogger
     {
-        public Configuration Configuration { get; }
+        private readonly IConfiguration configuration;
 
-        public LogBuffer<Log> LogBuffer { get; }
+        private readonly ILogBuffer<Log> logBuffer;
 
-        public DatabaseLogger(Configuration configuration)
+        public DatabaseLogger(IConfiguration configuration, ILogBuffer<Log> logBuffer)
         {
-            Configuration = configuration ?? new Configuration();
-            LogBuffer = new LogBuffer<Log>();
+            this.configuration = configuration ?? new Configuration();
+            this.logBuffer = logBuffer;
         }
     }
 }

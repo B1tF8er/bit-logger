@@ -7,9 +7,9 @@ namespace Bit.Logger.Sources.Database
 
     internal partial class DatabaseLogger
     {
-        private void WriteToDatabase(LogArguments args) => LogBuffer
-            .Check(args.IsLevelAllowed(Configuration.Level))
-            ?.Add(args.ToDatabaseLogUsing(Configuration))
+        private void WriteToDatabase(LogArguments args) => logBuffer
+            .Check(args.IsLevelAllowed(configuration.Level))
+            ?.Add(args.ToDatabaseLogUsing(configuration))
             .Validate()
             ?.Write(BulkWriter.ToDatabaseAsync, kv => kv.Value)
             .Clear();

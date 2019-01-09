@@ -6,14 +6,14 @@ namespace Bit.Logger.Sources.File
 
     internal partial class FileLogger : IFileLogger
     {
-        public Configuration Configuration { get; }
+        private readonly IConfiguration configuration;
 
-        public LogBuffer<string> LogBuffer { get; }
+        private readonly ILogBuffer<string> logBuffer;
 
-        public FileLogger(Configuration configuration)
+        public FileLogger(IConfiguration configuration, ILogBuffer<string> logBuffer)
         {
-            Configuration = configuration ?? new Configuration();
-            LogBuffer = new LogBuffer<string>();
+            this.configuration = configuration ?? new Configuration();
+            this.logBuffer = logBuffer;
         }
     }
 }

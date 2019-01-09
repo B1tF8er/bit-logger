@@ -9,7 +9,7 @@ namespace Bit.Logger.Config
     using static Helpers.StringExtensions;
     using static Helpers.Tokens;
 
-    public class Configuration
+    public class Configuration : IConfiguration
     {
         public DateType DateTypeFormat { get; set; } = DateTimeISO;
 

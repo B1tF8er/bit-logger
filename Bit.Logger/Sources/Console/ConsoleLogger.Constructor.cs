@@ -6,14 +6,14 @@ namespace Bit.Logger.Sources.Console
 
     internal partial class ConsoleLogger : IConsoleLogger
     {
-        public Configuration Configuration { get; }
+        private readonly IConfiguration configuration;
 
-        public LogBuffer<string> LogBuffer { get; }
+        private readonly ILogBuffer<string> logBuffer;
             
-        public ConsoleLogger(Configuration configuration)
+        public ConsoleLogger(IConfiguration configuration, ILogBuffer<string> logBuffer)
         {
-            Configuration = configuration ?? new Configuration();
-            LogBuffer = new LogBuffer<string>();
+            this.configuration = configuration ?? new Configuration();
+            this.logBuffer = logBuffer;
         }
     }
 }

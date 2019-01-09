@@ -5,11 +5,11 @@
     using System.Linq;
     using static Helpers.Constants;
 
-    public class LogBuffer<TLog>
+    internal class LogBuffer<TLog> : ILogBuffer<TLog>
     {
-        private Dictionary<string, TLog> Logs { get; }
+        public Dictionary<string, TLog> Logs { get; }
 
-        private object Padlock { get; }
+        public object Padlock { get; }
 
         internal LogBuffer()
         {
@@ -17,10 +17,10 @@
             Padlock = new object();
         }
 
-        internal LogBuffer<TLog> Check(bool isAllowed) =>
+        public ILogBuffer<TLog> Check(bool isAllowed) =>
             isAllowed ? this : null;
 
-        internal LogBuffer<TLog> Add(TLog log)
+        public ILogBuffer<TLog> Add(TLog log)
         {
             var key = $"{DateTime.Now.ToString(AsKey)}-{Guid.NewGuid()}";
 
@@ -30,7 +30,7 @@
             return this;
         }
 
-        internal LogBuffer<TLog> Validate()
+        public ILogBuffer<TLog> Validate()
         {
             var count = 0;
 
@@ -45,7 +45,7 @@
             return this;
         }
 
-        internal LogBuffer<TLog> Write(Action<IEnumerable<TLog>> write, Func<KeyValuePair<string, TLog>, TLog> selector)
+        public ILogBuffer<TLog> Write(Action<IEnumerable<TLog>> write, Func<KeyValuePair<string, TLog>, TLog> selector)
         {
             IEnumerable<TLog> sortedLogs;
 
@@ -59,7 +59,7 @@
             return this;
         }
 
-        internal LogBuffer<TLog> Clear()
+        public ILogBuffer<TLog> Clear()
         {
             lock (Padlock)
                 Logs.Clear();

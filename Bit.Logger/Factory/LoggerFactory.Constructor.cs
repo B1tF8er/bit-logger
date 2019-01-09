@@ -1,7 +1,9 @@
 ﻿namespace Bit.Logger.Factory
 {
+    using Buffer;
     using Config;
     using Contract;
+    using Models;
     using Sources.Console;
     using Sources.Database;
     using Sources.File;
@@ -18,21 +20,21 @@
 
         public ILoggerFactory AddConsoleSource(Configuration configuration = default)
         {
-            Loggers.Add(new ConsoleLogger(configuration));
+            Loggers.Add(new ConsoleLogger(configuration, new LogBuffer<string>()));
 
             return this;
         }
 
         public ILoggerFactory AddDatabaseSource(Configuration configuration = default)
         {
-            Loggers.Add(new DatabaseLogger(configuration));
+            Loggers.Add(new DatabaseLogger(configuration, new LogBuffer<Log>()));
 
             return this;
         }
 
         public ILoggerFactory AddFileSource(Configuration configuration = default)
         {
-            Loggers.Add(new FileLogger(configuration));
+            Loggers.Add(new FileLogger(configuration, new LogBuffer<string>()));
 
             return this;
         }

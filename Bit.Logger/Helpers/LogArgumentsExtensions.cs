@@ -9,7 +9,7 @@ namespace Bit.Logger.Helpers
 
     internal static class LogArgumentsExtensions
     {
-        internal static string ToStringLogUsing(this ref LogArguments args, Configuration configuration)
+        internal static string ToStringLogUsing(this ref LogArguments args, IConfiguration configuration)
         {
             return string.Format(configuration.FormatProvider, configuration.Format,
                 args.Level,
@@ -21,7 +21,7 @@ namespace Bit.Logger.Helpers
             ).Trim();
         }
 
-        internal static Log ToDatabaseLogUsing(this ref LogArguments args, Configuration configuration)
+        internal static Log ToDatabaseLogUsing(this ref LogArguments args, IConfiguration configuration)
         {
             return new Log
             {

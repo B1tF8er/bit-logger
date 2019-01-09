@@ -4,7 +4,7 @@ namespace Bit.Logger.Contract
     using Config;
     using Models;
 
-    public interface IDatabaseLogger : ILogger, IConfiguration, ILogBuffer<Log>
+    public interface IDatabaseLogger : ILogger
     {
         
     }
