@@ -3,14 +3,14 @@ namespace Bit.Logger.FormatProviders.FormatterStrategy
     using System;
     using static Enums.DateType;
     using static Helpers.DateTypeExtensions;
-
-    internal class DateTimeFormatterStrategy : IFormatterStrategy
+    
+    internal class DateIsoFormatterStrategy : IFormatterStrategy
     {
         public string ApplyFormatTo<TArgument>(TArgument argument)
         {
-            var datetime = argument as Nullable<DateTime>;
+            var date = argument as Nullable<DateTime>;
 
-            return datetime?.ToString(GetFormatFor(DateTimeISO)) ?? string.Empty;
+            return date?.ToString(GetFormatFor(DateIso)) ?? string.Empty;
         }
     }
 }

@@ -1,30 +1,23 @@
 namespace Bit.Logger.FormatProviders.FormatterStrategy
 {
-    using static Helpers.Tokens;
+    using Enums;
+    using static Enums.Token;
 
     internal static class FormatterStrategyFactory
     {
-        internal static IFormatterStrategy GetFormatterStrategy(string format)
+        internal static IFormatterStrategy GetFormatterStrategy(Token token)
         {
             IFormatterStrategy formatterStrategy = default;
 
-            if (format == Level)
-                formatterStrategy = new LevelFormatterStrategy();
-
-            if (format == DateTime)
-                formatterStrategy = new DateTimeFormatterStrategy();
-
-            if (format == Date)
-                formatterStrategy = new DateFormatterStrategy();
-
-            if (format == Time)
-                formatterStrategy = new TimeFormatterStrategy();
-
-            if (format == Caller)
-                formatterStrategy = new CallerFormatterStrategy();
-
-            if (format == Exception)
-                formatterStrategy = new ExceptionFormatterStrategy();
+            switch (token)
+            {
+                case Token.Level: formatterStrategy = new LevelFormatterStrategy(); break;
+                case DateTimeIso: formatterStrategy = new DateTimeIsoFormatterStrategy(); break;
+                case DateIso: formatterStrategy = new DateIsoFormatterStrategy(); break;
+                case TimeIso: formatterStrategy = new TimeIsoFormatterStrategy(); break;
+                case Caller: formatterStrategy = new CallerFormatterStrategy(); break;
+                case Exception: formatterStrategy = new ExceptionFormatterStrategy(); break;
+            }
 
             return formatterStrategy;
         }

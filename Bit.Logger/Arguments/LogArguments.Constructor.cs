@@ -11,7 +11,7 @@ namespace Bit.Logger.Arguments
         internal string Message { get; private set; }
         internal Exception Exception { get; private set; }
 
-        internal LogArguments(Level level, string className, string methodName, string message)
+        private LogArguments(Level level, string className, string methodName, string message)
         {
             Level = level;
             ClassName = className;
@@ -20,7 +20,7 @@ namespace Bit.Logger.Arguments
             Exception = null;
         }
 
-        internal LogArguments(Level level, string className, string methodName, Exception exception)
+        private LogArguments(Level level, string className, string methodName, Exception exception)
         {
             Level = level;
             ClassName = className;
@@ -29,7 +29,7 @@ namespace Bit.Logger.Arguments
             Exception = exception;
         }
 
-        internal LogArguments(Level level, string className, string methodName, string message, Exception exception)
+        private LogArguments(Level level, string className, string methodName, string message, Exception exception)
         {
             Level = level;
             ClassName = className;

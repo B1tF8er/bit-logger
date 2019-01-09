@@ -21,7 +21,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void GetDefault_Format()
         {
-            var expected = "{0:level} {1:datetimeiso} [{2:caller}::{3:method}] {4:message} {5:exception}";
+            var expected = "{0:Level} {1:DateTimeIso} [{2:Caller}::{3:Method}] {4:Message} {5:Exception}";
 
             var actual = sut.Object.Format;
 
@@ -142,7 +142,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void GetDefault_DateTypeFormat()
         {
-            var expected = DateTimeISO;
+            var expected = DateTimeIso;
 
             var actual = sut.Object.DateTypeFormat;
 
@@ -153,7 +153,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void SetCustom_DateTypeFormat()
         {
-            var expected = Time;
+            var expected = TimeIso;
             sut.Object.DateTypeFormat = expected;
 
             var actual = sut.Object.DateTypeFormat;
@@ -166,7 +166,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void ToString_DefaultLevelAndFormat()
         {
-            var defaultFormat = "{0:level} {1:datetime} [{2:caller}::{3:method}] {4:message} {5:exception}";
+            var defaultFormat = "{0:Level} {1:DateTimeIso} [{2:Caller}::{3:Method}] {4:Message} {5:Exception}";
             var expected = $"Level:{Information}, Format:{defaultFormat}";
 
             sut.Setup(c => c.ToString()).Returns(expected);
@@ -179,7 +179,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void ToString_CustomLevelAndFormat()
         {
-            var customFormat = "{1:datetime} - {0:level} {4:message} {5:exception} at [{2:caller}::{3:method}]";
+            var customFormat = "{1:DateTimeIso} - {0:Level} {4:Message} {5:Exception} at [{2:Caller}::{3:Method}]";
             var expected = $"Level:{Critical}, Format:{customFormat}";
 
             sut.Object.Level = Critical;

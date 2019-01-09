@@ -11,9 +11,9 @@ namespace Bit.Logger.Helpers
 
             switch (dateType)
             {
-                case DateType.DateTimeISO: format = DateTimeFormat; break;
-                case DateType.Date: format = DateFormat; break;
-                case DateType.Time: format = TimeFormat; break;
+                case DateType.DateTimeIso: format = DateTimeFormat; break;
+                case DateType.DateIso: format = DateFormat; break;
+                case DateType.TimeIso: format = TimeFormat; break;
                 case DateType.Default:
                 default: break;
             }

@@ -11,63 +11,63 @@ namespace Bit.Logger.Tests
         {
             yield return new object[]
             {
-                LevelToken,
+                Token.Level,
                 Level.Critical,
                 $"<{Level.Critical.ToString().ToUpper()}>"
             };
 
             yield return new object[]
             {
-                LevelToken,
+                Token.Level,
                 Level.Debug,
                 $"<{Level.Debug.ToString().ToUpper()}>"
             };
 
             yield return new object[]
             {
-                LevelToken,
+                Token.Level,
                 Level.Error,
                 $"<{Level.Error.ToString().ToUpper()}>"
             };
 
             yield return new object[]
             {
-                LevelToken,
+                Token.Level,
                 Level.Information,
                 $"<{Level.Information.ToString().ToUpper()}>"
             };
 
             yield return new object[]
             {
-                LevelToken,
+                Token.Level,
                 Level.None,
                 $"<{Level.None.ToString().ToUpper()}>"
             };
 
             yield return new object[]
             {
-                LevelToken,
+                Token.Level,
                 Level.Trace,
                 $"<{Level.Trace.ToString().ToUpper()}>"
             };
 
             yield return new object[]
             {
-                LevelToken,
+                Token.Level,
                 Level.Verbose,
                 $"<{Level.Verbose.ToString().ToUpper()}>"
             };
 
             yield return new object[]
             {
-                LevelToken,
+                Token.Level,
                 Level.Warning,
                 $"<{Level.Warning.ToString().ToUpper()}>"
             };
 
             yield return new object[]
             {
-                LevelToken,
+                Token.Level,
                 null,
                 string.Empty
             };
@@ -77,28 +77,28 @@ namespace Bit.Logger.Tests
         {
             yield return new object[]
             {
-                DateTimeToken,
+                Token.DateTimeIso,
                 DateTime.Now,
                 DateTimeFormat
             };
 
             yield return new object[]
             {
-                DateTimeToken,
+                Token.DateTimeIso,
                 DateTime.Now.AddHours(1),
                 DateTimeFormat
             };
 
             yield return new object[]
             {
-                DateTimeToken,
+                Token.DateTimeIso,
                 DateTime.Now.AddDays(1),
                 DateTimeFormat
             };
 
             yield return new object[]
             {
-                DateTimeToken,
+                Token.DateTimeIso,
                 null,
                 DateTimeFormat
             };
@@ -108,28 +108,28 @@ namespace Bit.Logger.Tests
         {
             yield return new object[]
             {
-                DateToken,
+                Token.DateIso,
                 DateTime.Now,
                 DateFormat
             };
 
             yield return new object[]
             {
-                DateToken,
+                Token.DateIso,
                 DateTime.Now.AddHours(1),
                 DateFormat
             };
 
             yield return new object[]
             {
-                DateToken,
+                Token.DateIso,
                 DateTime.Now.AddDays(1),
                 DateFormat
             };
 
             yield return new object[]
             {
-                DateToken,
+                Token.DateIso,
                 null,
                 DateFormat
             };
@@ -139,28 +139,28 @@ namespace Bit.Logger.Tests
         {
             yield return new object[]
             {
-                TimeToken,
+                Token.TimeIso,
                 DateTime.Now,
                 TimeFormat
             };
 
             yield return new object[]
             {
-                TimeToken,
+                Token.TimeIso,
                 DateTime.Now.AddHours(1),
                 TimeFormat
             };
 
             yield return new object[]
             {
-                TimeToken,
+                Token.TimeIso,
                 DateTime.Now.AddDays(1),
                 TimeFormat
             };
 
             yield return new object[]
             {
-                TimeToken,
+                Token.TimeIso,
                 null,
                 TimeFormat
             };
@@ -170,35 +170,35 @@ namespace Bit.Logger.Tests
         {
             yield return new object[]
             {
-                CallerToken,
+                Token.Caller,
                 "Caller.One",
                 "One"
             };
 
             yield return new object[]
             {
-                CallerToken,
+                Token.Caller,
                 "Caller.Two",
                 "Two"
             };
 
             yield return new object[]
             {
-                CallerToken,
+                Token.Caller,
                 "Caller.Three",
                 "Three"
             };
 
             yield return new object[]
             {
-                CallerToken,
+                Token.Caller,
                 "Caller.",
                 string.Empty
             };
 
             yield return new object[]
             {
-                CallerToken,
+                Token.Caller,
                 null,
                 string.Empty
             };
@@ -208,28 +208,28 @@ namespace Bit.Logger.Tests
         {
             yield return new object[]
             {
-                ExceptionToken,
+                Token.Exception,
                 TestException("first"),
                 $"Exception: {TestException("first")}"
             };
 
             yield return new object[]
             {
-                ExceptionToken,
+                Token.Exception,
                 TestException("second"),
                 $"Exception: {TestException("second")}"
             };
 
             yield return new object[]
             {
-                ExceptionToken,
+                Token.Exception,
                 TestException("third"),
                 $"Exception: {TestException("third")}"
             };
 
             yield return new object[]
             {
-                ExceptionToken,
+                Token.Exception,
                 null,
                 string.Empty
             };
