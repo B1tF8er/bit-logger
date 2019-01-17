@@ -6,13 +6,14 @@ namespace Bit.Logger.Config
     using System.Text;
     using static Enums.DateType;
     using static Enums.Level;
+    using static Enums.ShowLevel;
     using static Helpers.StringExtensions;
 
     public class Configuration : IConfiguration
     {
         public DateType DateTypeFormat { get; set; } = DateTimeIso;
 
-        public bool ShowLevel { get; set; } = true;
+        public ShowLevel ShowLevel { get; set; } = Yes;
 
         public Level Level { get; set; } = Information;
 
@@ -31,7 +32,7 @@ namespace Bit.Logger.Config
             var formatBuilder = new StringBuilder();
 
             return formatBuilder
-                .Append(ShowLevel ? "{0:" + Token.Level + "} " : string.Empty)
+                .Append(ShowLevel.Equals(Yes) ? "{0:" + Token.Level + "} " : string.Empty)
                 .Append("{1:"+ DateTypeFormat.ToString() +"} ")
                 .Append("[{2:" + Token.Caller + "}::{3:" + Token.Method + "}] ")
                 .Append("{4:" + Token.Message + "} ")

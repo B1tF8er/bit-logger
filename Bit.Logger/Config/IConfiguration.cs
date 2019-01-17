@@ -8,7 +8,7 @@ namespace Bit.Logger.Config
     {
         DateType DateTypeFormat { get; set; }
 
-        bool ShowLevel { get; set; }
+        ShowLevel ShowLevel { get; set; }
 
         Level Level { get; set; }
 

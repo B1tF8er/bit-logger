@@ -5,6 +5,7 @@ namespace Bit.Logger.Helpers
     using Enums;
     using Models;
     using System;
+    using static Enums.ShowLevel;
     using static Helpers.DateFormatter;
 
     internal static class LogArgumentsExtensions
@@ -26,7 +27,7 @@ namespace Bit.Logger.Helpers
             return new Log
             {
                 Id = $"{Guid.NewGuid()}",
-                Level = configuration.ShowLevel ? args.Level.ToString() : null,
+                Level = configuration.ShowLevel.Equals(Yes) ? args.Level.ToString() : null,
                 Message = args.Message,
                 Date = GetFormattedDateFrom(configuration.DateTypeFormat),
                 Class = args.ClassName,

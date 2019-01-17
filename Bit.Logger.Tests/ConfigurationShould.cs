@@ -8,6 +8,7 @@ namespace Bit.Logger.Tests
     using Xunit;
     using static Enums.DateType;
     using static Enums.Level;
+    using static Enums.ShowLevel;
 
     public class ConfigurationShould
     {
@@ -118,24 +119,21 @@ namespace Bit.Logger.Tests
         [Fact]
         public void GetDefault_ShowLevel()
         {
-            var expected = true;
+            var expected = Yes;
 
             var actual = sut.Object.ShowLevel;
 
-            Assert.IsType<bool>(actual);
             Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void SetCustom_ShowLevel()
         {
-            var expected = false;
+            var expected = No;
             sut.Object.ShowLevel = expected;
 
             var actual = sut.Object.ShowLevel;
 
-            Assert.IsType<bool>(expected);
-            Assert.IsType<bool>(actual);
             Assert.Equal(expected, actual);
         }
 
