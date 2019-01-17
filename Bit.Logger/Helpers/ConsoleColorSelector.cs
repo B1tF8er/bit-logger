@@ -2,23 +2,30 @@ namespace Bit.Logger.Helpers
 {
     using Enums;
     using System;
+    using System.Collections.Generic;
 
     internal static class ConsoleColorSelector
     {
+        private static readonly IDictionary<Level, ConsoleColor> consoleColors;
+
+        static ConsoleColorSelector()
+        {
+            consoleColors = new Dictionary<Level, ConsoleColor>
+            {
+                { Level.Trace, ConsoleColor.DarkMagenta },
+                { Level.Debug, ConsoleColor.Green },
+                { Level.Verbose, ConsoleColor.DarkCyan },
+                { Level.Information, ConsoleColor.Gray },
+                { Level.Warning, ConsoleColor.Yellow },
+                { Level.Error, ConsoleColor.Red },
+                { Level.Critical, ConsoleColor.DarkRed },
+                { Level.None, ConsoleColor.White },
+            };
+        }
+
         internal static ConsoleColor GetForegroundColor(this Level level)
         {
-            var consoleColor = ConsoleColor.White;
-
-            switch (level)
-            {
-                case Level.Trace: consoleColor = ConsoleColor.DarkMagenta; break;
-                case Level.Debug: consoleColor = ConsoleColor.Green; break;
-                case Level.Verbose: consoleColor = ConsoleColor.DarkCyan; break;
-                case Level.Information: consoleColor = ConsoleColor.Gray; break;
-                case Level.Warning: consoleColor = ConsoleColor.Yellow; break;
-                case Level.Error: consoleColor = ConsoleColor.Red; break;
-                case Level.Critical: consoleColor = ConsoleColor.DarkRed; break;
-            }
+            consoleColors.TryGetValue(level, out var consoleColor); 
 
             return consoleColor;
         }

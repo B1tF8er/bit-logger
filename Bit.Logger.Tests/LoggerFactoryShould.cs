@@ -2,6 +2,7 @@ namespace Bit.Logger.Tests
 {
     using Config;
     using Contract;
+    using Enums;
     using Factory;
     using Moq;
     using System;
@@ -9,6 +10,7 @@ namespace Bit.Logger.Tests
     using System.Linq;
     using Xunit;
     using static Enums.Level;
+    using static Enums.ShowLevel;
     using static LoggerFactoryExtensions;
 
     public class LoggerFactoryShould
@@ -122,22 +124,29 @@ namespace Bit.Logger.Tests
         }
 
         [Fact]
-        public void LogFiveHundredMessages_WithSourceClass()
+        public void LogFiveHundredMessages_WithoutSourceClass_AndLevel()
         {
-            SetBaseLoggers();
+            SetBaseLoggers(level: Trace, showLevel: Yes);
 
-            foreach (var r in Enumerable.Range(0, 72))
-            {
+            foreach (var index in Enumerable.Range(0, 30))
                 sut.LogAllLevelsWithoutClass();
-                sut.LogAllLevelsWithClass<LoggerFactoryShould>();
-            }
         }
 
-        private void SetBaseLoggers()
+        [Fact]
+        public void LogFiveHundredMessages_WithSourceClass_AndNoLevel()
+        {
+            SetBaseLoggers(level: Trace, showLevel: No);
+
+            foreach (var index in Enumerable.Range(0, 30))
+                sut.LogAllLevelsWithClass<LoggerFactoryShould>();
+        }
+
+        private void SetBaseLoggers(Level level, ShowLevel showLevel)
         {
             var configuration = new Configuration
             {
-                Level = Trace
+                Level = level,
+                ShowLevel = showLevel
             };
 
             sut.Object.AddConsoleSource(configuration);
