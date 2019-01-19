@@ -18,8 +18,9 @@ namespace Bit.Logger.Writers
             {
                 Console.ForegroundColor = log.GetLevel().GetForegroundColor();
                 Console.WriteLine(log);
-                Console.ResetColor();
             }
+
+            Console.ResetColor();
         }
 
         internal static async void ToDatabaseAsync(IEnumerable<Log> logs)
