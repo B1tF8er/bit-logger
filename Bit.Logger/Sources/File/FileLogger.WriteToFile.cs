@@ -13,7 +13,7 @@ namespace Bit.Logger.Sources.File
             .Check(args.IsLevelAllowed(configuration.Level))
             ?.Add(args.ToStringLogUsing(configuration))
             .Validate()
-            ?.Write(BulkWriter.ToFileAsync, kv => $"{kv.Value}{Environment.NewLine}")
+            ?.Write(FileBulkWriter.ToFileAsync, kv => $"{kv.Value}{Environment.NewLine}")
             .Clear();
     }
 }

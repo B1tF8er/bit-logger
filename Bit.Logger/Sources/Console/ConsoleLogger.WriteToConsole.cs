@@ -12,7 +12,7 @@ namespace Bit.Logger.Sources.Console
             .Check(args.IsLevelAllowed(configuration.Level))
             ?.Add(args.ToStringLogUsing(configuration))
             .Validate()
-            ?.Write(BulkWriter.ToConsole, kv => kv.Value)
+            ?.Write(ConsoleBulkWriter.ToConsole, kv => kv.Value)
             .Clear();
     }
 }

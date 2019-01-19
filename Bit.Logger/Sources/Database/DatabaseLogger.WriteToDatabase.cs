@@ -11,7 +11,7 @@ namespace Bit.Logger.Sources.Database
             .Check(args.IsLevelAllowed(configuration.Level))
             ?.Add(args.ToDatabaseLogUsing(configuration))
             .Validate()
-            ?.Write(BulkWriter.ToDatabaseAsync, kv => kv.Value)
+            ?.Write(DatabaseBulkWriter.ToDatabaseAsync, kv => kv.Value)
             .Clear();
     }
 }
