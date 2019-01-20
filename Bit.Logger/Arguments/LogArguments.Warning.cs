@@ -63,4 +63,3 @@ namespace Bit.Logger.Arguments
             );
     }
 }
- 
