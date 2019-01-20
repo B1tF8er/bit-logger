@@ -14,10 +14,10 @@ namespace Bit.Logger.Helpers
 
         internal static Level GetLevel(this string log)
         {
-            string CreatePatternForLevels(IEnumerable<Level> levels) =>
-                levels.Select(lvl => $@"\b{lvl}\b").Aggregate((a, b) => $"{a}|{b}");
-
-            var pattern = CreatePatternForLevels(Enum.GetValues(typeof(Level)).OfType<Level>());
+            var pattern = Enum.GetValues(typeof(Level))
+                .OfType<Level>()
+                .Select(lvl => $@"\b{lvl}\b")
+                .Aggregate((a, b) => $"{a}|{b}");
             var match = Regex.Match(log, pattern, RegexOptions.IgnoreCase);
 
             var level = Level.None;
