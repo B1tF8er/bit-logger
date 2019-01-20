@@ -1,22 +1,26 @@
 namespace Bit.Logger.Helpers
 {
     using Enums;
+    using System.Collections.Generic;
     using static Constants;
 
     internal static class DateTypeExtensions
     {
+        private static readonly IDictionary<DateType, string> formats;
+
+        static DateTypeExtensions()
+        {
+            formats = new Dictionary<DateType, string>
+            {
+                { DateType.DateTimeIso, DateTimeFormat },
+                { DateType.DateIso, DateFormat },
+                { DateType.TimeIso, TimeFormat },
+            };
+        }
+
         internal static string GetFormatFor(DateType dateType)
         {
-            var format = string.Empty;
-
-            switch (dateType)
-            {
-                case DateType.DateTimeIso: format = DateTimeFormat; break;
-                case DateType.DateIso: format = DateFormat; break;
-                case DateType.TimeIso: format = TimeFormat; break;
-                case DateType.Default:
-                default: break;
-            }
+            formats.TryGetValue(dateType, out var format);
 
             return format;
         }
