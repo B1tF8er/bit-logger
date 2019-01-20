@@ -2,7 +2,6 @@ namespace Bit.Logger.Factory
 {
     using System;
 
-
     public partial class LoggerFactory
     {
         public void Information<TClass>(string message) where TClass : class =>
