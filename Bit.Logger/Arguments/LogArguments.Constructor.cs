@@ -17,7 +17,7 @@ namespace Bit.Logger.Arguments
             ClassName = className;
             MethodName = methodName;
             Message = message;
-            Exception = null;
+            Exception = default;
         }
 
         private LogArguments(Level level, string className, string methodName, Exception exception)
@@ -25,7 +25,7 @@ namespace Bit.Logger.Arguments
             Level = level;
             ClassName = className;
             MethodName = methodName;
-            Message = null;
+            Message = default;
             Exception = exception;
         }
 
