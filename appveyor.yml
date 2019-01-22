@@ -1,6 +1,13 @@
 os: Visual Studio 2017
 build: off
 
+skip_commits:
+  files:
+    - .gitattributes
+    - .gitignore
+    - LICENSE
+    - README.md
+
 environment:
   COVERALLS_REPO_TOKEN:
     secure: 0n47+7c3YiptuHdHw7IBRhdFghphRyIbAQ2u0HiUV8D8mE2AqBK17naDGOuvM1/q
