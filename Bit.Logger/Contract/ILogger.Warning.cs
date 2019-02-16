@@ -1,19 +1,14 @@
 namespace Bit.Logger.Contract
 {
     using System;
+    using static Helpers.Constants.Caller;
 
     public partial interface ILogger
     {
-        void Warning<TClass>(string message) where TClass : class;
+        void Warning(string message, string className = EmptyClassName, string methodName = EmptyMethodName);
 
-        void Warning(string message);
+        void Warning(Exception exception, string className = EmptyClassName, string methodName = EmptyMethodName);
 
-        void Warning<TClass>(Exception exception) where TClass : class;
-
-        void Warning(Exception exception);
-
-        void Warning<TClass>(string message, Exception exception) where TClass : class;
-
-        void Warning(string message, Exception exception);
+        void Warning(string message, Exception exception, string className = EmptyClassName, string methodName = EmptyMethodName);
     }
 }

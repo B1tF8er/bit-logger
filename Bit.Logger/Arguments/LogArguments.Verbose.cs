@@ -2,62 +2,33 @@ namespace Bit.Logger.Arguments
 {
     using Enums;
     using System;
-    using static Helpers.Tracer;
     
     internal partial struct LogArguments
     {
-        internal static LogArguments VerboseMessage(string message) =>
+        internal static LogArguments Verbose(string message, string className, string methodName) =>
             new LogArguments
             (
                 Level.Verbose,
-                GetClassName(),
-                GetMethodName(),
+                className,
+                methodName,
                 message
             );
 
-        internal static LogArguments VerboseException(Exception exception) =>
+        internal static LogArguments Verbose(Exception exception, string className, string methodName) =>
             new LogArguments
             (
                 Level.Verbose,
-                GetClassName(),
-                GetMethodName(),
+                className,
+                methodName,
                 exception
             );
 
-        internal static LogArguments VerboseMessageAndException(string message, Exception exception) =>
+        internal static LogArguments Verbose(string message, Exception exception, string className, string methodName) =>
             new LogArguments
             (
                 Level.Verbose,
-                GetClassName(),
-                GetMethodName(),
-                message,
-                exception
-            );
-
-        internal static LogArguments VerboseMessage<TClass>(string message) where TClass : class =>
-            new LogArguments
-            (
-                Level.Verbose,
-                typeof(TClass).FullName,
-                GetMethodName(),
-                message
-            );
-
-        internal static LogArguments VerboseException<TClass>(Exception exception) where TClass : class =>
-            new LogArguments
-            (
-                Level.Verbose,
-                typeof(TClass).FullName,
-                GetMethodName(),
-                exception
-            );
-
-        internal static LogArguments VerboseMessageAndException<TClass>(string message, Exception exception) where TClass : class =>
-            new LogArguments
-            (
-                Level.Verbose,
-                typeof(TClass).FullName,
-                GetMethodName(),
+                className,
+                methodName,
                 message,
                 exception
             );

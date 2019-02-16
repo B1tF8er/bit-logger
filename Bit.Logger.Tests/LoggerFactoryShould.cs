@@ -129,16 +129,16 @@ namespace Bit.Logger.Tests
             SetBaseLoggers(level: Trace, showLevel: Yes);
 
             foreach (var index in Enumerable.Range(0, 30))
-                sut.LogAllLevelsWithoutClass();
+                sut.LogAllLevels();
         }
 
         [Fact]
-        public void LogFiveHundredMessages_WithSourceClass_AndNoLevel()
+        public void LogFiveHundredMessages_WithoutSourceClass_AndNoLevel()
         {
             SetBaseLoggers(level: Trace, showLevel: No);
 
             foreach (var index in Enumerable.Range(0, 30))
-                sut.LogAllLevelsWithClass<LoggerFactoryShould>();
+                sut.LogAllLevels();
         }
 
         private void SetBaseLoggers(Level level, ShowLevel showLevel)

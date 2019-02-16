@@ -1,25 +1,17 @@
 namespace Bit.Logger.Factory
 {
     using System;
+    using System.Runtime.CompilerServices;
 
     public partial class LoggerFactory
     {
-        public void Verbose<TClass>(string message) where TClass : class =>
-            Loggers.ForEach(logger => logger.Verbose<TClass>(message));
+        public void Verbose(string message, [CallerFilePath] string className = "", [CallerMemberName] string methodName = "") =>
+            Loggers.ForEach(logger => logger.Verbose(message, className, methodName));
 
-        public void Verbose(string message) =>
-            Loggers.ForEach(logger => logger.Verbose(message));
+        public void Verbose(Exception exception, [CallerFilePath] string className = "", [CallerMemberName] string methodName = "") =>
+            Loggers.ForEach(logger => logger.Verbose(exception, className, methodName));
 
-        public void Verbose<TClass>(Exception exception) where TClass : class =>
-            Loggers.ForEach(logger => logger.Verbose<TClass>(exception));
-
-        public void Verbose(Exception exception) =>
-            Loggers.ForEach(logger => logger.Verbose(exception));
-
-        public void Verbose<TClass>(string message, Exception exception) where TClass : class =>
-            Loggers.ForEach(logger => logger.Verbose<TClass>(message, exception));
-
-        public void Verbose(string message, Exception exception) =>
-            Loggers.ForEach(logger => logger.Verbose(message, exception));
+        public void Verbose(string message, Exception exception, [CallerFilePath] string className = "", [CallerMemberName] string methodName = "") =>
+            Loggers.ForEach(logger => logger.Verbose(message, exception, className, methodName));
     }
 }

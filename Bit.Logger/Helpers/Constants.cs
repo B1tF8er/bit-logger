@@ -39,5 +39,11 @@ namespace Bit.Logger.Helpers
             }.ToArray();
             internal static readonly string ConnectionString = $"Data Source={Path.GetFullPath(Path.Combine(Paths))}";
         }
+
+        internal static class Caller
+        {
+            internal const string EmptyClassName = "";
+            internal const string EmptyMethodName = "";
+        }
     }
 }

@@ -1,25 +1,17 @@
 namespace Bit.Logger.Factory
 {
     using System;
+    using System.Runtime.CompilerServices;
 
     public partial class LoggerFactory
     {
-        public void Critical<TClass>(string message) where TClass : class =>
-            Loggers.ForEach(logger => logger.Critical<TClass>(message));
+        public void Critical(string message, [CallerFilePath] string className = "", [CallerMemberName] string methodName = "") =>
+            Loggers.ForEach(logger => logger.Critical(message, className, methodName));
 
-        public void Critical(string message) =>
-            Loggers.ForEach(logger => logger.Critical(message));
+        public void Critical(Exception exception, [CallerFilePath] string className = "", [CallerMemberName] string methodName = "") =>
+            Loggers.ForEach(logger => logger.Critical(exception, className, methodName));
 
-        public void Critical<TClass>(Exception exception) where TClass : class =>
-            Loggers.ForEach(logger => logger.Critical<TClass>(exception));
-
-        public void Critical(Exception exception) =>
-            Loggers.ForEach(logger => logger.Critical(exception));
-
-        public void Critical<TClass>(string message, Exception exception) where TClass : class =>
-            Loggers.ForEach(logger => logger.Critical<TClass>(message, exception));
-
-        public void Critical(string message, Exception exception) =>
-            Loggers.ForEach(logger => logger.Critical(message, exception));
+        public void Critical(string message, Exception exception, [CallerFilePath] string className = "", [CallerMemberName] string methodName = "") =>
+            Loggers.ForEach(logger => logger.Critical(message, exception, className, methodName));
     }
 }

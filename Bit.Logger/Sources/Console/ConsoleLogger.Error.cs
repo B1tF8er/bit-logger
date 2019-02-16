@@ -2,26 +2,16 @@ namespace Bit.Logger.Sources.Console
 {
     using Config;
     using System;
-    using static Arguments.LogArguments;
 
     internal partial class ConsoleLogger
     {
-        public void Error<TClass>(string message) where TClass : class =>
-            WriteToConsole(ErrorMessage<TClass>(message));
+        public void Error(string message, string className, string methodName) =>
+            WriteToConsole(Arguments.LogArguments.Error(message, className, methodName));
 
-        public void Error(string message) =>
-            WriteToConsole(ErrorMessage(message));
+        public void Error(Exception exception, string className, string methodName) =>
+            WriteToConsole(Arguments.LogArguments.Error(exception, className, methodName));
 
-        public void Error<TClass>(Exception exception) where TClass : class =>
-            WriteToConsole(ErrorException<TClass>(exception));
-
-        public void Error(Exception exception) =>
-            WriteToConsole(ErrorException(exception));
-
-        public void Error<TClass>(string message, Exception exception) where TClass : class =>
-            WriteToConsole(ErrorMessageAndException<TClass>(message, exception));
-
-        public void Error(string message, Exception exception) =>
-            WriteToConsole(ErrorMessageAndException(message, exception));
+        public void Error(string message, Exception exception, string className, string methodName) =>
+            WriteToConsole(Arguments.LogArguments.Error(message, exception, className, methodName));
     }
 }

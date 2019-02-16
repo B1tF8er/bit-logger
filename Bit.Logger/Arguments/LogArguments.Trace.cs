@@ -2,62 +2,33 @@ namespace Bit.Logger.Arguments
 {
     using Enums;
     using System;
-    using static Helpers.Tracer;
 
     internal partial struct LogArguments
     {
-        internal static LogArguments TraceMessage(string message) =>
+        internal static LogArguments Trace(string message, string className, string methodName) =>
             new LogArguments
             (
                 Level.Trace,
-                GetClassName(),
-                GetMethodName(),
+                className,
+                methodName,
                 message
             );
 
-        internal static LogArguments TraceException(Exception exception) =>
+        internal static LogArguments Trace(Exception exception, string className, string methodName) =>
             new LogArguments
             (
                 Level.Trace,
-                GetClassName(),
-                GetMethodName(),
+                className,
+                methodName,
                 exception
             );
 
-        internal static LogArguments TraceMessageAndException(string message, Exception exception) =>
+        internal static LogArguments Trace(string message, Exception exception, string className, string methodName) =>
             new LogArguments
             (
                 Level.Trace,
-                GetClassName(),
-                GetMethodName(),
-                message,
-                exception
-            );
-
-        internal static LogArguments TraceMessage<TClass>(string message) where TClass : class =>
-            new LogArguments
-            (
-                Level.Trace,
-                typeof(TClass).FullName,
-                GetMethodName(),
-                message
-            );
-
-        internal static LogArguments TraceException<TClass>(Exception exception) where TClass : class =>
-            new LogArguments
-            (
-                Level.Trace,
-                typeof(TClass).FullName,
-                GetMethodName(),
-                exception
-            );
-
-        internal static LogArguments TraceMessageAndException<TClass>(string message, Exception exception) where TClass : class =>
-            new LogArguments
-            (
-                Level.Trace,
-                typeof(TClass).FullName,
-                GetMethodName(),
+                className,
+                methodName,
                 message,
                 exception
             );

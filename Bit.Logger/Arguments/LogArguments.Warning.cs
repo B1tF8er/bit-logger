@@ -2,62 +2,33 @@ namespace Bit.Logger.Arguments
 {
     using Enums;
     using System;
-    using static Helpers.Tracer;
 
     internal partial struct LogArguments
     {
-        internal static LogArguments WarningMessage(string message) =>
+        internal static LogArguments Warning(string message, string className, string methodName) =>
             new LogArguments
             (
                 Level.Warning,
-                GetClassName(),
-                GetMethodName(),
+                className,
+                methodName,
                 message
             );
 
-        internal static LogArguments WarningException(Exception exception) =>
+        internal static LogArguments Warning(Exception exception, string className, string methodName) =>
             new LogArguments
             (
                 Level.Warning,
-                GetClassName(),
-                GetMethodName(),
+                className,
+                methodName,
                 exception
             );
 
-        internal static LogArguments WarningMessageAndException(string message, Exception exception) =>
+        internal static LogArguments Warning(string message, Exception exception, string className, string methodName) =>
             new LogArguments
             (
                 Level.Warning,
-                GetClassName(),
-                GetMethodName(),
-                message,
-                exception
-            );
-
-        internal static LogArguments WarningMessage<TClass>(string message) where TClass : class =>
-            new LogArguments
-            (
-                Level.Warning,
-                typeof(TClass).FullName,
-                GetMethodName(),
-                message
-            );
-
-        internal static LogArguments WarningException<TClass>(Exception exception) where TClass : class =>
-            new LogArguments
-            (
-                Level.Warning,
-                typeof(TClass).FullName,
-                GetMethodName(),
-                exception
-            );
-
-        internal static LogArguments WarningMessageAndException<TClass>(string message, Exception exception) where TClass : class =>
-            new LogArguments
-            (
-                Level.Warning,
-                typeof(TClass).FullName,
-                GetMethodName(),
+                className,
+                methodName,
                 message,
                 exception
             );

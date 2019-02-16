@@ -2,62 +2,33 @@ namespace Bit.Logger.Arguments
 {
     using Enums;
     using System;
-    using static Helpers.Tracer;
 
     internal partial struct LogArguments
     {
-        internal static LogArguments CriticalMessage(string message) =>
+        internal static LogArguments Critical(string message, string className, string methodName) =>
             new LogArguments
             (
                 Level.Critical,
-                GetClassName(),
-                GetMethodName(),
+                className,
+                methodName,
                 message
             );
 
-        internal static LogArguments CriticalException(Exception exception) =>
+        internal static LogArguments Critical(Exception exception, string className, string methodName) =>
             new LogArguments
             (
                 Level.Critical,
-                GetClassName(),
-                GetMethodName(),
+                className,
+                methodName,
                 exception
             );
 
-        internal static LogArguments CriticalMessageAndException(string message, Exception exception) =>
+        internal static LogArguments Critical(string message, Exception exception, string className, string methodName) =>
             new LogArguments
             (
                 Level.Critical,
-                GetClassName(),
-                GetMethodName(),
-                message,
-                exception
-            );
-
-        internal static LogArguments CriticalMessage<TClass>(string message) where TClass : class =>
-            new LogArguments
-            (
-                Level.Critical,
-                typeof(TClass).FullName,
-                GetMethodName(),
-                message
-            );
-
-        internal static LogArguments CriticalException<TClass>(Exception exception) where TClass : class =>
-            new LogArguments
-            (
-                Level.Critical,
-                typeof(TClass).FullName,
-                GetMethodName(),
-                exception
-            );
-
-        internal static LogArguments CriticalMessageAndException<TClass>(string message, Exception exception) where TClass : class =>
-            new LogArguments
-            (
-                Level.Critical,
-                typeof(TClass).FullName,
-                GetMethodName(),
+                className,
+                methodName,
                 message,
                 exception
             );

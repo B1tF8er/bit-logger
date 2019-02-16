@@ -6,22 +6,13 @@ namespace Bit.Logger.Sources.File
 
     internal partial class FileLogger
     {
-        public void Verbose<TClass>(string message) where TClass : class =>
-            WriteToFile(VerboseMessage<TClass>(message));
+        public void Verbose(string message, string className, string methodName) =>
+            WriteToFile(Arguments.LogArguments.Verbose(message, className, methodName));
 
-        public void Verbose(string message) =>
-            WriteToFile(VerboseMessage(message));
+        public void Verbose(Exception exception, string className, string methodName) =>
+            WriteToFile(Arguments.LogArguments.Verbose(exception, className, methodName));
 
-        public void Verbose<TClass>(Exception exception) where TClass : class =>
-            WriteToFile(VerboseException<TClass>(exception));
-
-        public void Verbose(Exception exception) =>
-            WriteToFile(VerboseException(exception));
-
-        public void Verbose<TClass>(string message, Exception exception) where TClass : class =>
-            WriteToFile(VerboseMessageAndException<TClass>(message, exception));
-
-        public void Verbose(string message, Exception exception) =>
-            WriteToFile(VerboseMessageAndException(message, exception));
+        public void Verbose(string message, Exception exception, string className, string methodName) =>
+            WriteToFile(Arguments.LogArguments.Verbose(message, exception, className, methodName));
     }
 }

@@ -8,9 +8,9 @@ namespace Bit.Logger.Sources.Console
 
     internal partial class ConsoleLogger
     {
-        private void WriteToConsole(LogArguments args) => logBuffer
-            .Check(args.IsLevelAllowed(configuration.Level))
-            ?.Add(args.ToStringLogUsing(configuration))
+        private void WriteToConsole(LogArguments logArguments) => logBuffer
+            .Check(logArguments.IsLevelAllowed(configuration.Level))
+            ?.Add(logArguments.ToStringLogUsing(configuration))
             .Validate()
             ?.Write(ConsoleBulkWriter.ToConsole, kv => kv.Value)
             .Clear();

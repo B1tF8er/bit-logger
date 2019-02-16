@@ -171,28 +171,28 @@ namespace Bit.Logger.Tests
             yield return new object[]
             {
                 Token.Caller,
-                "Caller.One",
+                "One.cs",
                 "One"
             };
 
             yield return new object[]
             {
                 Token.Caller,
-                "Caller.Two",
+                "Two.cs",
                 "Two"
             };
 
             yield return new object[]
             {
                 Token.Caller,
-                "Caller.Three",
+                "Three.cs",
                 "Three"
             };
 
             yield return new object[]
             {
                 Token.Caller,
-                "Caller.",
+                string.Empty,
                 string.Empty
             };
 

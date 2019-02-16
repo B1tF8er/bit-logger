@@ -9,9 +9,9 @@ namespace Bit.Logger.Sources.File
 
     internal partial class FileLogger
     {
-        private void WriteToFile(LogArguments args) => logBuffer
-            .Check(args.IsLevelAllowed(configuration.Level))
-            ?.Add(args.ToStringLogUsing(configuration))
+        private void WriteToFile(LogArguments logArguments) => logBuffer
+            .Check(logArguments.IsLevelAllowed(configuration.Level))
+            ?.Add(logArguments.ToStringLogUsing(configuration))
             .Validate()
             ?.Write(FileBulkWriter.ToFileAsync, kv => $"{kv.Value}{Environment.NewLine}")
             .Clear();
