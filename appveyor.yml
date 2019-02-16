@@ -30,7 +30,7 @@ build_script:
 
 test_script:
   # Build tests project
-  - dotnet test Bit.Logger.Tests -c Release
+  - dotnet build Bit.Logger.Tests -c Release
 
 after_test:
   # Collect coverage and send to coveralls.io
