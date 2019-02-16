@@ -189,5 +189,29 @@ namespace Bit.Logger.Tests
 
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void GetDefault_BufferSize()
+        {
+            var expected = 0;
+
+            var actual = sut.Object.BufferSize;
+
+            Assert.IsType<int>(actual);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void SetCustom_BufferSize()
+        {
+            var expected = 50;
+            sut.Object.BufferSize = expected;
+
+            var actual = sut.Object.BufferSize;
+
+            Assert.IsType<int>(expected);
+            Assert.IsType<int>(actual);
+            Assert.Equal(expected, actual);
+        }
     }
 }

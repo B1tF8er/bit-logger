@@ -15,5 +15,7 @@ namespace Bit.Logger.Config
         IFormatProvider FormatProvider { get; set; }
 
         string Format { get; set; }
+
+        int BufferSize { get; set; }
     }
 }

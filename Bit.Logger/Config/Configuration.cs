@@ -27,6 +27,8 @@ namespace Bit.Logger.Config
             set => format = value.IsNullOrEmptyOrWhiteSpace() ? throw new ArgumentNullException(nameof(format)) : value;
         }
 
+        public int BufferSize { get; set; } = 0;
+
         private string GetDefaultFormat()
         {
             var formatBuilder = new StringBuilder();
