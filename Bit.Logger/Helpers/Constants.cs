@@ -42,8 +42,8 @@ namespace Bit.Logger.Helpers
 
         internal static class Caller
         {
-            internal const string EmptyClassName = "";
-            internal const string EmptyMethodName = "";
+            internal const string EmptyClassName = "NoClass";
+            internal const string EmptyMethodName = "NoMethod";
         }
     }
 }
