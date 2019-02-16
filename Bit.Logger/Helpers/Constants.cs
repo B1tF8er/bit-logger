@@ -22,7 +22,7 @@ namespace Bit.Logger.Helpers
         internal static class Buffer
         {
             internal const string AsKey = "yyyy-MM-dd HH:mm:ss.fff";
-            internal const int LogsThreshold = 500;
+            internal const int LogsThreshold = 0;
         }
 
         internal static class Sqlite
