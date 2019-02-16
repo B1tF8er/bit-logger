@@ -1,7 +1,7 @@
 namespace Bit.Logger.Models
 {
     using Microsoft.EntityFrameworkCore;
-    using static Helpers.Constants;
+    using static Helpers.Constants.SqliteConstants;
     
     public class LoggingContext : DbContext
     {

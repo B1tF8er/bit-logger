@@ -1,5 +1,9 @@
 namespace Bit.Logger.Helpers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+
     internal static class Constants
     {
         internal const string DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
@@ -7,8 +11,22 @@ namespace Bit.Logger.Helpers
         internal const string TimeFormat = "HH:mm:ss";
         internal const string LogName = "BitLogger";
         internal const string LogNameFormat = "yyyy_MM_dd_HH";
-        internal const string ConnectionString = "Data Source=logging.db";
         internal const string AsKey = "yyyy-MM-dd HH:mm:ss.fff";
         internal const int LogsThreshold = 500;
+
+        internal static class SqliteConstants
+        {
+            private const string ParentDirectory = "..";
+            private const string DatabaseName = "logging.db";
+            private static readonly string[] Paths = new List<string> 
+            { 
+                AppDomain.CurrentDomain.BaseDirectory,
+                ParentDirectory,
+                ParentDirectory,
+                ParentDirectory,
+                DatabaseName
+            }.ToArray();
+            internal static readonly string ConnectionString = $"Data Source={Path.GetFullPath(Path.Combine(Paths))}";
+        }
     }
 }
