@@ -1,4 +1,3 @@
-version: 1.0.{build}-beta
 os: Visual Studio 2017
 
 branches:
@@ -26,7 +25,7 @@ before_build:
 build_script:
   # Build, pack and publish project 
   - dotnet build Bit.Logger -c Release
-  - dotnet pack -c Release /p:PackageVersion="{version}"
+  - dotnet pack -c Release /p:PackageVersion=1.0.2-beta
   - dotnet publish Bit.Logger -f netcoreapp2.1 -c Release
 
 test_script:
