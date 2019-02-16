@@ -124,18 +124,18 @@ namespace Bit.Logger.Tests
         }
 
         [Fact]
-        public void LogFiveHundredMessages_WithoutSourceClass_AndLevel()
+        public void LogFiveHundredMessages_WithLevel()
         {
-            SetBaseLoggers(level: Trace, showLevel: Yes, 0);
+            SetBaseLoggers(level: Trace, showLevel: Yes, bufferSize: 0);
 
             foreach (var index in Enumerable.Range(0, 30))
                 sut.LogAllLevels();
         }
 
         [Fact]
-        public void LogFiveHundredMessages_WithoutSourceClass_AndNoLevel()
+        public void LogFiveHundredMessages_WithoutLevel()
         {
-            SetBaseLoggers(level: Trace, showLevel: No, 100);
+            SetBaseLoggers(level: Trace, showLevel: No, bufferSize: 500);
 
             foreach (var index in Enumerable.Range(0, 30))
                 sut.LogAllLevels();
