@@ -126,7 +126,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void LogFiveHundredMessages_WithoutSourceClass_AndLevel()
         {
-            SetBaseLoggers(level: Trace, showLevel: Yes);
+            SetBaseLoggers(level: Trace, showLevel: Yes, 0);
 
             foreach (var index in Enumerable.Range(0, 30))
                 sut.LogAllLevels();
@@ -135,18 +135,19 @@ namespace Bit.Logger.Tests
         [Fact]
         public void LogFiveHundredMessages_WithoutSourceClass_AndNoLevel()
         {
-            SetBaseLoggers(level: Trace, showLevel: No);
+            SetBaseLoggers(level: Trace, showLevel: No, 100);
 
             foreach (var index in Enumerable.Range(0, 30))
                 sut.LogAllLevels();
         }
 
-        private void SetBaseLoggers(Level level, ShowLevel showLevel)
+        private void SetBaseLoggers(Level level, ShowLevel showLevel, int bufferSize)
         {
             var configuration = new Configuration
             {
                 Level = level,
-                ShowLevel = showLevel
+                ShowLevel = showLevel,
+                BufferSize = bufferSize
             };
 
             sut.Object.AddConsoleSource(configuration);

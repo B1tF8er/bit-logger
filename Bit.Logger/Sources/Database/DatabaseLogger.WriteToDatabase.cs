@@ -10,7 +10,7 @@ namespace Bit.Logger.Sources.Database
         private void WriteToDatabase(LogArguments logArguments) => logBuffer
             .Check(logArguments.IsLevelAllowed(configuration.Level))
             ?.Add(logArguments.ToDatabaseLogUsing(configuration))
-            .Validate()
+            .Validate(configuration.BufferSize)
             ?.Write(DatabaseBulkWriter.ToDatabaseAsync, kv => kv.Value)
             .Clear();
     }

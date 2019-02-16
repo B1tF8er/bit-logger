@@ -30,14 +30,14 @@
             return this;
         }
 
-        public ILogBuffer<TLog> Validate()
+        public ILogBuffer<TLog> Validate(int logsThreshold)
         {
             var count = 0;
 
             lock (Padlock)
                 count = Logs.Count;
 
-            var underThreshold = count <= LogsThreshold;
+            var underThreshold = count <= logsThreshold;
 
             if (underThreshold)
                 return null;
