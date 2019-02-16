@@ -1,5 +1,16 @@
+version: '1.0.{build}'
 os: Visual Studio 2017
-build: off
+
+branches:
+  only:
+    – master
+
+init:
+  # Best practice (Windows line endings different to Unix/Linux)
+  – cmd: git config –global core.autocrlf true
+
+install:
+  – appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/v4.0.0/nuget.exe
 
 skip_commits:
   files:
@@ -12,17 +23,28 @@ environment:
   COVERALLS_REPO_TOKEN:
     secure: 0n47+7c3YiptuHdHw7IBRhdFghphRyIbAQ2u0HiUV8D8mE2AqBK17naDGOuvM1/q
 
-before_test:
+before_build:
   - dotnet --info
   - dotnet restore
 
+build_script:
+  # Build, pack and publish project 
+  – dotnet build Bit.Logger -c Release
+  – dotnet pack -c Release /p:PackageVersion=1.0.{build}-beta
+  - dotnet publish Bit.Logger -f netcoreapp2.1 -c Release
+
 test_script:
-  # Build sample
-  - dotnet build Bit.Logger -c Release
+  # Build tests project
   - dotnet test Bit.Logger.Tests -c Release
 
 after_test:
-  # Build and pack source
+  # Collect coverage and send to coveralls.io
   - dotnet test Bit.Logger.Tests -c Release --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="../coverage.xml" /p:Exclude=\"[xunit.*]*,[Bit.Logger]Bit.Logger.Migrations.*\"
   - ps: iex ((Get-ChildItem ($env:USERPROFILE + '\.nuget\packages\coveralls.io'))[0].FullName + '\tools\coveralls.net.exe' + ' --opencover coverage.xml --full-sources false')
-  - dotnet publish Bit.Logger -f netcoreapp2.1 -c Release
+
+deploy:
+  provider: NuGet
+  api_key:
+    secure: +2AaGHKoOIWmNfKFxki/UbdUAek+BS82xkNBx31eB4YM3mdN/a5mCX3eamZIwqsm
+  skip_symbols: true
+  artifact: /.*\.nupkg/
