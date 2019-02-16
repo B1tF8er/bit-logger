@@ -3,7 +3,7 @@ namespace Bit.Logger.Helpers
     using System;
     using System.IO;
     using System.Reflection;
-    using static Constants;
+    using static Constants.PathResolver;
 
     internal static class LogPathResolver
     {

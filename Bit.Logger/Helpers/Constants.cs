@@ -6,15 +6,26 @@ namespace Bit.Logger.Helpers
 
     internal static class Constants
     {
-        internal const string DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
-        internal const string DateFormat = "yyyy-MM-dd";
-        internal const string TimeFormat = "HH:mm:ss";
-        internal const string LogName = "BitLogger";
-        internal const string LogNameFormat = "yyyy_MM_dd_HH";
-        internal const string AsKey = "yyyy-MM-dd HH:mm:ss.fff";
-        internal const int LogsThreshold = 500;
+        internal static class Format
+        {
+            internal const string DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+            internal const string DateFormat = "yyyy-MM-dd";
+            internal const string TimeFormat = "HH:mm:ss";
+        }
 
-        internal static class SqliteConstants
+        internal static class PathResolver
+        {
+            internal const string LogName = "BitLogger";
+            internal const string LogNameFormat = "yyyy_MM_dd_HH";
+        }
+
+        internal static class Buffer
+        {
+            internal const string AsKey = "yyyy-MM-dd HH:mm:ss.fff";
+            internal const int LogsThreshold = 500;
+        }
+
+        internal static class Sqlite
         {
             private const string ParentDirectory = "..";
             private const string DatabaseName = "logging.db";

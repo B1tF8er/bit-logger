@@ -2,7 +2,7 @@ namespace Bit.Logger.Helpers
 {
     using Enums;
     using System.Collections.Generic;
-    using static Constants;
+    using static Constants.Format;
 
     internal static class DateTypeExtensions
     {
