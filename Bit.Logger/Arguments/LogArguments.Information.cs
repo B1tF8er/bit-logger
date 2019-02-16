@@ -5,7 +5,7 @@ namespace Bit.Logger.Arguments
 
     internal partial struct LogArguments
     {
-        internal static LogArguments Information(string message, string className, string methodName) =>
+        internal static LogArguments InformationMessage(string message, string className, string methodName) =>
             new LogArguments
             (
                 Level.Information,
@@ -14,7 +14,7 @@ namespace Bit.Logger.Arguments
                 message
             );
 
-        internal static LogArguments Information(Exception exception, string className, string methodName) =>
+        internal static LogArguments InformationException(Exception exception, string className, string methodName) =>
             new LogArguments
             (
                 Level.Information,
@@ -23,7 +23,7 @@ namespace Bit.Logger.Arguments
                 exception
             );
 
-        internal static LogArguments Information(string message, Exception exception, string className, string methodName) =>
+        internal static LogArguments InformationMessageAndException(string message, Exception exception, string className, string methodName) =>
             new LogArguments
             (
                 Level.Information,

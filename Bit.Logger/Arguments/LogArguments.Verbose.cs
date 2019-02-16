@@ -5,7 +5,7 @@ namespace Bit.Logger.Arguments
     
     internal partial struct LogArguments
     {
-        internal static LogArguments Verbose(string message, string className, string methodName) =>
+        internal static LogArguments VerboseMessage(string message, string className, string methodName) =>
             new LogArguments
             (
                 Level.Verbose,
@@ -14,7 +14,7 @@ namespace Bit.Logger.Arguments
                 message
             );
 
-        internal static LogArguments Verbose(Exception exception, string className, string methodName) =>
+        internal static LogArguments VerboseException(Exception exception, string className, string methodName) =>
             new LogArguments
             (
                 Level.Verbose,
@@ -23,7 +23,7 @@ namespace Bit.Logger.Arguments
                 exception
             );
 
-        internal static LogArguments Verbose(string message, Exception exception, string className, string methodName) =>
+        internal static LogArguments VerboseMessageAndException(string message, Exception exception, string className, string methodName) =>
             new LogArguments
             (
                 Level.Verbose,

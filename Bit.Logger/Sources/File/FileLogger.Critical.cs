@@ -7,12 +7,12 @@ namespace Bit.Logger.Sources.File
     internal partial class FileLogger
     {
         public void Critical(string message, string className, string methodName) =>
-            WriteToFile(Arguments.LogArguments.Critical(message, className, methodName));
+            WriteToFile(CriticalMessage(message, className, methodName));
 
         public void Critical(Exception exception, string className, string methodName) =>
-            WriteToFile(Arguments.LogArguments.Critical(exception, className, methodName));
+            WriteToFile(CriticalException(exception, className, methodName));
 
         public void Critical(string message, Exception exception, string className, string methodName) =>
-            WriteToFile(Arguments.LogArguments.Critical(message, exception, className, methodName));
+            WriteToFile(CriticalMessageAndException(message, exception, className, methodName));
     }
 }

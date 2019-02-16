@@ -7,12 +7,12 @@ namespace Bit.Logger.Sources.File
     internal partial class FileLogger
     {
         public void Error(string message, string className, string methodName) =>
-            WriteToFile(Arguments.LogArguments.Error(message, className, methodName));
+            WriteToFile(ErrorMessage(message, className, methodName));
 
         public void Error(Exception exception, string className, string methodName) =>
-            WriteToFile(Arguments.LogArguments.Error(exception, className, methodName));
+            WriteToFile(ErrorException(exception, className, methodName));
 
         public void Error(string message, Exception exception, string className, string methodName) =>
-            WriteToFile(Arguments.LogArguments.Error(message, exception, className, methodName));
+            WriteToFile(ErrorMessageAndException(message, exception, className, methodName));
     }
 }

@@ -5,7 +5,7 @@ namespace Bit.Logger.Arguments
 
     internal partial struct LogArguments
     {
-        internal static LogArguments Trace(string message, string className, string methodName) =>
+        internal static LogArguments TraceMessage(string message, string className, string methodName) =>
             new LogArguments
             (
                 Level.Trace,
@@ -14,7 +14,7 @@ namespace Bit.Logger.Arguments
                 message
             );
 
-        internal static LogArguments Trace(Exception exception, string className, string methodName) =>
+        internal static LogArguments TraceException(Exception exception, string className, string methodName) =>
             new LogArguments
             (
                 Level.Trace,
@@ -23,7 +23,7 @@ namespace Bit.Logger.Arguments
                 exception
             );
 
-        internal static LogArguments Trace(string message, Exception exception, string className, string methodName) =>
+        internal static LogArguments TraceMessageAndException(string message, Exception exception, string className, string methodName) =>
             new LogArguments
             (
                 Level.Trace,
