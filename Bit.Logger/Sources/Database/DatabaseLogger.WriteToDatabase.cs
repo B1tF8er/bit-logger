@@ -11,7 +11,6 @@ namespace Bit.Logger.Sources.Database
             .Check(logArguments.IsLevelAllowed(configuration.Level))
             ?.Add(logArguments.ToDatabaseLogUsing(configuration))
             .Validate(configuration.BufferSize)
-            ?.Write(DatabaseBulkWriter.ToDatabaseAsync, kv => kv.Value)
-            .Clear();
+            ?.Write(DatabaseBulkWriter.ToDatabaseAsync, kv => kv.Value);
     }
 }

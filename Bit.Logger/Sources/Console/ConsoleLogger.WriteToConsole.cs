@@ -12,7 +12,6 @@ namespace Bit.Logger.Sources.Console
             .Check(logArguments.IsLevelAllowed(configuration.Level))
             ?.Add(logArguments.ToStringLogUsing(configuration))
             .Validate(configuration.BufferSize)
-            ?.Write(ConsoleBulkWriter.ToConsole, kv => kv.Value)
-            .Clear();
+            ?.Write(ConsoleBulkWriter.ToConsole, kv => kv.Value);
     }
 }

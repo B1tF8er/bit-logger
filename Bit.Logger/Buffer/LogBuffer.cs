@@ -45,26 +45,13 @@
             return this;
         }
 
-        public ILogBuffer<TLog> Write(Action<IEnumerable<TLog>> write, Func<KeyValuePair<string, TLog>, TLog> selector)
-        {
-            IEnumerable<TLog> sortedLogs;
-
-            Func<KeyValuePair<string, TLog>, string> keySelector = kv => kv.Key.Split('-').First();
-
-            lock (Padlock)
-                sortedLogs = Logs.OrderByDescending(keySelector).Select(selector);
-
-            write(sortedLogs);
-
-            return this;
-        }
-
-        public ILogBuffer<TLog> Clear()
+        public void Write(Action<IEnumerable<TLog>> write, Func<KeyValuePair<string, TLog>, TLog> selector)
         {
             lock (Padlock)
+            {
+                write(Logs.OrderByDescending(kv => kv.Key.Split('-').First()).Select(selector));
                 Logs.Clear();
-
-            return this;
+            }
         }
     }
 }

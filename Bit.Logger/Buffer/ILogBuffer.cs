@@ -16,8 +16,6 @@ namespace Bit.Logger.Buffer
 
         ILogBuffer<TLog> Validate(int logsThreshold);
 
-        ILogBuffer<TLog> Write(Action<IEnumerable<TLog>> write, Func<KeyValuePair<string, TLog>, TLog> selector);
-
-        ILogBuffer<TLog> Clear();
+        void Write(Action<IEnumerable<TLog>> write, Func<KeyValuePair<string, TLog>, TLog> selector);
     }
 }
