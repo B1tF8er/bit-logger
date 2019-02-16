@@ -6,7 +6,7 @@ branches:
     - master
 
 install:
-  – appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/v4.0.0/nuget.exe
+  - appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/v4.0.0/nuget.exe
 
 skip_commits:
   files:
@@ -25,8 +25,8 @@ before_build:
 
 build_script:
   # Build, pack and publish project 
-  – dotnet build Bit.Logger -c Release
-  – dotnet pack -c Release /p:PackageVersion=1.0.{build}-beta
+  - dotnet build Bit.Logger -c Release
+  - dotnet pack -c Release /p:PackageVersion=1.0.{build}-beta
   - dotnet publish Bit.Logger -f netcoreapp2.1 -c Release
 
 test_script:
