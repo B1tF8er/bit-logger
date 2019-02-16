@@ -40,7 +40,6 @@ after_test:
 
 artifacts:
   - path: ./Bit.Logger/bin/Release/*.nupkg
-  name: NuGet
 
 deploy:
   provider: NuGet
