@@ -9,7 +9,7 @@ Logger for .NET Core Apps that enables logging to different outputs
 If the code that implements the logger is a console application, it can send messages to its console
 
 ## Database
-With the use of EntityFrameworkCore a SQLite database is created to save the records
+With the use of EntityFrameworkCore a SQLite database is created to save the records in the path where the assembly is run
 
 ## File
 A file is created every hour to keep small files in the path where the assembly is run
