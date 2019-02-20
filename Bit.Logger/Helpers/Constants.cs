@@ -27,7 +27,7 @@ namespace Bit.Logger.Helpers
 
         internal static class Sqlite
         {
-            private const string DatabaseName = "logging.db";
+            private const string DatabaseName = "logs.db";
             private static readonly string[] Paths = new List<string> 
             { 
                 AppDomain.CurrentDomain.BaseDirectory,
