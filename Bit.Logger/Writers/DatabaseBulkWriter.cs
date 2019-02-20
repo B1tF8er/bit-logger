@@ -1,5 +1,6 @@
 namespace Bit.Logger.Writers
 {
+    using Microsoft.EntityFrameworkCore;
     using Models;
     using System;
     using System.Collections.Generic;
@@ -10,7 +11,11 @@ namespace Bit.Logger.Writers
         internal static async void ToDatabaseAsync(IEnumerable<Log> logs)
         {
             using (var context = new LoggingContext())
+            {
+                context.Database.Migrate();
                 await context.Logs.AddRangeAsync(logs);
+                await context.SaveChangesAsync();
+            }
         }
     }
 }
