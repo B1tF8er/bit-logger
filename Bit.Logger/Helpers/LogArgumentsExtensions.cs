@@ -5,6 +5,7 @@ namespace Bit.Logger.Helpers
     using Enums;
     using Models;
     using System;
+    using System.IO;
     using static Enums.ShowLevel;
     using static Helpers.DateFormatter;
 
@@ -30,7 +31,7 @@ namespace Bit.Logger.Helpers
                 Level = configuration.ShowLevel.Equals(Yes) ? args.Level.ToString() : null,
                 Message = args.Message,
                 Date = GetFormattedDateFrom(configuration.DateTypeFormat),
-                Class = args.ClassName,
+                Class = Path.GetFileNameWithoutExtension(args.ClassName),
                 Method = args.MethodName,
                 Exception = args.Exception?.ToString() ?? null
             };
