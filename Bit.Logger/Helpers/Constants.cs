@@ -27,14 +27,10 @@ namespace Bit.Logger.Helpers
 
         internal static class Sqlite
         {
-            private const string ParentDirectory = "..";
             private const string DatabaseName = "logging.db";
             private static readonly string[] Paths = new List<string> 
             { 
                 AppDomain.CurrentDomain.BaseDirectory,
-                ParentDirectory,
-                ParentDirectory,
-                ParentDirectory,
                 DatabaseName
             }.ToArray();
             internal static readonly string ConnectionString = $"Data Source={Path.GetFullPath(Path.Combine(Paths))}";
