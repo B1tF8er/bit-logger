@@ -9,7 +9,7 @@ namespace Bit.Logger.Factory
         public void Debug(string message, [CallerFilePath] string className = EmptyClassName, [CallerMemberName] string methodName = EmptyMethodName) =>
             Loggers.ForEach(logger => logger.Debug(message, className, methodName));
 
-        public void Debug(Exception exception, [CallerFilePath] string className = EmptyClassName, [CallerMemberName] string methodName = EmptyClassName) =>
+        public void Debug(Exception exception, [CallerFilePath] string className = EmptyClassName, [CallerMemberName] string methodName = EmptyMethodName) =>
             Loggers.ForEach(logger => logger.Debug(exception, className, methodName));
 
         public void Debug(string message, Exception exception, [CallerFilePath] string className = EmptyClassName, [CallerMemberName] string methodName = EmptyMethodName) =>
