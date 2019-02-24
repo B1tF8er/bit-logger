@@ -164,12 +164,11 @@ namespace Bit.Logger.Tests
         [Fact]
         public void ToString_DefaultLevelAndFormat()
         {
+            var sut = new Configuration();
             var defaultFormat = "{0:Level} {1:DateTimeIso} [{2:Caller}::{3:Method}] {4:Message} {5:Exception}";
             var expected = $"Level:{Information}, Format:{defaultFormat}";
 
-            sut.Setup(c => c.ToString()).Returns(expected);
-
-            var actual = sut.Object.ToString();
+            var actual = sut.ToString();
 
             Assert.Equal(expected, actual);
         }
