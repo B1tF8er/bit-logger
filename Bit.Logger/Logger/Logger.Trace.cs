@@ -7,12 +7,12 @@ namespace Bit.Logger
     public partial class Logger
     {
         public void Trace(string message, [CallerFilePath] string className = EmptyClassName, [CallerMemberName] string methodName = EmptyMethodName) =>
-            Sources.ForEach(logger => logger.Trace(message, className, methodName));
+            Sources.ForEach(source => source.Trace(message, className, methodName));
 
         public void Trace(Exception exception, [CallerFilePath] string className = EmptyClassName, [CallerMemberName] string methodName = EmptyMethodName) =>
-            Sources.ForEach(logger => logger.Trace(exception, className, methodName));
+            Sources.ForEach(source => source.Trace(exception, className, methodName));
 
         public void Trace(string message, Exception exception, [CallerFilePath] string className = EmptyClassName, [CallerMemberName] string methodName = EmptyMethodName) =>
-            Sources.ForEach(logger => logger.Trace(message, exception, className, methodName));
+            Sources.ForEach(source => source.Trace(message, exception, className, methodName));
     }
 }

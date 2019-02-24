@@ -51,7 +51,7 @@
 
         public ILogger AddSources(IEnumerable<ISource> sources)
         {
-            var anySourceIsNull = sources?.Any(logger => logger == null) ?? true;
+            var anySourceIsNull = sources?.Any(source => source == null) ?? true;
 
             if (anySourceIsNull)
                 throw new ArgumentNullException(nameof(sources));
