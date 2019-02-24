@@ -6,7 +6,7 @@ namespace Bit.Logger.Tests
 
     internal static class SetupExtensions
     {
-        internal static Mock<ILoggerFactory> SetupCalls(this Mock<ILoggerFactory> sut)
+        internal static Mock<ILogger> SetupCalls(this Mock<ILogger> sut)
         {
             sut.Setup(l => l.Trace(TestMessage, It.IsAny<string>(), It.IsAny<string>()));
             sut.Setup(l => l.Trace(TestException, It.IsAny<string>(), It.IsAny<string>()));

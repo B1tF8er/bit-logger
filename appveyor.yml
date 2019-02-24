@@ -25,7 +25,7 @@ before_build:
 build_script:
   # Build, pack and publish project 
   - dotnet build Bit.Logger -c Release
-  - dotnet pack -c Release /p:PackageVersion=1.0.4-beta
+  - dotnet pack -c Release /p:PackageVersion=1.0.5-beta
   - dotnet publish Bit.Logger -f netcoreapp2.1 -c Release
 
 test_script:
