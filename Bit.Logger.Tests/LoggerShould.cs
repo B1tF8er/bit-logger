@@ -18,7 +18,7 @@ namespace Bit.Logger.Tests
 
         public LoggerShould()
         {
-            sut = new Mock<Logger>(MockBehavior.Default);
+            sut = new Mock<Logger>(MockBehavior.Strict);
         }
 
         [Fact]
