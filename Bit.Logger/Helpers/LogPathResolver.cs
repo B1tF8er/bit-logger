@@ -26,10 +26,8 @@ namespace Bit.Logger.Helpers
 
         private static void CreateLogDirectoryIfItDoesNotExist()
         {
-            if (Directory.Exists(logDirectory))
-                return;
-            
-            Directory.CreateDirectory(logDirectory);
+            if (!Directory.Exists(logDirectory))
+                Directory.CreateDirectory(logDirectory);
         }
     }
 }
