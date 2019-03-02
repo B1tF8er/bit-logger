@@ -20,7 +20,7 @@ namespace Bit.Logger.Helpers
 
         private static string GetLogDirectory()
         {
-            var assemblyLocation = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            var assemblyLocation = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
             return Path.Combine(assemblyLocation, LogName);
         }
 
