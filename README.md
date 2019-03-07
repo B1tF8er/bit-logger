@@ -62,4 +62,4 @@ this should produce an output to a `file`, `database` and `console` and display 
 
 > `<INFORMATION> 2019-03-06 23:02:56 [Test::It] sample`
 
-`You need one single logger to rule them all!`
+`Just one single logger to log them all!`
