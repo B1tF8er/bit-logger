@@ -21,3 +21,39 @@ You can create custom sources to send the messages to a different output of your
 
 ### Configurable
 All the provided sources and the ones you may create can be configured to only show specific data according to the needs of your business
+
+
+### How to use with default sources
+
+```csharp
+// Inject in a service provider
+private void AddServices()
+{
+    services = new ServiceCollection();
+    services.AddSingleton<ILogger, Logger>();
+}
+
+private void ConfigureLogger()
+{
+    var logger = serviceProvider.GetService<ILogger>();
+    logger.AddConsoleSource().AddDatabaseSource().AddFileSource();
+}
+
+// Somewhere else in the code
+
+internal class Test
+{
+    private readonly ILogger logger;
+
+    internal Test(ILogger logger) => this.logger = logger;
+
+    internal void It() => logger.Information($"sample");
+}
+
+// Call it
+
+var test = new Test();
+test.It();
+```
+> this should produce an output to a `file`, `database` and `console` and display a message like this
+> <INFORMATION> 2019-03-06 23:02:56 [Test::It] sample
