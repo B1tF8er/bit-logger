@@ -50,7 +50,7 @@ internal class Test
 
     internal Test(ILogger logger) => this.logger = logger;
 
-    internal void It() => logger.Information($"sample");
+    internal void It() => logger.Information("sample");
 }
 
 // Call it
