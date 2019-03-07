@@ -36,7 +36,10 @@ private void AddServices()
 private void ConfigureLogger()
 {
     var logger = serviceProvider.GetService<ILogger>();
-    logger.AddConsoleSource().AddDatabaseSource().AddFileSource();
+    // Here we set the 3 default sources
+    logger.AddConsoleSource() // to send messages to the console
+        .AddDatabaseSource() // to send messages to a SQLite database that is created where the assembly is run 
+        .AddFileSource(); // to send messages to a file that is created every hour where the assembly is run
 }
 
 // Somewhere else in the code
