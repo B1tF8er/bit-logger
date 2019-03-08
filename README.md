@@ -6,6 +6,7 @@
 
 # Logger for .NET Core
 Logger for .NET Core Apps that enables logging to different sources
+> `One logger to log them all`
 
 ## Console
 If the code that implements the logger uses a console messages can be sent to it
@@ -62,4 +63,3 @@ this should produce an output to a `file`, `database` and `console` and display 
 
 > `<INFORMATION> 2019-03-06 23:02:56 [Test::It] sample`
 
-`Just one single logger to log them all!`
