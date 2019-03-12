@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.com/B1tF8er/bit-logger.svg?branch=master)](https://travis-ci.com/B1tF8er/bit-logger)
 [![Build status](https://ci.appveyor.com/api/projects/status/qgv3t8hq7c5i659h/branch/master?svg=true)](https://ci.appveyor.com/project/B1tF8er/bit-logger/branch/master)
 [![Coverage Status](https://coveralls.io/repos/github/B1tF8er/bit-logger/badge.svg?branch=master)](https://coveralls.io/github/B1tF8er/bit-logger?branch=master)
-[![NuGet](https://img.shields.io/nuget/v/Bit.Logger.svg)](https://www.nuget.org/packages/Bit.Logger)
+[![NuGet](https://img.shields.io/nuget/v/Bit.Logger.svg)](https://www.nuget.org/packages/Bit.Logger/1.0.1)
 [![Nuget](https://img.shields.io/nuget/dt/Bit.Logger.svg)](https://www.nuget.org/packages/Bit.Logger)
 
 # Logger for .NET Core
