@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bit.Logger\Bit.Logger.csproj" />
+    <ProjectReference Include="../../src/Bit.Logger/Bit.Logger.csproj" />
   </ItemGroup>
 
 </Project>
