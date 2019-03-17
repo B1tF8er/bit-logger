@@ -1,1 +1,1 @@
-# The nuget packages created are sent to this folder 
+# The nuget packages and builds created are sent to this folder 
