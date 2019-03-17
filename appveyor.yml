@@ -11,6 +11,7 @@ skip_commits:
   files:
     - .gitattributes
     - .gitignore
+    - .travis.yml
     - LICENSE
     - README.md
 
