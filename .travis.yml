@@ -4,10 +4,12 @@ mono: none
 dotnet: 2.1.300
 
 install:
+- dotnet --version
 - dotnet restore ./src/Bit.Logger
 - dotnet restore ./tests/Bit.Logger.Tests
 
 script:
 - dotnet build ./src/Bit.Logger -c Release
 - dotnet test ./tests/Bit.Logger.Tests -c Release
-- dotnet publish ./src/Bit.Logger -f netcoreapp2.1 -c Release
+- dotnet pack ./src/Bit.Logger -c Release -o ../../artifacts/nupkg /p:PackageVersion=1.0.6
+- dotnet publish ./src/Bit.Logger -f netcoreapp2.2 -c Release -o ../../artifacts/build/1.0.6
