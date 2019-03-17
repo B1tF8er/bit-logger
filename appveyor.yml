@@ -26,7 +26,7 @@ before_build:
 build_script:
   # Build, pack and publish project 
   - dotnet build ./src/Bit.Logger -c Release
-  - dotnet pack ./src/Bit.Logger -c Release /p:PackageVersion=1.0.6
+  - dotnet pack ./src/Bit.Logger -c Release -o ../../artifacts /p:PackageVersion=1.0.6
   - dotnet publish ./src/Bit.Logger -f netcoreapp2.1 -c Release
 
 test_script:
@@ -39,7 +39,7 @@ after_test:
   - ps: iex ((Get-ChildItem ($env:USERPROFILE + '\.nuget\packages\coveralls.io'))[0].FullName + '\tools\coveralls.net.exe' + ' --opencover ./tests/coverage.xml --full-sources false')
 
 artifacts:
-  - path: ./src/Bit.Logger/bin/Release/*.nupkg
+  - path: ./artifacts/*.nupkg
 
 deploy:
   provider: NuGet
