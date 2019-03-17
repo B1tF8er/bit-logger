@@ -6,7 +6,7 @@
     <Authors>Jorge Yañez</Authors>
     <Description>Logger for .NET Core Apps</Description>
     <PackageProjectUrl>https://github.com/B1tF8er/bit-logger</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/B1tF8er/bit-logger/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicense>https://github.com/B1tF8er/bit-logger/blob/master/LICENSE</PackageLicense>
     <RepositoryUrl>https://github.com/B1tF8er/bit-logger</RepositoryUrl>
     <PackageTags>csharp logger dotnet-core</PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
