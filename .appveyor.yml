@@ -27,7 +27,7 @@ before_build:
 build_script:
   # Build, pack and publish project 
   - dotnet build ./src/Bit.Logger -c Release
-  - dotnet pack ./src/Bit.Logger -c Release -o ../../artifacts/nupkg /p:PackageVersion=1.0.6
+  - dotnet pack ./src/Bit.Logger -c Release -o ../../artifacts/nupkg
   - dotnet publish ./src/Bit.Logger -c Release -o ../../artifacts/build/1.0.6
 
 test_script:

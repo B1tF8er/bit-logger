@@ -10,6 +10,7 @@
     <RepositoryUrl>https://github.com/B1tF8er/bit-logger</RepositoryUrl>
     <PackageTags>csharp logger dotnet-core</PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageVersion>1.0.6</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
