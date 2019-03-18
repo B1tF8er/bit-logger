@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFrameworks>netcoreapp2.2;netcoreapp2.1</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <Authors>Jorge Yañez</Authors>
     <Description>Logger for .NET Core Apps</Description>

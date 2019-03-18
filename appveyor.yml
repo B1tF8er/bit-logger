@@ -21,22 +21,22 @@ environment:
 
 before_build:
   - dotnet --version
-  - dotnet restore ./src/Bit.Logger
-  - dotnet restore ./tests/Bit.Logger.Tests
+  - dotnet restore ./src/Bit.Logger -r netcoreapp2.2
+  - dotnet restore ./tests/Bit.Logger.Tests -r netcoreapp2.2
 
 build_script:
   # Build, pack and publish project 
-  - dotnet build ./src/Bit.Logger -c Release
-  - dotnet pack ./src/Bit.Logger -c Release -o ../../artifacts/nupkg /p:PackageVersion=1.0.6
-  - dotnet publish ./src/Bit.Logger -c Release -o ../../artifacts/build/1.0.6
+  - dotnet build ./src/Bit.Logger -c Release -f netcoreapp2.2
+  - dotnet pack ./src/Bit.Logger -c Release --runtime netcoreapp2.2 -o ../../artifacts/nupkg /p:PackageVersion=1.0.6
+  - dotnet publish ./src/Bit.Logger -c Release -f netcoreapp2.2 -o ../../artifacts/build/1.0.6
 
 test_script:
   # Build tests project
-  - dotnet build ./tests/Bit.Logger.Tests -c Release
+  - dotnet build ./tests/Bit.Logger.Tests -c Release -f netcoreapp2.2
 
 after_test:
   # Run tests and create coverage file to send to coveralls.io
-  - dotnet test ./tests/Bit.Logger.Tests -c Release --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="../coverage.xml" /p:Exclude=\"[xunit.*]*,[Bit.Logger]Bit.Logger.Migrations.*\"
+  - dotnet test ./tests/Bit.Logger.Tests -c Release -f netcoreapp2.2 --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="../coverage.xml" /p:Exclude=\"[xunit.*]*,[Bit.Logger]Bit.Logger.Migrations.*\"
   - ps: iex ((Get-ChildItem ($env:USERPROFILE + '\.nuget\packages\coveralls.io'))[0].FullName + '\tools\coveralls.net.exe' + ' --opencover ./tests/coverage.xml --full-sources false')
 
 artifacts:
