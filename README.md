@@ -55,7 +55,8 @@ internal class Test
 
 // Call it
 
-var test = new Test();
+var logger = serviceProvider.GetService<ILogger>();
+var test = new Test(logger);
 test.It();
 ```
 this should produce an output to a `file`, `database` and `console` and display a message like this
