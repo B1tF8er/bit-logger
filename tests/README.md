@@ -1,1 +1,1 @@
-# Tests project
+# Test project
