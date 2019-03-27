@@ -21,7 +21,7 @@ environment:
 before_build:
   - dotnet --version
   - dotnet restore ./src/Bit.Logger
-  - dotnet restore ./tests/Bit.Logger.Tests
+  - dotnet restore ./test/Bit.Logger.Tests
 
 build_script:
   # Build, pack and publish project 
@@ -31,12 +31,12 @@ build_script:
 
 test_script:
   # Build tests project
-  - dotnet build ./tests/Bit.Logger.Tests -c Release
+  - dotnet build ./test/Bit.Logger.Tests -c Release
 
 after_test:
   # Run tests and create coverage file to send to coveralls.io
-  - dotnet test ./tests/Bit.Logger.Tests -c Release --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="../coverage.xml" /p:Exclude=\"[xunit.*]*,[Bit.Logger]Bit.Logger.Migrations.*\"
-  - ps: iex ((Get-ChildItem ($env:USERPROFILE + '\.nuget\packages\coveralls.io'))[0].FullName + '\tools\coveralls.net.exe' + ' --opencover ./tests/coverage.xml --full-sources false')
+  - dotnet test ./test/Bit.Logger.Tests -c Release --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="../coverage.xml" /p:Exclude=\"[xunit.*]*,[Bit.Logger]Bit.Logger.Migrations.*\"
+  - ps: iex ((Get-ChildItem ($env:USERPROFILE + '\.nuget\packages\coveralls.io'))[0].FullName + '\tools\coveralls.net.exe' + ' --opencover ./test/coverage.xml --full-sources false')
 
 artifacts:
   - path: ./artifacts/nupkg/*.nupkg
