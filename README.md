@@ -4,42 +4,63 @@
 [![Nuget](https://img.shields.io/nuget/dt/Bit.Logger.svg)](https://www.nuget.org/packages/Bit.Logger)
 
 # Logger for .NET Core
+
 Logger for .NET Core Apps that enables logging to different sources
+
 > `One logger to log them all`
 
 ## Console
+
 If the code that implements the logger uses a console messages can be sent to it
 
 ## Database
+
 A SQLite database is created to save the records in the path where the assembly is run
 
 ## File
+
 A file is created every hour to keep small files in the path where the assembly is run
 
 ## Custom
+
 You can create custom sources to send the messages to a different output of your preference
 
 ### Configurable
-All the provided sources and the ones you may create can be configured to only show specific data according to the needs of your business
 
+All the provided sources and the ones you may create can be configured to only show specific data according to the needs of your business
 
 ### How to use with default sources
 
 ```csharp
-// Inject in a service provider
-private void AddServices()
+class Program
 {
-    services = new ServiceCollection();
-    services.AddSingleton<ILogger, Logger>();
-}
+    // Inject in a service provider
+    static void Main(string[] args)
+    {
+        var serviceCollection = new ServiceCollection();
+        ConfigureServices(serviceCollection);
 
-private void ConfigureLogger()
-{
-    var logger = serviceProvider.GetService<ILogger>();
-    // Here we set the 3 default sources
-    logger.AddConsoleSource() // to send messages to the console
-        .AddDatabaseSource() // to send messages to a SQLite database that is created where the assembly is run 
-        .AddFileSource(); // to send messages to a file that is created every hour where the assembly is run
+        // Create service provider
+        var serviceProvider = serviceCollection.BuildServiceProvider();
+
+        // Run app
+        serviceProvider.GetService<Test>().It();
+    }
+
+    private void ConfigureServices()
+    {
+        // Build logger
+        ILogger logger = new Logger()
+            .AddConsoleSource()
+            .AddDatabaseSource()
+            .AddFileSource();
+
+        // Add access to generic ILogger
+        serviceCollection.AddSingleton(logger);
+
+        // Add the Test class
+        serviceCollection.AddTransient<Test>();
+    }
 }
 
 // Somewhere else in the code
@@ -54,12 +75,10 @@ internal class Test
 }
 
 // Call it
-
-var logger = serviceProvider.GetService<ILogger>();
-var test = new Test(logger);
-test.It();
+var args = new string[] {};
+Program.Main(args);
 ```
+
 this should produce an output to a `file`, `database` and `console` and display a message like this
 
 > `<INFORMATION> 2019-03-06 23:02:56 [Test::It] sample`
-
