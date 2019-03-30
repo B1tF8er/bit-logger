@@ -14,7 +14,8 @@ skip_commits:
     - LICENSE
     - README.md
 
-skip_dirs: \\samples
+- provider: WebDeploy
+  skip_dirs: \\samples
 
 environment:
   COVERALLS_REPO_TOKEN:
