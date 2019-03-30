@@ -82,3 +82,6 @@ Program.Main(args);
 this should produce an output to a `file`, `database` and `console` and display a message like this
 
 > `<INFORMATION> 2019-03-06 23:02:56 [Test::It] sample`
+
+# See the samples
+[Console](https://github.com/B1tF8er/bit-logger/tree/master/samples/Default.Loggers) application with the 3 default loggers configured
