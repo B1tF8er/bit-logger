@@ -2,6 +2,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/B1tF8er/bit-logger/badge.svg?branch=master)](https://coveralls.io/github/B1tF8er/bit-logger?branch=master)
 [![NuGet](https://img.shields.io/nuget/v/Bit.Logger.svg)](https://www.nuget.org/packages/Bit.Logger/1.0.6)
 [![Nuget](https://img.shields.io/nuget/dt/Bit.Logger.svg)](https://www.nuget.org/packages/Bit.Logger)
+[![License](https://img.shields.io/github/license/B1tF8er/bit-logger.svg?style=flat-square)](https://github.com/B1tF8er/bit-logger/blob/master/LICENSE)
 
 # Logger for .NET Core
 
