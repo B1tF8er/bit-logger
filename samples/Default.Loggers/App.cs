@@ -22,13 +22,13 @@ namespace Default.Loggers
             if (!enabled)
                 return;
 
-            logger.Trace("Zero");
-            logger.Debug("One");
-            logger.Verbose("Two");
-            logger.Information("Three");
-            logger.Warning("Four");
-            logger.Error("Five");
-            logger.Critical("Six");
+            logger.Trace(Message.Trace());
+            logger.Debug(Message.Debug());
+            logger.Verbose(Message.Verbose());
+            logger.Information(Message.Information());
+            logger.Warning(Message.Warning());
+            logger.Error(Message.Error());
+            logger.Critical(Message.Critical());
         }
     }
 }
