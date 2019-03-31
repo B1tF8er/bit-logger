@@ -22,7 +22,7 @@ namespace Default.Loggers
             if (!enabled)
                 return;
 
-            logger.Trace("Zeo");
+            logger.Trace("Zero");
             logger.Debug("One");
             logger.Verbose("Two");
             logger.Information("Three");
