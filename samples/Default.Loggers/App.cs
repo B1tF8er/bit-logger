@@ -22,10 +22,11 @@ namespace Default.Loggers
             if (!enabled)
                 return;
 
-            logger.Trace("One");
-            logger.Debug("Two");
-            logger.Warning("Three");
-            logger.Information("Four");
+            logger.Trace("Zeo");
+            logger.Debug("One");
+            logger.Verbose("Two");
+            logger.Information("Three");
+            logger.Warning("Four");
             logger.Error("Five");
             logger.Critical("Six");
         }
