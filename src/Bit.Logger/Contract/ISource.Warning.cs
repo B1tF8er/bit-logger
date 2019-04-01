@@ -8,8 +8,8 @@ namespace Bit.Logger.Contract
     {
         void Warning(string message, [CallerFilePath] string className = EmptyClassName, [CallerMemberName] string methodName = EmptyMethodName);
 
-        void Warning(Exception exception, string className = EmptyClassName, string methodName = EmptyMethodName);
+        void Warning(Exception exception, [CallerFilePath] string className = EmptyClassName, [CallerMemberName] string methodName = EmptyMethodName);
 
-        void Warning(string message, Exception exception, string className = EmptyClassName, string methodName = EmptyMethodName);
+        void Warning(string message, Exception exception, [CallerFilePath] string className = EmptyClassName, [CallerMemberName] string methodName = EmptyMethodName);
     }
 }
