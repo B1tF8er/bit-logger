@@ -23,7 +23,13 @@ namespace Default.Loggers
             if (!enabled)
                 return;
 
-            // Log a message
+            LogMessages();
+            LogExceptions();
+            LogMessagesWithExceptions();
+        }
+
+        private void LogMessages()
+        {
             logger.Trace(Message.Trace());
             logger.Debug(Message.Debug());
             logger.Verbose(Message.Verbose());
@@ -31,8 +37,10 @@ namespace Default.Loggers
             logger.Warning(Message.Warning());
             logger.Error(Message.Error());
             logger.Critical(Message.Critical());
+        }
 
-            // Log an exception
+        private void LogExceptions()
+        {
             logger.Trace(CreateException(Message.Trace()));
             logger.Debug(CreateException(Message.Debug()));
             logger.Verbose(CreateException(Message.Verbose()));
@@ -40,8 +48,10 @@ namespace Default.Loggers
             logger.Warning(CreateException(Message.Warning()));
             logger.Error(CreateException(Message.Error()));
             logger.Critical(CreateException(Message.Critical()));
+        }
 
-            // Log a message and exceptions
+        private void LogMessagesWithExceptions()
+        {
             logger.Trace("Trace", CreateException(Message.Trace()));
             logger.Debug("Debug", CreateException(Message.Debug()));
             logger.Verbose("Verbose", CreateException(Message.Verbose()));
