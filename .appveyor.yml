@@ -24,10 +24,9 @@ before_build:
   - dotnet restore ./test/Bit.Logger.Tests
 
 build_script:
-  # Build, pack and publish project 
-  - dotnet build ./src/Bit.Logger -c Release
+  # Build and pack project 
+  - dotnet build ./src/Bit.Logger -c Release -o ../../artifacts/build
   - dotnet pack ./src/Bit.Logger -c Release -o ../../artifacts/nupkg
-  - dotnet publish ./src/Bit.Logger -c Release -o ../../artifacts/build
 
 test_script:
   # Build tests project
