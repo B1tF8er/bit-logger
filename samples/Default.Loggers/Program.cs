@@ -59,7 +59,7 @@ namespace Default.Loggers
                     Level = Level.Critical 
                 });
 
-                // IMPORTANT: both the file and the database are created where the assembly is run
+            // IMPORTANT: both the file and the database are created where the assembly is run
 
             // Build configuration
             IConfiguration configuration = new ConfigurationBuilder()
