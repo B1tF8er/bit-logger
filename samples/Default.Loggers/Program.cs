@@ -49,8 +49,7 @@ namespace Default.Loggers
                 .AddDatabaseSource(new LogConfig
                 {
                     DateTypeFormat = DateType.DateIso,
-                    ShowLevel = ShowLevel.No,
-                    Level = Level.Trace,
+                    ShowLevel = ShowLevel.No
                 }) 
                 // this will log only critical messages to the file
                 .AddFileSource(new LogConfig
