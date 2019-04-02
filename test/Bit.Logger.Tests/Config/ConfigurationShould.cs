@@ -32,7 +32,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void SetCustom_Format()
         {
-            var expected = "custom format test set";
+            var expected = "{4:Message} {5:Exception} from [{2:Caller}::{3:Method}]";
             sut.Object.Format = expected;
 
             var actual = sut.Object.Format;
