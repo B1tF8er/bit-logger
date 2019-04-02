@@ -14,6 +14,11 @@ skip_commits:
     - LICENSE
     - README.md
 
+only_commits:
+  files:
+    - src/
+    - test/
+
 environment:
   COVERALLS_REPO_TOKEN:
     secure: 0n47+7c3YiptuHdHw7IBRhdFghphRyIbAQ2u0HiUV8D8mE2AqBK17naDGOuvM1/q
