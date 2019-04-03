@@ -104,17 +104,17 @@ public void Test()
 {
     var consoleConfiguration = new Configuration
     {
-        Level = Level.Trace // with these we do not ignore any level and log all messages
+        Level = Level.Trace // with this we do not ignore any level and log all messages
     };
 
     var databaseConfiguration = new Configuration
     {
-        Level = Level.Warning // with these we ignore any lower levels and only log Warning messages
+        Level = Level.Warning // with this we ignore any lower levels and only log Warning messages
     };
 
     var fileConfiguration = new Configuration
     {
-        Level = Level.Critical // with these we ignore any lower levels and only log Critical messages 
+        Level = Level.Critical // with this we ignore any lower levels and only log Critical messages 
     };
 
     // Build logger
