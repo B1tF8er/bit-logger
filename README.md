@@ -78,11 +78,57 @@ internal class Test
 // Call it
 var args = new string[] {};
 Program.Main(args);
+
+// this should produce an output to a `file`, `database` and `console` and display a message like this
+// `<INFORMATION> 2019-03-06 23:02:56 [Test::It] sample`
 ```
 
-this should produce an output to a `file`, `database` and `console` and display a message like this
+### How the Log Levels work
 
-> `<INFORMATION> 2019-03-06 23:02:56 [Test::It] sample`
+```csharp
+
+// This is the Level enum
+public enum Level
+{
+    Trace = 0,
+    Debug = 1,
+    Verbose = 2,
+    Information = 3,
+    Warning = 4,
+    Error = 5,
+    Critical = 6,
+    None = 7
+}
+
+public void Test()
+{
+    var consoleConfiguration = new Configuration
+    {
+        Level = Level.Trace // with these we do not ignore any level and log all messages
+    };
+
+    var databaseConfiguration = new Configuration
+    {
+        Level = Level.Warning // with these we ignore any lower levels and only log Warning messages
+    };
+
+    var fileConfiguration = new Configuration
+    {
+        Level = Level.Critical // with these we ignore any lower levels and only log Critical messages 
+    };
+
+    // Build logger
+    ILogger logger = new Logger()
+        .AddConsoleSource(consoleConfiguration)
+        .AddDatabaseSource(databaseConfiguration)
+        .AddFileSource(fileConfiguration);
+
+    logger.Trace("test"); // this will only be sent to the console
+    logger.Warning("test"); // this will be sent to the console and the database
+    logger.Critical("test"); // this will be sent to the console, the database and the file
+}
+```
+
 
 # See the samples
 [Console](https://github.com/B1tF8er/bit-logger/tree/master/samples/Default.Loggers) application with the 3 default loggers configured
