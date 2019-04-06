@@ -6,6 +6,6 @@ namespace Default.Loggers
     class Program
     {
         static void Main(string[] args) =>
-            FailFast(() => Startup.ServiceProvider.GetService<App>().Run());
+            FailFast(Startup.ServiceProvider.GetService<App>().Run);
     }
 }
