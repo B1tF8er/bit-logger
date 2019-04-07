@@ -23,17 +23,17 @@ namespace Default.Loggers
 
         private static void AddServices()
         {
-            serviceCollection.AddSingleton(BuildLogger());
-            serviceCollection.AddSingleton(BuildConfiguration());
+            serviceCollection.AddSingleton(Logger);
+            serviceCollection.AddSingleton(Configuration);
             serviceCollection.AddTransient<App>();
         }
 
-        private static ILogger BuildLogger() => new Logger()
+        private static ILogger Logger => new Logger()
             .AddConsoleSource(CreateConfiguration(DateType.DateTimeIso, ShowLevel.Yes, Level.Trace))
             .AddDatabaseSource(CreateConfiguration(DateType.DateIso, ShowLevel.No))
             .AddFileSource(CreateConfiguration(DateType.TimeIso, ShowLevel.Yes, Level.Critical));
 
-        private static IConfiguration BuildConfiguration() => new ConfigurationBuilder()
+        private static IConfiguration Configuration => new ConfigurationBuilder()
             .SetBasePath(AppContext.BaseDirectory)
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
             .Build();
