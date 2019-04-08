@@ -3,9 +3,9 @@
     using System.Collections.Generic;
     using System.Text;
 
-    public static class EnumerableExtensions
+    internal static class EnumerableExtensions
     {
-        public static string ToAppendedString(this IEnumerable<string> logs)
+        internal static string ToAppendedString(this IEnumerable<string> logs)
         {
             var builderLogs = new StringBuilder();
 
