@@ -1,7 +1,7 @@
-using System;
-
 namespace Default.Loggers
 {
+    using System;
+
     internal static class TryCatchExtensions
     {
         internal static void TryCatch(Action tryAction, Action<Exception> catchAction)

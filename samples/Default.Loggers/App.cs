@@ -1,10 +1,10 @@
-using Bit.Logger.Contract;
-using Microsoft.Extensions.Configuration;
-using System;
-using static Default.Loggers.ExceptionExtensions;
-
 namespace Default.Loggers
 {
+    using Bit.Logger.Contract;
+    using Microsoft.Extensions.Configuration;
+    using System;
+    using static ExceptionExtensions;
+
     public class App
     {
         private readonly ILogger logger;

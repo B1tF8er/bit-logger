@@ -1,13 +1,13 @@
-using Bit.Logger;
-using Bit.Logger.Contract;
-using Bit.Logger.Enums;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using static Default.Loggers.LogConfigurationExtensions;
-
 namespace Default.Loggers
 {
+    using Bit.Logger;
+    using Bit.Logger.Contract;
+    using Bit.Logger.Enums;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using System;
+    using static LogConfigurationExtensions;
+
     internal static class Startup
     {
         private static readonly ServiceCollection serviceCollection;

@@ -1,7 +1,6 @@
-using Newtonsoft.Json;
-
 namespace Default.Loggers
 {
+    using Newtonsoft.Json;
 
     internal static class JsonConvertExtensions
     {
