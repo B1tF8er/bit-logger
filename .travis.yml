@@ -1,13 +1,13 @@
-language: csharp	
-dist: trusty	
-mono: none	
-dotnet: 2.2 # SDK Version	
+language: csharp
+dist: trusty
+mono: none
+dotnet: 2.2 # SDK Version
 
- install:	
+install:	
 - dotnet --version
 - dotnet restore ./src/Bit.Logger
 - dotnet restore ./test/Bit.Logger.Tests
 
- script:	
+script:	
 - dotnet build ./src/Bit.Logger -c Release
 - dotnet test ./test/Bit.Logger.Tests -c Release
