@@ -1,5 +1,6 @@
 language: csharp
-dist: trusty
+dist: bionic
+sudo: required
 mono: none
 dotnet: 2.2 # SDK Version
 
