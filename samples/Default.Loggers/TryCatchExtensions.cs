@@ -4,19 +4,12 @@ namespace Default.Loggers
 
     internal static class TryCatchExtensions
     {
-        internal static void TryCatch(Action tryAction, Action<Exception> catchAction)
+        internal static void TryCatch(Action @try, Action<Exception> @catch)
         {
-            try
-            {
-                tryAction();
-            }
-            catch (Exception ex)
-            {
-                catchAction(ex);
-            }
+            try { @try(); } catch (Exception ex) { @catch(ex); }
         }
 
-        internal static void FailFast(Action tryAction) =>
-            TryCatch(tryAction, (ex) => Environment.FailFast(ex.Message, ex));
+        internal static void FailFast(Action @try) =>
+            TryCatch(@try, (ex) => Environment.FailFast(ex.Message, ex));
     }
 }
