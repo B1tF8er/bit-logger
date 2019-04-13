@@ -15,26 +15,24 @@ namespace Default.Loggers
         }
 
         internal static string Trace() =>
-            new Message(Level.Trace, Constants.When.Trace).ToString();
+            new Message(Level.Trace, Constants.When.Trace).Serialize();
 
         internal static string Debug() =>
-            new Message(Level.Debug, Constants.When.Debug).ToString();
+            new Message(Level.Debug, Constants.When.Debug).Serialize();
 
         internal static string Verbose() =>
-            new Message(Level.Verbose, Constants.When.Verbose).ToString();
+            new Message(Level.Verbose, Constants.When.Verbose).Serialize();
 
         internal static string Information() =>
-            new Message(Level.Information, Constants.When.Information).ToString();
+            new Message(Level.Information, Constants.When.Information).Serialize();
 
         internal static string Warning() =>
-            new Message(Level.Warning, Constants.When.Warning).ToString();
+            new Message(Level.Warning, Constants.When.Warning).Serialize();
 
         internal static string Error() =>
-            new Message(Level.Error, Constants.When.Error).ToString();
+            new Message(Level.Error, Constants.When.Error).Serialize();
 
         internal static string Critical() =>
-            new Message(Level.Critical, Constants.When.Critical).ToString();
-
-        public override string ToString() => this.Serialize();
+            new Message(Level.Critical, Constants.When.Critical).Serialize();
     }
 }
