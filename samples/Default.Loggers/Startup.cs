@@ -6,6 +6,7 @@ namespace Default.Loggers
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using System;
+    using static Constants.Path;
     using static LogConfigurationExtensions;
 
     internal static class Startup
@@ -33,7 +34,7 @@ namespace Default.Loggers
 
         private static IConfiguration Configuration() => new ConfigurationBuilder()
             .SetBasePath(AppContext.BaseDirectory)
-            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .AddJsonFile(AppSettingsPath, optional: true, reloadOnChange: true)
             .Build();
     }
 }

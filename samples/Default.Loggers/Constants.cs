@@ -12,5 +12,10 @@ namespace Default.Loggers
             internal const string Error = "Any error which is fatal to the operation, but not the service or application (can't open a required file, missing data, etc.). These errors will force user (administrator, or direct user) intervention. These are usually reserved (in my apps) for incorrect connection strings, missing services, etc.";
             internal const string Critical = "Any error that is forcing a shutdown of the service or application to prevent data loss (or further data loss). I reserve these only for the most heinous errors and situations where there is guaranteed to have been data corruption or loss.";
         }
+
+        internal static class Path
+        {
+            internal const string AppSettingsPath = "appsettings.json";
+        }
     }
 }
