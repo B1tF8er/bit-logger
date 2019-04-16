@@ -84,7 +84,7 @@ var args = new string[] {};
 Program.Main(args);
 
 // this should produce an output to a file, database and console and display a message like this
-// `<INFORMATION> 2019-03-06 23:02:56 [Test::It] sample`
+// <INFORMATION> 2019-03-06 23:02:56 [Test::It] sample
 ```
 
 ### How the Log Levels work
