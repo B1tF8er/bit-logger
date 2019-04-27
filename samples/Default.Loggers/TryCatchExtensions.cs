@@ -9,7 +9,7 @@ namespace Default.Loggers
             try { @try(); } catch (Exception ex) { @catch(ex); }
         }
 
-        internal static void FailFast(Action @try) =>
+        internal static void TryOrFailFast(Action @try) =>
             TryCatch(@try, (ex) => Environment.FailFast(ex.Message, ex));
     }
 }
