@@ -1,11 +1,3 @@
-*.swp
-*.*~
-project.lock.json
-.DS_Store
-*.pyc
-nupkg/
-*.nupkg
-
 # Visual Studio Code
 .vscode
 
@@ -35,3 +27,12 @@ msbuild.wrn
 
 # SQlite files
 *.db
+
+# General
+*.swp
+*.*~
+project.lock.json
+.DS_Store
+*.pyc
+nupkg/
+*.nupkg
