@@ -21,7 +21,6 @@ namespace Bit.Logger.Helpers
         internal static string GetFormatFor(DateType dateType)
         {
             formats.TryGetValue(dateType, out var format);
-
             return format;
         }
     }

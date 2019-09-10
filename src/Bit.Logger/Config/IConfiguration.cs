@@ -1,7 +1,6 @@
 namespace Bit.Logger.Config
 {
     using Enums;
-    using FormatProviders;
     using System;
 
     public interface IConfiguration

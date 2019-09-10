@@ -1,7 +1,6 @@
 namespace Bit.Logger.Sources.Database
 {
     using Arguments;
-    using Config;
     using Writers;
     using static Helpers.LogArgumentsExtensions;
 

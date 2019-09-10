@@ -2,7 +2,6 @@ namespace Bit.Logger.Writers
 {
     using System;
     using System.Collections.Generic;
-    using System.Threading.Tasks;
     using static Helpers.ConsoleColorSelector;
     using static Helpers.StringExtensions;
 

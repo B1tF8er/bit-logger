@@ -1,6 +1,5 @@
 namespace Bit.Logger.Sources.Console
 {
-    using Config;
     using System;
     using static Arguments.LogArguments;
 

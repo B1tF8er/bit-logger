@@ -1,10 +1,10 @@
 namespace Bit.Logger.Sources.Database
 {
-    using Config;
     using System;
     using static Arguments.LogArguments;
 
-    internal partial class DatabaseSource    {
+    internal partial class DatabaseSource
+    {
         public void Trace(string message, string className, string methodName) =>
             WriteToDatabase(TraceMessage(message, className, methodName));
 

@@ -10,7 +10,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
 
     public partial class Logger : ILogger
     {
@@ -21,7 +20,7 @@
         public ILogger AddConsoleSource(Configuration configuration = default)
         {
             Sources.Add(new ConsoleSource(configuration, new LogBuffer<string>()));
-
+            
             return this;
         }
 
@@ -62,6 +61,8 @@
         }
 
         public override string ToString() =>
-            Sources.Select(s => $"{s}").Aggregate((a, b) => $"{a}{Environment.NewLine}{b}");
+            Sources
+                .Select(s => $"{s}")
+                .Aggregate((acc, next) => $"{acc}{Environment.NewLine}{next}");
     }
 }

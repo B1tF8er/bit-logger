@@ -1,8 +1,6 @@
 namespace Bit.Logger.Sources.File
 {
     using Arguments;
-    using Config;
-    using Contract;
     using System;
     using Writers;
     using static Helpers.LogArgumentsExtensions;

@@ -2,9 +2,7 @@ namespace Bit.Logger.Writers
 {
     using Microsoft.EntityFrameworkCore;
     using Models;
-    using System;
     using System.Collections.Generic;
-    using System.Threading.Tasks;
 
     internal static class DatabaseBulkWriter
     {
