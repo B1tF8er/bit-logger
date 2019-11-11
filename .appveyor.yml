@@ -14,11 +14,6 @@ skip_commits:
     - LICENSE
     - README.md
 
-only_commits:
-  files:
-    - src/
-    - test/
-
 environment:
   COVERALLS_REPO_TOKEN:
     secure: 0n47+7c3YiptuHdHw7IBRhdFghphRyIbAQ2u0HiUV8D8mE2AqBK17naDGOuvM1/q
@@ -39,7 +34,7 @@ test_script:
 
 after_test:
   # Run tests and create coverage file to send to coveralls.io
-  - dotnet test ./test/Bit.Logger.Tests -c Release --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="../coverage.xml" /p:Exclude=\"[xunit.*]*,[Bit.Logger]Bit.Logger.Migrations.*\"
+  - dotnet test ./test/Bit.Logger.Tests -c Release --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="../coverage.xml" /p:Exclude=\"[xunit.*]*,[Bit.Logger]Bit.Logger.Migrations.*,D:/\"
   - ps: iex ((Get-ChildItem ($env:USERPROFILE + '\.nuget\packages\coveralls.io'))[0].FullName + '\tools\coveralls.net.exe' + ' --opencover ./test/coverage.xml --full-sources false')
 
 artifacts:
