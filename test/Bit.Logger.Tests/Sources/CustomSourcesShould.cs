@@ -15,7 +15,7 @@ namespace Bit.Logger.Tests
             sut = new Mock<ILogger>(MockBehavior.Strict);
 
             sut.SetupCalls()
-                .Setup(l => l.AddSources(It.IsAny<IEnumerable<ISource>>()))
+                .Setup(logger => logger.AddSources(It.IsAny<IEnumerable<ISource>>()))
                 .Returns(sut.Object);
         }
 
@@ -26,9 +26,9 @@ namespace Bit.Logger.Tests
             sut.Object.Trace(TestException);
             sut.Object.Trace(TestMessage, TestException);
 
-            sut.Verify(l => l.Trace(TestMessage, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
-            sut.Verify(l => l.Trace(TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
-            sut.Verify(l => l.Trace(TestMessage, TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Trace(TestMessage, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Trace(TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Trace(TestMessage, TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
         }
 
         [Fact]
@@ -38,9 +38,9 @@ namespace Bit.Logger.Tests
             sut.Object.Debug(TestException);
             sut.Object.Debug(TestMessage, TestException);
 
-            sut.Verify(l => l.Debug(TestMessage, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
-            sut.Verify(l => l.Debug(TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
-            sut.Verify(l => l.Debug(TestMessage, TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Debug(TestMessage, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Debug(TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Debug(TestMessage, TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
         }
 
         [Fact]
@@ -50,9 +50,9 @@ namespace Bit.Logger.Tests
             sut.Object.Verbose(TestException);
             sut.Object.Verbose(TestMessage, TestException);
 
-            sut.Verify(l => l.Verbose(TestMessage, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
-            sut.Verify(l => l.Verbose(TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
-            sut.Verify(l => l.Verbose(TestMessage, TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Verbose(TestMessage, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Verbose(TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Verbose(TestMessage, TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
         }
 
         [Fact]
@@ -62,9 +62,9 @@ namespace Bit.Logger.Tests
             sut.Object.Information(TestException);
             sut.Object.Information(TestMessage, TestException);
 
-            sut.Verify(l => l.Information(TestMessage, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
-            sut.Verify(l => l.Information(TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
-            sut.Verify(l => l.Information(TestMessage, TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Information(TestMessage, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Information(TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Information(TestMessage, TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
         }
 
         [Fact]
@@ -74,9 +74,9 @@ namespace Bit.Logger.Tests
             sut.Object.Warning(TestException);
             sut.Object.Warning(TestMessage, TestException);
 
-            sut.Verify(l => l.Warning(TestMessage, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
-            sut.Verify(l => l.Warning(TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
-            sut.Verify(l => l.Warning(TestMessage, TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Warning(TestMessage, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Warning(TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Warning(TestMessage, TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
         }
 
         [Fact]
@@ -86,9 +86,9 @@ namespace Bit.Logger.Tests
             sut.Object.Error(TestException);
             sut.Object.Error(TestMessage, TestException);
 
-            sut.Verify(l => l.Error(TestMessage, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
-            sut.Verify(l => l.Error(TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
-            sut.Verify(l => l.Error(TestMessage, TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Error(TestMessage, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Error(TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Error(TestMessage, TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
         }
 
         [Fact]
@@ -98,9 +98,9 @@ namespace Bit.Logger.Tests
             sut.Object.Critical(TestException);
             sut.Object.Critical(TestMessage, TestException);
 
-            sut.Verify(l => l.Critical(TestMessage, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
-            sut.Verify(l => l.Critical(TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
-            sut.Verify(l => l.Critical(TestMessage, TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Critical(TestMessage, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Critical(TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            sut.Verify(logger => logger.Critical(TestMessage, TestException, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
         }
     }
 }
