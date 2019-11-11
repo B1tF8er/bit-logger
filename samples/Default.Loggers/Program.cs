@@ -1,11 +1,14 @@
 ﻿namespace Default.Loggers
 {
+    using System;
     using Microsoft.Extensions.DependencyInjection;
-    using static Default.Loggers.TryCatchExtensions;
     
     class Program
     {
+        private static Action Run => 
+            Startup.ServiceProvider.GetService<App>().Run;
+
         static void Main(string[] args) =>
-            TryOrFailFast(Startup.ServiceProvider.GetService<App>().Run);
+            Run.TryOrFailFast();
     }
 }
