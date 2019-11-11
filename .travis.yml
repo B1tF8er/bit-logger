@@ -1,15 +1,8 @@
 language: csharp
-dist: xenial
-addons:
-  snaps:
-  - name: dotnet-sdk
-    classic: true
-    channel: latest/beta
+dist: bionic
 sudo: required
 mono: none
-
-script:
-- sudo snap alias dotnet-sdk.dotnet dotnet
+dotnet: 3.0 # SDK Version
 
 install:	
 - dotnet --version
