@@ -87,7 +87,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void Throw_ArgumentNullException_WhenAddSourceHasNullValue()
         {
-            var expectedMessage = $"Value cannot be null.{Environment.NewLine}Parameter name: source";
+            var expectedMessage = $"Value cannot be null. (Parameter 'source')";
 
             var actualException = Assert.Throws<ArgumentNullException>(() => sut.Object.AddSource(null));
 
@@ -103,7 +103,7 @@ namespace Bit.Logger.Tests
                 customSource, null, customSource
             };
 
-            var expectedMessage = $"Value cannot be null.{Environment.NewLine}Parameter name: sources";
+            var expectedMessage = $"Value cannot be null. (Parameter 'sources')";
 
             var actualException = Assert.Throws<ArgumentNullException>(() => sut.Object.AddSources(customSources));
 

@@ -43,7 +43,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void Throw_ArgumentNullException_WhenFormatIsNull()
         {
-            var expectedMessage = $"Value cannot be null.{Environment.NewLine}Parameter name: format";
+            var expectedMessage = $"Value cannot be null. (Parameter 'format')";
 
             var actualException = Assert.Throws<ArgumentNullException>(() => sut.Object.Format = null);
 
@@ -53,7 +53,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void Throw_ArgumentNullException_WhenFormatIsEmptyString()
         {
-            var expectedMessage = $"Value cannot be null.{Environment.NewLine}Parameter name: format";
+            var expectedMessage = $"Value cannot be null. (Parameter 'format')";
 
             var actualException = Assert.Throws<ArgumentNullException>(() => sut.Object.Format = string.Empty);
 
@@ -63,7 +63,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void Throw_ArgumentNullException_WhenFormatIsWhiteSpace()
         {
-            var expectedMessage = $"Value cannot be null.{Environment.NewLine}Parameter name: format";
+            var expectedMessage = $"Value cannot be null. (Parameter 'format')";
 
             var actualException = Assert.Throws<ArgumentNullException>(() => sut.Object.Format = new string(' ', 2));
 
