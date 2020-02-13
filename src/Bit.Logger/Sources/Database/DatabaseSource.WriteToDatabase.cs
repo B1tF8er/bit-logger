@@ -8,8 +8,8 @@ namespace Bit.Logger.Sources.Database
     {
         private void WriteToDatabase(LogArguments logArguments) => logBuffer
             .Check(logArguments.IsLevelAllowed(configuration.Level))
-            ?.Add(logArguments.ToDatabaseLogUsing(configuration))
+            .Add(logArguments.ToDatabaseLogUsing(configuration))
             .Validate(configuration.BufferSize)
-            ?.Write(DatabaseBulkWriter.ToDatabaseAsync, kv => kv.Value);
+            .Write(DatabaseBulkWriter.ToDatabaseAsync, kv => kv.Value);
     }
 }

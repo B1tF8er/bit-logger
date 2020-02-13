@@ -5,6 +5,8 @@ namespace Bit.Logger.Buffer
 
     public interface ILogBuffer<TLog>
     {
+        bool Continue { get; set; }
+
         Dictionary<string, TLog> Logs { get; }
 
         object Padlock { get; }

@@ -8,8 +8,8 @@ namespace Bit.Logger.Sources.Console
     {
         private void WriteToConsole(LogArguments logArguments) => logBuffer
             .Check(logArguments.IsLevelAllowed(configuration.Level))
-            ?.Add(logArguments.ToStringLogUsing(configuration))
+            .Add(logArguments.ToStringLogUsing(configuration))
             .Validate(configuration.BufferSize)
-            ?.Write(ConsoleBulkWriter.ToConsole, kv => kv.Value);
+            .Write(ConsoleBulkWriter.ToConsole, kv => kv.Value);
     }
 }
