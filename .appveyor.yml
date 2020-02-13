@@ -30,8 +30,8 @@ before_build:
 
 build_script:
   # Build and pack project 
-  - dotnet build ./src/Bit.Logger -c Release -o ../../artifacts/build
-  - dotnet pack ./src/Bit.Logger -c Release -o ../../artifacts/nupkg
+  - dotnet build ./src/Bit.Logger -c Release -o ./artifacts/build
+  - dotnet pack ./src/Bit.Logger -c Release -o ./artifacts/nupkg
 
 test_script:
   # Build tests project
