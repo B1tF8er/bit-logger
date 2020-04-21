@@ -248,9 +248,9 @@ namespace Bit.Logger.Tests
         public void SetCustom_FileLogLocation()
         {
             var expected = @"C:\Logs\File";
-            sut.Object.DatabaseLogLocation = expected;
+            sut.Object.FileLogLocation = expected;
 
-            var actual = sut.Object.DatabaseLogLocation;
+            var actual = sut.Object.FileLogLocation;
 
             Assert.IsType<string>(expected);
             Assert.IsType<string>(actual);
