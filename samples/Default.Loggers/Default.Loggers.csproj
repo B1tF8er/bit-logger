@@ -14,12 +14,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bit.Logger" Version="1.0.7" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Bit.Logger\Bit.Logger.csproj" />
   </ItemGroup>
 
   <ItemGroup>

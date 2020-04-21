@@ -1,19 +1,24 @@
 namespace Bit.Logger.Writers
 {
+    using Helpers;
     using Microsoft.EntityFrameworkCore;
     using Models;
     using System.Collections.Generic;
 
-    internal static class DatabaseBulkWriter
+    internal class DatabaseBulkWriter : IDatabaseBulkWriter
     {
-        internal static async void ToDatabaseAsync(IEnumerable<Log> logs)
+        private readonly IDatabaseLogPathResolver databaseLogPathResolver;
+
+        public DatabaseBulkWriter(IDatabaseLogPathResolver databaseLogPathResolver) =>
+            this.databaseLogPathResolver = databaseLogPathResolver;
+
+        public async void ToDatabaseAsync(IEnumerable<Log> logs)
         {
-            using (var context = new LoggingContext())
-            {
-                context.Database.Migrate();
-                await context.Logs.AddRangeAsync(logs);
-                await context.SaveChangesAsync();
-            }
+            using var context = new LoggingContext(databaseLogPathResolver);
+            
+            context.Database.Migrate();
+            await context.Logs.AddRangeAsync(logs);
+            await context.SaveChangesAsync();
         }
     }
 }

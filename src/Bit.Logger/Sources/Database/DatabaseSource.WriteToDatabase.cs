@@ -1,7 +1,6 @@
 namespace Bit.Logger.Sources.Database
 {
     using Arguments;
-    using Writers;
     using static Helpers.LogArgumentsExtensions;
 
     internal partial class DatabaseSource
@@ -10,6 +9,6 @@ namespace Bit.Logger.Sources.Database
             .Check(logArguments.IsLevelAllowed(configuration.Level))
             .Add(logArguments.ToDatabaseLogUsing(configuration))
             .Validate(configuration.BufferSize)
-            .Write(DatabaseBulkWriter.ToDatabaseAsync, kv => kv.Value);
+            .Write(databaseBulkWriter.ToDatabaseAsync, kv => kv.Value);
     }
 }

@@ -16,5 +16,9 @@ namespace Bit.Logger.Config
         string Format { get; set; }
 
         int BufferSize { get; set; }
+
+        string DatabaseLogLocation { get; set; }
+
+        string FileLogLocation { get; set; }
     }
 }

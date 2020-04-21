@@ -12,7 +12,7 @@ namespace Bit.Logger.Sources.Console
             
         public ConsoleSource(IConfiguration configuration, ILogBuffer<string> logBuffer)
         {
-            this.configuration = configuration ?? new Configuration();
+            this.configuration = configuration;
             this.logBuffer = logBuffer;
         }
     }

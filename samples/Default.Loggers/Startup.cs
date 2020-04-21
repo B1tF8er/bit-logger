@@ -27,10 +27,22 @@ namespace Default.Loggers
             return serviceCollection;
         }
 
-        private static ILogger Logger() => new Logger()
-            .AddConsoleSource(CreateConfiguration(DateType.DateTimeIso, ShowLevel.Yes, Level.Trace))
-            .AddDatabaseSource(CreateConfiguration(DateType.DateIso, ShowLevel.No))
-            .AddFileSource(CreateConfiguration(DateType.TimeIso, ShowLevel.Yes, Level.Critical));
+        private static ILogger Logger()
+        {
+            var consoleConfiguration = CreateConfiguration(DateType.DateTimeIso, ShowLevel.Yes, Level.Trace);
+            var databaseConfiguration = CreateConfiguration(DateType.DateIso, ShowLevel.Yes);
+            var fileConfiguration = CreateConfiguration(DateType.TimeIso, ShowLevel.No, Level.Critical);
+
+            databaseConfiguration.DatabaseLogLocation = @"D:\Logs\Database";
+            fileConfiguration.FileLogLocation = @"D:\Logs\File";
+
+            var logger = new Logger()
+                .AddConsoleSource(consoleConfiguration)
+                .AddDatabaseSource(databaseConfiguration)
+                .AddFileSource(fileConfiguration);
+
+            return logger;
+        }
 
         private static IConfiguration Configuration() => new ConfigurationBuilder()
             .SetBasePath(AppContext.BaseDirectory)

@@ -29,6 +29,22 @@ namespace Bit.Logger.Config
 
         public int BufferSize { get; set; } = 0;
 
+        private string databaseLogLocation = default;
+
+        public string DatabaseLogLocation
+        {
+            get => databaseLogLocation is null ? AppDomain.CurrentDomain.BaseDirectory : databaseLogLocation;
+            set => databaseLogLocation = value.IsNullOrEmptyOrWhiteSpace() ? throw new ArgumentNullException(nameof(databaseLogLocation)) : value; 
+        }
+        
+        private string fileLogLocation = default;
+     
+        public string FileLogLocation
+        {
+            get => fileLogLocation is null ? AppDomain.CurrentDomain.BaseDirectory : fileLogLocation;
+            set => fileLogLocation = value.IsNullOrEmptyOrWhiteSpace() ? throw new ArgumentNullException(nameof(fileLogLocation)) : value;
+        }
+
         private string GetDefaultFormat()
         {
             var formatBuilder = new StringBuilder();

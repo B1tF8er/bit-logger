@@ -3,6 +3,7 @@
     using Buffer;
     using Config;
     using Contract;
+    using Helpers;
     using Models;
     using Sources.Console;
     using Sources.Database;
@@ -10,6 +11,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Writers;
 
     public partial class Logger : ILogger
     {
@@ -19,6 +21,8 @@
 
         public ILogger AddConsoleSource(Configuration configuration = default)
         {
+            configuration ??= new Configuration();
+
             Sources.Add(new ConsoleSource(configuration, new LogBuffer<string>()));
             
             return this;
@@ -26,14 +30,30 @@
 
         public ILogger AddDatabaseSource(Configuration configuration = default)
         {
-            Sources.Add(new DatabaseSource(configuration, new LogBuffer<Log>()));
+            configuration ??= new Configuration();
+
+            Sources.Add(
+                new DatabaseSource(
+                    configuration,
+                    new LogBuffer<Log>(),
+                    new DatabaseBulkWriter(new DatabaseLogPathResolver(configuration))
+                )
+            );
 
             return this;
         }
 
         public ILogger AddFileSource(Configuration configuration = default)
         {
-            Sources.Add(new FileSource(configuration, new LogBuffer<string>()));
+            configuration ??= new Configuration();
+
+            Sources.Add(
+                new FileSource(
+                    configuration,
+                    new LogBuffer<string>(),
+                    new FileBulkWriter(new FileLogPathResolver(configuration))
+                )
+            );
 
             return this;
         }

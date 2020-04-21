@@ -25,17 +25,6 @@ namespace Bit.Logger.Helpers
             internal const int LogsThreshold = 0;
         }
 
-        internal static class Sqlite
-        {
-            private const string DatabaseName = "logs.db";
-            private static readonly string[] Paths = new List<string> 
-            { 
-                AppDomain.CurrentDomain.BaseDirectory,
-                DatabaseName
-            }.ToArray();
-            internal static readonly string ConnectionString = $"Data Source={Path.GetFullPath(Path.Combine(Paths))}";
-        }
-
         internal static class Caller
         {
             internal const string EmptyClassName = "NoClass";
