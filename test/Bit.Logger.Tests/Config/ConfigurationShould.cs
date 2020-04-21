@@ -212,5 +212,49 @@ namespace Bit.Logger.Tests
             Assert.IsType<int>(actual);
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void GetDefault_DatabaseLogLocation()
+        {
+            var actual = sut.Object.DatabaseLogLocation;
+
+            Assert.IsType<string>(actual);
+            Assert.False(string.IsNullOrWhiteSpace(actual));
+        }
+
+        [Fact]
+        public void SetCustom_DatabaseLogLocation()
+        {
+            var expected = @"C:\Logs\Database";
+            sut.Object.DatabaseLogLocation = expected;
+
+            var actual = sut.Object.DatabaseLogLocation;
+
+            Assert.IsType<string>(expected);
+            Assert.IsType<string>(actual);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void GetDefault_FileLogLocation()
+        {
+            var actual = sut.Object.FileLogLocation;
+
+            Assert.IsType<string>(actual);
+            Assert.False(string.IsNullOrWhiteSpace(actual));
+        }
+
+        [Fact]
+        public void SetCustom_FileLogLocation()
+        {
+            var expected = @"C:\Logs\File";
+            sut.Object.DatabaseLogLocation = expected;
+
+            var actual = sut.Object.DatabaseLogLocation;
+
+            Assert.IsType<string>(expected);
+            Assert.IsType<string>(actual);
+            Assert.Equal(expected, actual);
+        }
     }
 }
