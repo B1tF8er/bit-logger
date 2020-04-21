@@ -10,15 +10,18 @@ If the code that implements the logger uses a console messages can be sent to it
 
 ## Database ##
 
-A SQLite database is created to save the records in the path where the assembly is run
+A SQLite database is created to save the records in a path that is configurable through code
+(if no path is set, the assembly location will be selected by default)
 
 ## File ##
 
-A file is created every hour to keep small files in the path where the assembly is run
+A file is created every hour to keep small files in a path that is configurable through code
+(if no path is set, the assembly location will be selected by default)
 
 ## Custom ##
 
 You can create custom sources to send the messages to a different output of your preference
+i.e. (FTP, SQL Server, CloudWatch, etc)
 
 ## Configurable ##
 
