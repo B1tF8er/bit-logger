@@ -1,76 +1,59 @@
 ﻿namespace Bit.Logger.Buffer
 {
+    using Arguments;
+    using Helpers;
+    using Config;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using static Helpers.Constants.Buffer;
 
-    internal class LogBuffer<TLog> : ILogBuffer<TLog>
+    internal class LogBuffer<TLog> : ILogBuffer<TLog> where TLog : class
     {
-        public bool Continue { get; set; }
+        private readonly IConfiguration configuration;
+        private readonly object padlock;
+        private readonly Dictionary<string, TLog> logs;
 
-        public Dictionary<string, TLog> Logs { get; }
-
-        public object Padlock { get; }
-
-        internal LogBuffer()
+        internal LogBuffer(IConfiguration configuration)
         {
-            Logs = new Dictionary<string, TLog>();
-            Padlock = new object();
+            this.configuration = configuration;
+            padlock = new object();
+            logs = new Dictionary<string, TLog>();
         }
 
-        public ILogBuffer<TLog> Check(bool isAllowed)
+        public void Write(
+            LogArguments logArguments,
+            Func<LogArguments, IConfiguration, TLog> toLog,
+            Action<IEnumerable<TLog>> write,
+            Func<KeyValuePair<string, TLog>, TLog> selector)
         {
-            Continue = isAllowed;
-
-            return this;
-        }
-
-        public ILogBuffer<TLog> Add(TLog log)
-        {
-            if (!Continue)
-                return this;
+            if (!logArguments.IsLevelAllowed(configuration.Level))
+                return;
 
             var key = $"{DateTime.Now.ToString(AsKey)}-{Guid.NewGuid()}";
+            var log = toLog(logArguments, configuration);
 
-            lock (Padlock)
-                Logs.TryAdd(key, log);
-
-            return this;
-        }
-
-        public ILogBuffer<TLog> Validate(int logsThreshold)
-        {
-            if (!Continue)
-                return this;
+            lock (padlock)
+                logs.TryAdd(key, log);
 
             var count = 0;
 
-            lock (Padlock)
-                count = Logs.Count;
+            lock (padlock)
+                count = logs.Count;
 
-            var underThreshold = count <= logsThreshold;
+            var underThreshold = count < configuration.BufferSize;
 
             if (underThreshold)
-            {
-                Continue = false;
-                return this;
-            }
-
-            Continue = true;
-            return this;
-        }
-
-        public void Write(Action<IEnumerable<TLog>> write, Func<KeyValuePair<string, TLog>, TLog> selector)
-        {
-            if (!Continue)
                 return;
 
-            lock (Padlock)
+            lock (padlock)
             {
-                write(Logs.OrderByDescending(kv => kv.Key.Split('-').First()).Select(selector));
-                Logs.Clear();
+                write(logs.OrderByDescending(DateTimeKey()).Select(selector));
+                logs.Clear();
             }
         }
+
+        private static Func<KeyValuePair<string, TLog>, string> DateTimeKey() =>
+            kv => kv.Key.Split('-').First();
     }
 }

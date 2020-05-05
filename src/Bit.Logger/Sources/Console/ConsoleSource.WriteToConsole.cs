@@ -1,15 +1,16 @@
 namespace Bit.Logger.Sources.Console
 {
     using Arguments;
-    using Writers;
-    using static Helpers.LogArgumentsExtensions;
+    using Helpers;
 
     internal partial class ConsoleSource
     {
         private void WriteToConsole(LogArguments logArguments) => logBuffer
-            .Check(logArguments.IsLevelAllowed(configuration.Level))
-            .Add(logArguments.ToStringLogUsing(configuration))
-            .Validate(configuration.BufferSize)
-            .Write(ConsoleBulkWriter.ToConsole, kv => kv.Value);
+            .Write(
+                logArguments,
+                (logArguments, configuration) => logArguments.ToStringLogUsing(configuration),
+                consoleBulkWriter.ToConsole,
+                kv => kv.Value
+            );
     }
 }

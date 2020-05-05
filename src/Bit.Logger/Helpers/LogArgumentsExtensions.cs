@@ -11,7 +11,7 @@ namespace Bit.Logger.Helpers
 
     internal static class LogArgumentsExtensions
     {
-        internal static string ToStringLogUsing(this ref LogArguments args, IConfiguration configuration) =>
+        internal static string ToStringLogUsing(this LogArguments args, IConfiguration configuration) =>
             string.Format(configuration.FormatProvider, configuration.Format,
                 args.Level,
                 DateTime.Now,
@@ -21,7 +21,7 @@ namespace Bit.Logger.Helpers
                 args.Exception
             ).Trim();
 
-        internal static Log ToDatabaseLogUsing(this ref LogArguments args, IConfiguration configuration) =>
+        internal static Log ToDatabaseLogUsing(this LogArguments args, IConfiguration configuration) =>
             new Log
             {
                 Id = $"{Guid.NewGuid()}",
@@ -33,7 +33,7 @@ namespace Bit.Logger.Helpers
                 Exception = args.Exception?.ToString() ?? null
             };
 
-        internal static bool IsLevelAllowed(this ref LogArguments args, Level level) =>
+        internal static bool IsLevelAllowed(this LogArguments args, Level level) =>
             level <= args.Level;
     }
 }

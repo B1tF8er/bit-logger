@@ -5,9 +5,9 @@ namespace Bit.Logger.Writers
     using static Helpers.ConsoleColorSelector;
     using static Helpers.StringExtensions;
 
-    internal static class ConsoleBulkWriter
+    internal class ConsoleBulkWriter : IConsoleBulkWriter
     {
-        internal static void ToConsole(IEnumerable<string> logs)
+        public void ToConsole(IEnumerable<string> logs)
         {
             foreach (var log in logs)
             {

@@ -1,19 +1,19 @@
 namespace Bit.Logger.Sources.Console
 {
+    using Bit.Logger.Writers;
     using Buffer;
-    using Config;
     using Contract;
 
     internal partial class ConsoleSource : IConsoleSource
     {
-        private readonly IConfiguration configuration;
-
         private readonly ILogBuffer<string> logBuffer;
-            
-        public ConsoleSource(IConfiguration configuration, ILogBuffer<string> logBuffer)
+
+        private readonly IConsoleBulkWriter consoleBulkWriter;
+
+        public ConsoleSource(ILogBuffer<string> logBuffer, IConsoleBulkWriter consoleBulkWriter)
         {
-            this.configuration = configuration;
             this.logBuffer = logBuffer;
+            this.consoleBulkWriter = consoleBulkWriter;
         }
     }
 }

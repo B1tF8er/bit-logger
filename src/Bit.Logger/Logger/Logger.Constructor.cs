@@ -23,7 +23,12 @@
         {
             configuration ??= new Configuration();
 
-            Sources.Add(new ConsoleSource(configuration, new LogBuffer<string>()));
+            Sources.Add(
+                new ConsoleSource(
+                    new LogBuffer<string>(configuration),
+                    new ConsoleBulkWriter()
+                )
+            );
             
             return this;
         }
@@ -34,8 +39,7 @@
 
             Sources.Add(
                 new DatabaseSource(
-                    configuration,
-                    new LogBuffer<Log>(),
+                    new LogBuffer<Log>(configuration),
                     new DatabaseBulkWriter(new DatabaseLogPathResolver(configuration))
                 )
             );
@@ -49,8 +53,7 @@
 
             Sources.Add(
                 new FileSource(
-                    configuration,
-                    new LogBuffer<string>(),
+                    new LogBuffer<string>(configuration),
                     new FileBulkWriter(new FileLogPathResolver(configuration))
                 )
             );
