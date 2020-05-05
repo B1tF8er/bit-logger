@@ -1,6 +1,5 @@
 namespace Bit.Logger.Tests
 {
-    using Enums;
     using FormatProviders;
     using Moq;
     using System;

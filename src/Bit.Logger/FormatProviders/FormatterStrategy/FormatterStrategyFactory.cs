@@ -6,11 +6,8 @@ namespace Bit.Logger.FormatProviders.FormatterStrategy
 
     internal static class FormatterStrategyFactory
     {
-        private static readonly IDictionary<Token, IFormatterStrategy> strategies;
-
-        static FormatterStrategyFactory()
-        {
-            strategies = new Dictionary<Token, IFormatterStrategy>
+        private static readonly IDictionary<Token, IFormatterStrategy> strategies =
+            new Dictionary<Token, IFormatterStrategy>
             {
                 { Token.Level, new LevelFormatterStrategy() },
                 { DateTimeIso, new DateTimeIsoFormatterStrategy() },
@@ -19,7 +16,6 @@ namespace Bit.Logger.FormatProviders.FormatterStrategy
                 { Caller, new CallerFormatterStrategy() },
                 { Exception, new ExceptionFormatterStrategy() }
             };
-        }
 
         internal static IFormatterStrategy GetFormatterStrategy(Token token)
         {

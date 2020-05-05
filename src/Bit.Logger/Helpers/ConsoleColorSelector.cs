@@ -6,10 +6,7 @@ namespace Bit.Logger.Helpers
 
     internal static class ConsoleColorSelector
     {
-        private static readonly IDictionary<Level, ConsoleColor> consoleColors;
-
-        static ConsoleColorSelector()
-        {
+        private static readonly IDictionary<Level, ConsoleColor> consoleColors =
             consoleColors = new Dictionary<Level, ConsoleColor>
             {
                 { Level.Trace, ConsoleColor.DarkMagenta },
@@ -21,7 +18,6 @@ namespace Bit.Logger.Helpers
                 { Level.Critical, ConsoleColor.DarkRed },
                 { Level.None, ConsoleColor.White },
             };
-        }
 
         internal static ConsoleColor GetForegroundColor(this Level level)
         {

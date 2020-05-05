@@ -1,11 +1,9 @@
 namespace Bit.Logger.Tests
 {
-    using Enums;
     using FormatProviders;
     using Moq;
     using System;
     using Xunit;
-    using static Constants;
 
     public class DefaultCustomFormatterShould
     {

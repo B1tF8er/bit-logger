@@ -1,9 +1,5 @@
 namespace Bit.Logger.Helpers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-
     internal static class Constants
     {
         internal static class Format

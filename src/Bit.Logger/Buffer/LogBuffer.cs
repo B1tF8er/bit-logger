@@ -36,12 +36,10 @@
             lock (padlock)
                 logs.TryAdd(key, log);
 
-            var count = 0;
+            var underThreshold = true;
 
             lock (padlock)
-                count = logs.Count;
-
-            var underThreshold = count < configuration.BufferSize;
+                underThreshold = logs.Count < configuration.BufferSize;
 
             if (underThreshold)
                 return;

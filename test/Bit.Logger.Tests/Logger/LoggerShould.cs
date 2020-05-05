@@ -10,7 +10,6 @@ namespace Bit.Logger.Tests
     using Xunit;
     using static Enums.Level;
     using static Enums.ShowLevel;
-    using static LoggerExtensions;
 
     public class LoggerShould
     {
@@ -113,7 +112,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void Return_SourcesAdded_WhenToStringIsCalled()
         {
-            string getSource(string name, bool newLine = true) => 
+            static string getSource(string name, bool newLine = true) => 
                 $"Bit.Logger.Sources.{name}.{name}Source{(newLine ? Environment.NewLine : string.Empty)}";
 
             var sut = new Logger();
