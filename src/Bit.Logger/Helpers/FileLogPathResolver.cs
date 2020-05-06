@@ -14,7 +14,7 @@ namespace Bit.Logger.Helpers
 
         public string CurrentLogPath()
         {
-            string fileLogName = $"{LogName}_{DateTime.Now.ToString(LogNameFormat)}.log";
+            var fileLogName = $"{LogName}_{DateTime.Now.ToString(LogNameFormat)}.log";
             var path = Path.Combine(configuration.FileLogLocation, fileLogName);
             Directory.CreateDirectory(Path.GetDirectoryName(path));
             return path;

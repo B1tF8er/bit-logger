@@ -2,6 +2,6 @@
 {
     public interface IDatabaseLogPathResolver
     {
-        string GetConnectionString();
+        string GetCurrentConnectionString();
     }
 }
