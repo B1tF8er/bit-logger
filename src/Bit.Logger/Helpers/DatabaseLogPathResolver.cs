@@ -1,6 +1,7 @@
 ﻿namespace Bit.Logger.Helpers
 {
     using Config;
+    using System;
     using System.Collections.Generic;
     using System.IO;
 
@@ -8,27 +9,36 @@
     {
         private const string DatabaseName = "logs.db";
 
-        private readonly string[] paths;
+        private readonly List<string> paths;
 
         public DatabaseLogPathResolver(IConfiguration configuration) =>
             paths = new List<string>
             {
                 configuration.DatabaseLogLocation,
                 DatabaseName
-            }.ToArray();
+            };
 
         public string GetConnectionString()
         {
             CreateDirectory();
-            return $"Data Source={Path.GetFullPath(Path.Combine(paths))}";
+            return $"Data Source={Path.GetFullPath(Path.Combine(paths.ToArray()))}";
         }
 
         private void CreateDirectory()
         {
-            var directory = Path.GetDirectoryName(Path.Combine(paths));
+            try
+            {
+                var directory = Path.GetDirectoryName(Path.Combine(paths.ToArray()));
 
-            if (!Directory.Exists(directory))
-                Directory.CreateDirectory(directory);
+                if (!Directory.Exists(directory))
+                    Directory.CreateDirectory(directory);
+            }
+            catch
+            {
+                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory);
+                paths.Clear();
+                paths.Add(AppDomain.CurrentDomain.BaseDirectory);
+            }
         }
     }
 }

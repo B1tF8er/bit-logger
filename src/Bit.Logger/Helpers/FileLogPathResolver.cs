@@ -8,27 +8,36 @@ namespace Bit.Logger.Helpers
 
     internal class FileLogPathResolver : IFileLogPathResolver
     {
-        private readonly string[] paths;
+        private readonly List<string> paths;
 
         public FileLogPathResolver(IConfiguration configuration) =>
             paths = new List<string>
             {
                 configuration.FileLogLocation,
                 $"{DateTime.Now.ToString(LogNameFormat)}.log"
-            }.ToArray();
+            };
 
         public string CurrentLogPath()
         {
             CreateDirectory();
-            return Path.Combine(paths);
+            return Path.Combine(paths.ToArray());
         }
 
         private void CreateDirectory()
         {
-            var directory = Path.GetDirectoryName(Path.Combine(paths));
+            try
+            {
+                var directory = Path.GetDirectoryName(Path.Combine(paths.ToArray()));
 
-            if (!Directory.Exists(directory))
-                Directory.CreateDirectory(directory);
+                if (!Directory.Exists(directory))
+                    Directory.CreateDirectory(directory);
+            }
+            catch
+            {
+                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory);
+                paths.Clear();
+                paths.Add(AppDomain.CurrentDomain.BaseDirectory);
+            }
         }
     }
 }
