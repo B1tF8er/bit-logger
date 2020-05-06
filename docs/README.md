@@ -10,7 +10,7 @@ If the code that implements the logger uses a console messages can be sent to it
 
 ## Database ##
 
-A SQLite database is created to save the records in a path that is configurable through code
+A SQLite database is created every hour to keep small files in a path that is configurable through code
 (if no path is set, the assembly location will be selected by default)
 
 ## File ##
