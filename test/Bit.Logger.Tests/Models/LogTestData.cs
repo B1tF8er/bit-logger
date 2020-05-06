@@ -1,6 +1,6 @@
-﻿namespace Bit.Logger.Tests.Models
+﻿namespace Bit.Logger.Tests
 {
-    using Bit.Logger.Models;
+    using Models;
     using Enums;
     using System;
     using System.Collections.Generic;
