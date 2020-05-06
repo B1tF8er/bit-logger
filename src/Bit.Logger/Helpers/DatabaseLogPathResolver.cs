@@ -1,25 +1,21 @@
 ﻿namespace Bit.Logger.Helpers
 {
     using Config;
-    using System.Collections.Generic;
+    using System;
     using System.IO;
+    using static Constants.PathResolver;
 
     public class DatabaseLogPathResolver : IDatabaseLogPathResolver
     {
-        private const string DatabaseName = "logs.db";
-
-        private readonly string[] paths;
+        private readonly IConfiguration configuration;
 
         public DatabaseLogPathResolver(IConfiguration configuration) =>
-            paths = new List<string>
-            {
-                configuration.DatabaseLogLocation,
-                DatabaseName
-            }.ToArray();
+            this.configuration = configuration;
 
         public string GetConnectionString()
         {
-            var path = Path.Combine(paths);
+            string databaseLogName = $"{LogName}_{DateTime.Now.ToString(LogNameFormat)}.db";
+            var path = Path.Combine(configuration.DatabaseLogLocation, databaseLogName);
             Directory.CreateDirectory(Path.GetDirectoryName(path));
             return $"Data Source={Path.GetFullPath(path)}";
         }
