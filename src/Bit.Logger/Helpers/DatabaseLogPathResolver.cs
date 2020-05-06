@@ -1,7 +1,6 @@
 ﻿namespace Bit.Logger.Helpers
 {
     using Config;
-    using System;
     using System.IO;
     using static Constants.PathResolver;
 
@@ -14,7 +13,7 @@
 
         public string GetConnectionString()
         {
-            string databaseLogName = $"{LogName}_{DateTime.Now.ToString(LogNameFormat)}.db";
+            string databaseLogName = $"{LogName}.db";
             var path = Path.Combine(configuration.DatabaseLogLocation, databaseLogName);
             Directory.CreateDirectory(Path.GetDirectoryName(path));
             return $"Data Source={Path.GetFullPath(path)}";
