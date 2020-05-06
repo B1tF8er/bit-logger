@@ -63,7 +63,7 @@
 
         public ILogger AddSource(ISource source)
         {
-            if (source == null)
+            if (source is null)
                 throw new ArgumentNullException(nameof(source));
 
             Sources.Add(source);
@@ -73,7 +73,7 @@
 
         public ILogger AddSources(IEnumerable<ISource> sources)
         {
-            var anySourceIsNull = sources?.Any(source => source == null) ?? true;
+            var anySourceIsNull = sources?.Any(source => source is null) ?? true;
 
             if (anySourceIsNull)
                 throw new ArgumentNullException(nameof(sources));
