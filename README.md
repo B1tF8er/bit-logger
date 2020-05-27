@@ -8,4 +8,4 @@
 [![NuGet Downloads](https://img.shields.io/nuget/dt/Bit.Logger.svg)](https://www.nuget.org/packages/Bit.Logger)
 [![License](https://img.shields.io/github/license/B1tF8er/bit-logger.svg?style=flat-square)](https://github.com/B1tF8er/bit-logger/blob/master/LICENSE)
 
-See the [docs](./docs/README.md)
+See the [documentation](./docs/README.md)
