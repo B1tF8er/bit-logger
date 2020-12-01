@@ -1,8 +1,7 @@
 namespace Default.Loggers
 {
     using Bit.Logger.Enums;
-    using static Default.Loggers.JsonConvertExtensions;
-    
+
     public struct Message
     {
         public Level Level { get; }

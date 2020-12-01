@@ -6,6 +6,8 @@ namespace Default.Loggers
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using System;
+    using System.IO;
+    using System.Linq;
     using static Constants.Path;
     using static LogConfigurationExtensions;
 
@@ -33,16 +35,17 @@ namespace Default.Loggers
             var databaseConfiguration = CreateConfiguration(DateType.DateIso, ShowLevel.Yes);
             var fileConfiguration = CreateConfiguration(DateType.TimeIso, ShowLevel.No, Level.Critical);
 
-            databaseConfiguration.DatabaseLogLocation = @"D:\Logs\Database";
-            fileConfiguration.FileLogLocation = @"D:\Logs\File";
+            databaseConfiguration.DatabaseLogLocation = GetCustomLogLocation("Database");
+            fileConfiguration.FileLogLocation = GetCustomLogLocation("File");
 
-            var logger = new Logger()
+            return new Logger()
                 .AddConsoleSource(consoleConfiguration)
                 .AddDatabaseSource(databaseConfiguration)
                 .AddFileSource(fileConfiguration);
-
-            return logger;
         }
+
+        private static string GetCustomLogLocation(string logType) =>
+            Path.Combine(Environment.GetLogicalDrives().First(), "Logs", logType);
 
         private static IConfiguration Configuration() => new ConfigurationBuilder()
             .SetBasePath(AppContext.BaseDirectory)
