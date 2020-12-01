@@ -10,7 +10,7 @@ namespace Bit.Logger.Contract
         ILogger AddConsoleSource(Configuration configuration = default);
 
         ILogger AddDatabaseSource(Configuration configuration = default);
-        
+
         ILogger AddFileSource(Configuration configuration = default);
 
         ILogger AddSource(ISource source);

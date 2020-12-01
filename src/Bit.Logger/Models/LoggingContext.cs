@@ -12,7 +12,7 @@ namespace Bit.Logger.Models
         public LoggingContext(IDatabaseLogPathResolver databaseLogPathResolver) =>
             this.databaseLogPathResolver = databaseLogPathResolver;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder.UseSqlite(databaseLogPathResolver.GetCurrentConnectionString());
     }
 }

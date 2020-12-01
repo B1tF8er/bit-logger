@@ -11,7 +11,7 @@ namespace Bit.Logger.FormatProviders.FormatterStrategy
 
             if (callerName.IsNullOrEmptyOrWhiteSpace())
                 return string.Empty;
-            
+
             return Path.GetFileNameWithoutExtension(callerName);
         }
     }

@@ -21,7 +21,7 @@ namespace Bit.Logger.Helpers
 
         internal static ConsoleColor GetForegroundColor(this Level level)
         {
-            consoleColors.TryGetValue(level, out var consoleColor); 
+            consoleColors.TryGetValue(level, out var consoleColor);
             return consoleColor;
         }
     }

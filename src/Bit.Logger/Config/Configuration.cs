@@ -23,8 +23,12 @@ namespace Bit.Logger.Config
 
         public string Format
         {
-            get => format is null ? GetDefaultFormat() : format;
-            set => format = value.IsNullOrEmptyOrWhiteSpace() ? throw new ArgumentNullException(nameof(format)) : value;
+            get => format is null
+                ? GetDefaultFormat()
+                : format;
+            set => format = value.IsNullOrEmptyOrWhiteSpace()
+                ? throw new ArgumentNullException(nameof(format))
+                : value;
         }
 
         public int BufferSize { get; set; } = 0;
@@ -33,30 +37,34 @@ namespace Bit.Logger.Config
 
         public string DatabaseLogLocation
         {
-            get => databaseLogLocation is null ? AppDomain.CurrentDomain.BaseDirectory : databaseLogLocation;
-            set => databaseLogLocation = value.IsNullOrEmptyOrWhiteSpace() ? throw new ArgumentNullException(nameof(databaseLogLocation)) : value; 
+            get => databaseLogLocation is null
+                ? AppDomain.CurrentDomain.BaseDirectory
+                : databaseLogLocation;
+            set => databaseLogLocation = value.IsNullOrEmptyOrWhiteSpace()
+                ? throw new ArgumentNullException(nameof(databaseLogLocation))
+                : value;
         }
-        
+
         private string fileLogLocation = default;
-     
+
         public string FileLogLocation
         {
-            get => fileLogLocation is null ? AppDomain.CurrentDomain.BaseDirectory : fileLogLocation;
-            set => fileLogLocation = value.IsNullOrEmptyOrWhiteSpace() ? throw new ArgumentNullException(nameof(fileLogLocation)) : value;
+            get => fileLogLocation is null
+                ? AppDomain.CurrentDomain.BaseDirectory
+                : fileLogLocation;
+            set => fileLogLocation = value.IsNullOrEmptyOrWhiteSpace()
+                ? throw new ArgumentNullException(nameof(fileLogLocation))
+                : value;
         }
 
-        private string GetDefaultFormat()
-        {
-            var formatBuilder = new StringBuilder();
-
-            return formatBuilder
+        private string GetDefaultFormat() =>
+            new StringBuilder()
                 .Append(ShowLevel.Equals(Yes) ? "{0:" + Token.Level + "} " : string.Empty)
-                .Append("{1:"+ DateTypeFormat.ToString() +"} ")
+                .Append("{1:" + DateTypeFormat.ToString() + "} ")
                 .Append("[{2:" + Token.Caller + "}::{3:" + Token.Method + "}] ")
                 .Append("{4:" + Token.Message + "} ")
                 .Append("{5:" + Token.Exception + "}")
                 .ToString();
-        }
 
         public override string ToString() => $"Level:{Level}, Format:{Format}";
     }

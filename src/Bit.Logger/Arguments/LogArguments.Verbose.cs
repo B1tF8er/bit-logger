@@ -2,7 +2,7 @@ namespace Bit.Logger.Arguments
 {
     using Enums;
     using System;
-    
+
     internal partial struct LogArguments
     {
         internal static LogArguments VerboseMessage(string message, string className, string methodName) =>

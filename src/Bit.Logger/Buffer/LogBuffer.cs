@@ -6,8 +6,8 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using static Helpers.Constants.Buffer;
     using Writers;
+    using static Helpers.Constants.Buffer;
 
     internal class LogBuffer<TLog> : ILogBuffer<TLog> where TLog : class
     {

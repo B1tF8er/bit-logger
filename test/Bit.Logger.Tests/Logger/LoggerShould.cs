@@ -112,14 +112,14 @@ namespace Bit.Logger.Tests
         [Fact]
         public void Return_SourcesAdded_WhenToStringIsCalled()
         {
-            static string getSource(string name, bool newLine = true) => 
+            static string getSource(string name, bool newLine = true) =>
                 $"Bit.Logger.Sources.{name}.{name}Source{(newLine ? Environment.NewLine : string.Empty)}";
 
             var sut = new Logger();
             var expected = $"{getSource("Console")}{getSource("Database")}{getSource("File", false)}";
-            
+
             sut.AddConsoleSource().AddDatabaseSource().AddFileSource();
-            
+
             var actual = sut.ToString();
 
             Assert.Equal(expected, actual);

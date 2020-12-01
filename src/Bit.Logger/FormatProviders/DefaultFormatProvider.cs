@@ -5,8 +5,8 @@ namespace Bit.Logger.FormatProviders
     public class DefaultFormatProvider : IFormatProvider
     {
         public object GetFormat(Type formatType) =>
-            formatType == typeof(ICustomFormatter) ? 
-                new DefaultCustomFormatter() : 
-                null;
+            formatType == typeof(ICustomFormatter)
+                ? new DefaultCustomFormatter()
+                : null;
     }
 }

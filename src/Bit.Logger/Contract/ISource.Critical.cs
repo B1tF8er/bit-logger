@@ -11,5 +11,5 @@ namespace Bit.Logger.Contract
         void Critical(Exception exception, [CallerFilePath] string className = EmptyClassName, [CallerMemberName] string methodName = EmptyMethodName);
 
         void Critical(string message, Exception exception, [CallerFilePath] string className = EmptyClassName, [CallerMemberName] string methodName = EmptyMethodName);
-    }    
+    }
 }
