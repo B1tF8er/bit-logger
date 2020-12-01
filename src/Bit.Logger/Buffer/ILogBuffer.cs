@@ -10,7 +10,6 @@ namespace Bit.Logger.Buffer
         void Write(
             LogArguments logArguments,
             Func<LogArguments, IConfiguration, TLog> toLog,
-            Action<IEnumerable<TLog>> write,
             Func<KeyValuePair<string, TLog>, TLog> selector);
     }
 }

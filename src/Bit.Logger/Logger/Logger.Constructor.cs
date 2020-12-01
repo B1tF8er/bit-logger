@@ -22,27 +22,24 @@
         public ILogger AddConsoleSource(Configuration configuration = default)
         {
             configuration ??= new Configuration();
+            var bulkWriter = new ConsoleBulkWriter();
+            var logBuffer = new LogBuffer<string>(configuration, bulkWriter);
+            var consoleSource = new ConsoleSource(logBuffer);
 
-            Sources.Add(
-                new ConsoleSource(
-                    new LogBuffer<string>(configuration),
-                    new ConsoleBulkWriter()
-                )
-            );
-            
+            Sources.Add(consoleSource);
+
             return this;
         }
 
         public ILogger AddDatabaseSource(Configuration configuration = default)
         {
             configuration ??= new Configuration();
+            var databaseLogPathResolver = new DatabaseLogPathResolver(configuration);
+            var bulkWriter = new DatabaseBulkWriter(databaseLogPathResolver);
+            var logBuffer = new LogBuffer<Log>(configuration, bulkWriter);
+            var databaseSource = new DatabaseSource(logBuffer);
 
-            Sources.Add(
-                new DatabaseSource(
-                    new LogBuffer<Log>(configuration),
-                    new DatabaseBulkWriter(new DatabaseLogPathResolver(configuration))
-                )
-            );
+            Sources.Add(databaseSource);
 
             return this;
         }
@@ -50,13 +47,11 @@
         public ILogger AddFileSource(Configuration configuration = default)
         {
             configuration ??= new Configuration();
+            var bulkWriter = new FileBulkWriter(new FileLogPathResolver(configuration));
+            var logBuffer = new LogBuffer<string>(configuration, bulkWriter);
+            var fileSource = new FileSource(logBuffer);
 
-            Sources.Add(
-                new FileSource(
-                    new LogBuffer<string>(configuration),
-                    new FileBulkWriter(new FileLogPathResolver(configuration))
-                )
-            );
+            Sources.Add(fileSource);
 
             return this;
         }

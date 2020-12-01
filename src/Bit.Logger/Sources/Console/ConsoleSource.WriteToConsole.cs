@@ -9,7 +9,6 @@ namespace Bit.Logger.Sources.Console
             .Write(
                 logArguments,
                 (logArguments, configuration) => logArguments.ToStringLogUsing(configuration),
-                consoleBulkWriter.ToConsole,
                 kv => kv.Value
             );
     }

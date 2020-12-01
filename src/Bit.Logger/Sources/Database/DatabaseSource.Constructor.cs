@@ -1,6 +1,5 @@
 namespace Bit.Logger.Sources.Database
 {
-    using Bit.Logger.Writers;
     using Buffer;
     using Contract;
     using Models;
@@ -9,12 +8,9 @@ namespace Bit.Logger.Sources.Database
     {
         private readonly ILogBuffer<Log> logBuffer;
 
-        private readonly IDatabaseBulkWriter databaseBulkWriter;
-
-        public DatabaseSource(ILogBuffer<Log> logBuffer, IDatabaseBulkWriter databaseBulkWriter)
+        public DatabaseSource(ILogBuffer<Log> logBuffer)
         {
             this.logBuffer = logBuffer;
-            this.databaseBulkWriter = databaseBulkWriter;
         }
     }
 }

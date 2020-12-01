@@ -7,16 +7,19 @@
     using System.Collections.Generic;
     using System.Linq;
     using static Helpers.Constants.Buffer;
+    using Writers;
 
     internal class LogBuffer<TLog> : ILogBuffer<TLog> where TLog : class
     {
         private readonly IConfiguration configuration;
+        private readonly IBulkWriter<TLog> bulkWriter;
         private readonly object padlock;
         private readonly IDictionary<string, TLog> logs;
 
-        internal LogBuffer(IConfiguration configuration)
+        internal LogBuffer(IConfiguration configuration, IBulkWriter<TLog> bulkWriter)
         {
             this.configuration = configuration;
+            this.bulkWriter = bulkWriter;
             padlock = new object();
             logs = new Dictionary<string, TLog>();
         }
@@ -24,7 +27,6 @@
         public void Write(
             LogArguments logArguments,
             Func<LogArguments, IConfiguration, TLog> toLog,
-            Action<IEnumerable<TLog>> write,
             Func<KeyValuePair<string, TLog>, TLog> selector)
         {
             if (!ShouldAdd(logArguments, toLog))
@@ -33,7 +35,7 @@
             if (IsUnderThreshold())
                 return;
 
-            Write(write, selector);
+            Write(selector);
         }
 
         private bool ShouldAdd(LogArguments logArguments, Func<LogArguments, IConfiguration, TLog> toLog)
@@ -60,7 +62,7 @@
             return underThreshold;
         }
 
-        private void Write(Action<IEnumerable<TLog>> write, Func<KeyValuePair<string, TLog>, TLog> selector)
+        private void Write(Func<KeyValuePair<string, TLog>, TLog> selector)
         {
             lock (padlock)
             {
@@ -68,7 +70,7 @@
                     .OrderByDescending(DateTimeKey())
                     .Select(selector);
 
-                write(orderedLogs);
+                bulkWriter.Write(orderedLogs);
                 logs.Clear();
             }
         }

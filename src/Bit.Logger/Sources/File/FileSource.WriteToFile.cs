@@ -10,7 +10,6 @@ namespace Bit.Logger.Sources.File
             .Write(
                 logArguments,
                 (logArguments, configuration) => logArguments.ToStringLogUsing(configuration),
-                fileBulkWriter.ToFileAsync,
                 kv => $"{kv.Value}{Environment.NewLine}"
             );
     }

@@ -6,14 +6,14 @@ namespace Bit.Logger.Writers
     using System.Text;
     using static Helpers.EnumerableExtensions;
 
-    internal class FileBulkWriter : IFileBulkWriter
+    internal class FileBulkWriter : IBulkWriter<string>
     {
         private readonly IFileLogPathResolver fileLogPathResolver;
 
         public FileBulkWriter(IFileLogPathResolver fileLogPathResolver) =>
             this.fileLogPathResolver = fileLogPathResolver;
 
-        public async void ToFileAsync(IEnumerable<string> logs)
+        public async void Write(IEnumerable<string> logs)
         {
             using var logWriter = new StreamWriter(fileLogPathResolver.CurrentLogPath(), true, Encoding.UTF8);
             await logWriter.WriteAsync(logs.ToAppendedString());

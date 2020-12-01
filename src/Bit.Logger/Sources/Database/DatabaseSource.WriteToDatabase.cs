@@ -9,7 +9,6 @@ namespace Bit.Logger.Sources.Database
             .Write(
                 logArguments,
                 (logArguments, configuration) => logArguments.ToDatabaseLogUsing(configuration),
-                databaseBulkWriter.ToDatabaseAsync,
                 kv => kv.Value
             );
     }
