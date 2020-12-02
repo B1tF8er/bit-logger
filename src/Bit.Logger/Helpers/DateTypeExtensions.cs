@@ -14,7 +14,7 @@ namespace Bit.Logger.Helpers
                 { DateType.TimeIso, TimeFormat },
             };
 
-        internal static string GetFormatFor(DateType dateType)
+        internal static string GetFormat(this DateType dateType)
         {
             formats.TryGetValue(dateType, out var format);
             return format;

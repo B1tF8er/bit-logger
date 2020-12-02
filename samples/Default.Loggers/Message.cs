@@ -33,5 +33,19 @@ namespace Default.Loggers
 
         internal static string Critical() =>
             new Message(Level.Critical, Constants.When.Critical).Serialize();
+
+        public override bool Equals(object obj) =>
+            obj is Message message
+            && Level == message.Level
+            && When == message.When;
+
+        public override int GetHashCode() =>
+            Level.GetHashCode() ^ When.GetHashCode();
+
+        public static bool operator ==(Message left, Message right) =>
+            left.Equals(right);
+
+        public static bool operator !=(Message left, Message right) =>
+            !(left == right);
     }
 }

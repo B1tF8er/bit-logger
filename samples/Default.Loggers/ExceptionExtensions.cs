@@ -4,7 +4,7 @@ namespace Default.Loggers
 
     internal static class ExceptionExtensions
     {
-        internal static Exception CreateException(string message) =>
+        internal static Exception CreateException(this string message) =>
             new Exception(message);
     }
 }

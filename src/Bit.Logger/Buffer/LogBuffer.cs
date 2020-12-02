@@ -76,6 +76,6 @@
         }
 
         private static Func<KeyValuePair<string, TLog>, string> DateTimeKey() =>
-            kv => kv.Key.Split('-').First();
+            kv => kv.Key.Split('-').FirstOrDefault();
     }
 }

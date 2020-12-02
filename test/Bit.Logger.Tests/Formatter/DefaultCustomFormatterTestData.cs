@@ -13,56 +13,56 @@ namespace Bit.Logger.Tests
             {
                 Token.Level,
                 Level.Critical,
-                $"<{Level.Critical.ToString().ToUpper()}>"
+                $"<{nameof(Level.Critical).ToUpper()}>"
             };
 
             yield return new object[]
             {
                 Token.Level,
                 Level.Debug,
-                $"<{Level.Debug.ToString().ToUpper()}>"
+                $"<{nameof(Level.Debug).ToUpper()}>"
             };
 
             yield return new object[]
             {
                 Token.Level,
                 Level.Error,
-                $"<{Level.Error.ToString().ToUpper()}>"
+                $"<{nameof(Level.Error).ToUpper()}>"
             };
 
             yield return new object[]
             {
                 Token.Level,
                 Level.Information,
-                $"<{Level.Information.ToString().ToUpper()}>"
+                $"<{nameof(Level.Information).ToUpper()}>"
             };
 
             yield return new object[]
             {
                 Token.Level,
                 Level.None,
-                $"<{Level.None.ToString().ToUpper()}>"
+                $"<{nameof(Level.None).ToUpper()}>"
             };
 
             yield return new object[]
             {
                 Token.Level,
                 Level.Trace,
-                $"<{Level.Trace.ToString().ToUpper()}>"
+                $"<{nameof(Level.Trace).ToUpper()}>"
             };
 
             yield return new object[]
             {
                 Token.Level,
                 Level.Verbose,
-                $"<{Level.Verbose.ToString().ToUpper()}>"
+                $"<{nameof(Level.Verbose).ToUpper()}>"
             };
 
             yield return new object[]
             {
                 Token.Level,
                 Level.Warning,
-                $"<{Level.Warning.ToString().ToUpper()}>"
+                $"<{nameof(Level.Warning).ToUpper()}>"
             };
 
             yield return new object[]

@@ -8,9 +8,9 @@ namespace Bit.Logger.FormatProviders.FormatterStrategy
     {
         public string ApplyFormatTo<TArgument>(TArgument argument)
         {
-            var datetime = argument as Nullable<DateTime>;
+            var datetime = argument as DateTime?;
 
-            return datetime?.ToString(GetFormatFor(DateTimeIso)) ?? string.Empty;
+            return datetime?.ToString(DateTimeIso.GetFormat()) ?? string.Empty;
         }
     }
 }

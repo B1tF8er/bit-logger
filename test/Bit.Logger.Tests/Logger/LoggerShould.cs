@@ -77,7 +77,7 @@ namespace Bit.Logger.Tests
 
             sut.Object.AddSources(customLoggers);
 
-            var actual = sut.Object.Sources.First();
+            var actual = sut.Object.Sources.FirstOrDefault();
 
             Assert.NotNull(actual);
             Assert.True(actual is ISource);
@@ -86,7 +86,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void Throw_ArgumentNullException_WhenAddSourceHasNullValue()
         {
-            var expectedMessage = $"Value cannot be null. (Parameter 'source')";
+            const string expectedMessage = "Value cannot be null. (Parameter 'source')";
 
             var actualException = Assert.Throws<ArgumentNullException>(() => sut.Object.AddSource(null));
 
@@ -102,7 +102,7 @@ namespace Bit.Logger.Tests
                 customSource, null, customSource
             };
 
-            var expectedMessage = $"Value cannot be null. (Parameter 'sources')";
+            const string expectedMessage = "Value cannot be null. (Parameter 'sources')";
 
             var actualException = Assert.Throws<ArgumentNullException>(() => sut.Object.AddSources(customSources));
 

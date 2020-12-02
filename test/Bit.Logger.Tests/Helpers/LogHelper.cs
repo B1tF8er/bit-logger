@@ -7,12 +7,12 @@
     {
         internal static string BuildLogString(this Log log) =>
             new StringBuilder()
-                .Append($"Level: {log.Level} ")
-                .Append($"Message: {log.Message} ")
-                .Append($"Date: {log.Date} ")
-                .Append($"Class: {log.Class} ")
-                .Append($"Method: {log.Method} ")
-                .Append($"Exception: {log.Exception}")
+                .Append("Level: ").Append(log.Level).Append(' ')
+                .Append("Message: ").Append(log.Message).Append(' ')
+                .Append("Date: ").Append(log.Date).Append(' ')
+                .Append("Class: ").Append(log.Class).Append(' ')
+                .Append("Method: ").Append(log.Method).Append(' ')
+                .Append("Exception: ").Append(log.Exception)
                 .ToString();
     }
 }

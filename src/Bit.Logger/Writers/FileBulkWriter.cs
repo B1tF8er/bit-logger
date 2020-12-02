@@ -16,7 +16,7 @@ namespace Bit.Logger.Writers
         public async void Write(IEnumerable<string> logs)
         {
             using var logWriter = new StreamWriter(fileLogPathResolver.CurrentLogPath(), true, Encoding.UTF8);
-            await logWriter.WriteAsync(logs.ToAppendedString());
+            await logWriter.WriteAsync(logs.ToAppendedString()).ConfigureAwait(false);
         }
     }
 }

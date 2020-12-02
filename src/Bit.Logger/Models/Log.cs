@@ -20,12 +20,12 @@ namespace Bit.Logger.Models
 
         public override string ToString() =>
             new StringBuilder()
-                .Append($"Level: {Level} ")
-                .Append($"Message: {Message} ")
-                .Append($"Date: {Date} ")
-                .Append($"Class: {Class} ")
-                .Append($"Method: {Method} ")
-                .Append($"Exception: {Exception}")
+                .Append("Level: ").Append(Level).Append(' ')
+                .Append("Message: ").Append(Message).Append(' ')
+                .Append("Date: ").Append(Date).Append(' ')
+                .Append("Class: ").Append(Class).Append(' ')
+                .Append("Method: ").Append(Method).Append(' ')
+                .Append("Exception: ").Append(Exception)
                 .ToString();
     }
 }

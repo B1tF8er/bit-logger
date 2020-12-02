@@ -45,7 +45,7 @@ namespace Default.Loggers
         }
 
         private static string GetCustomLogLocation(string logType) =>
-            Path.Combine(Environment.GetLogicalDrives().First(), "Logs", logType);
+            Path.Combine(Environment.GetLogicalDrives().FirstOrDefault(), "Logs", logType);
 
         private static IConfiguration Configuration() => new ConfigurationBuilder()
             .SetBasePath(AppContext.BaseDirectory)

@@ -16,7 +16,7 @@ namespace Bit.Logger.Tests
 
         internal static class Config
         {
-            private static readonly string logicalDrive = Environment.GetLogicalDrives().First();
+            private static readonly string logicalDrive = Environment.GetLogicalDrives().FirstOrDefault();
 
             internal static readonly Configuration Console = new Configuration
             {

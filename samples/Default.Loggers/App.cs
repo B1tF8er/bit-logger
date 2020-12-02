@@ -41,24 +41,24 @@ namespace Default.Loggers
 
         private void LogExceptions()
         {
-            logger.Trace(CreateException(Message.Trace()));
-            logger.Debug(CreateException(Message.Debug()));
-            logger.Verbose(CreateException(Message.Verbose()));
-            logger.Information(CreateException(Message.Information()));
-            logger.Warning(CreateException(Message.Warning()));
-            logger.Error(CreateException(Message.Error()));
-            logger.Critical(CreateException(Message.Critical()));
+            logger.Trace(Message.Trace().CreateException());
+            logger.Debug(Message.Debug().CreateException());
+            logger.Verbose(Message.Verbose().CreateException());
+            logger.Information(Message.Information().CreateException());
+            logger.Warning(Message.Warning().CreateException());
+            logger.Error(Message.Error().CreateException());
+            logger.Critical(Message.Critical().CreateException());
         }
 
         private void LogMessagesWithExceptions()
         {
-            logger.Trace("Trace", CreateException(Message.Trace()));
-            logger.Debug("Debug", CreateException(Message.Debug()));
-            logger.Verbose("Verbose", CreateException(Message.Verbose()));
-            logger.Information("Information", CreateException(Message.Information()));
-            logger.Warning("Warning", CreateException(Message.Warning()));
-            logger.Error("Error", CreateException(Message.Error()));
-            logger.Critical("Critical", CreateException(Message.Critical()));
+            logger.Trace("Trace", Message.Trace().CreateException());
+            logger.Debug("Debug", Message.Debug().CreateException());
+            logger.Verbose("Verbose", Message.Verbose().CreateException());
+            logger.Information("Information", Message.Information().CreateException());
+            logger.Warning("Warning", Message.Warning().CreateException());
+            logger.Error("Error", Message.Error().CreateException());
+            logger.Critical("Critical", Message.Critical().CreateException());
         }
     }
 }

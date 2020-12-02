@@ -3,12 +3,12 @@
     using System;
     using Microsoft.Extensions.DependencyInjection;
 
-    class Program
+    public static class Program
     {
         private static Action Run =>
             Startup.ServiceProvider.GetService<App>().Run;
 
-        static void Main(string[] _) =>
+        private static void Main(string[] _) =>
             Run.TryOrFailFast();
     }
 }

@@ -6,10 +6,10 @@ namespace Bit.Logger.FormatProviders.FormatterStrategy
     {
         public string ApplyFormatTo<TArgument>(TArgument argument)
         {
-            if (!(argument is Exception exception))
-                return string.Empty;
+            if (argument is Exception exception)
+                return $"Exception: {exception}";
 
-            return $"Exception: {exception}";
+            return string.Empty;
         }
     }
 }

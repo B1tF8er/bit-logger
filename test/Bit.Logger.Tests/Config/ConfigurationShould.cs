@@ -22,7 +22,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void GetDefault_Format()
         {
-            var expected = "{0:Level} {1:DateTimeIso} [{2:Caller}::{3:Method}] {4:Message} {5:Exception}";
+            const string expected = "{0:Level} {1:DateTimeIso} [{2:Caller}::{3:Method}] {4:Message} {5:Exception}";
 
             var actual = sut.Object.Format;
 
@@ -32,7 +32,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void SetCustom_Format()
         {
-            var expected = "{4:Message} {5:Exception} from [{2:Caller}::{3:Method}]";
+            const string expected = "{4:Message} {5:Exception} from [{2:Caller}::{3:Method}]";
             sut.Object.Format = expected;
 
             var actual = sut.Object.Format;
@@ -43,7 +43,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void Throw_ArgumentNullException_WhenFormatIsNull()
         {
-            var expectedMessage = $"Value cannot be null. (Parameter 'format')";
+            const string expectedMessage = "Value cannot be null. (Parameter 'format')";
 
             var actualException = Assert.Throws<ArgumentNullException>(() => sut.Object.Format = null);
 
@@ -53,7 +53,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void Throw_ArgumentNullException_WhenFormatIsEmptyString()
         {
-            var expectedMessage = $"Value cannot be null. (Parameter 'format')";
+            const string expectedMessage = "Value cannot be null. (Parameter 'format')";
 
             var actualException = Assert.Throws<ArgumentNullException>(() => sut.Object.Format = string.Empty);
 
@@ -63,7 +63,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void Throw_ArgumentNullException_WhenFormatIsWhiteSpace()
         {
-            var expectedMessage = $"Value cannot be null. (Parameter 'format')";
+            const string expectedMessage = "Value cannot be null. (Parameter 'format')";
 
             var actualException = Assert.Throws<ArgumentNullException>(() => sut.Object.Format = new string(' ', 2));
 
@@ -95,7 +95,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void GetDefault_Level()
         {
-            var expected = Level.Information;
+            const Level expected = Level.Information;
 
             var actual = sut.Object.Level;
 
@@ -106,7 +106,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void SetCustom_Level()
         {
-            var expected = Level.None;
+            const Level expected = Level.None;
             sut.Object.Level = expected;
 
             var actual = sut.Object.Level;
@@ -119,7 +119,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void GetDefault_ShowLevel()
         {
-            var expected = Yes;
+            const ShowLevel expected = Yes;
 
             var actual = sut.Object.ShowLevel;
 
@@ -129,7 +129,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void SetCustom_ShowLevel()
         {
-            var expected = No;
+            const ShowLevel expected = No;
             sut.Object.ShowLevel = expected;
 
             var actual = sut.Object.ShowLevel;
@@ -140,7 +140,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void GetDefault_DateTypeFormat()
         {
-            var expected = DateTimeIso;
+            const DateType expected = DateTimeIso;
 
             var actual = sut.Object.DateTypeFormat;
 
@@ -151,7 +151,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void SetCustom_DateTypeFormat()
         {
-            var expected = TimeIso;
+            const DateType expected = TimeIso;
             sut.Object.DateTypeFormat = expected;
 
             var actual = sut.Object.DateTypeFormat;
@@ -165,7 +165,7 @@ namespace Bit.Logger.Tests
         public void ToString_DefaultLevelAndFormat()
         {
             var sut = new Configuration();
-            var defaultFormat = "{0:Level} {1:DateTimeIso} [{2:Caller}::{3:Method}] {4:Message} {5:Exception}";
+            const string defaultFormat = "{0:Level} {1:DateTimeIso} [{2:Caller}::{3:Method}] {4:Message} {5:Exception}";
             var expected = $"Level:{Information}, Format:{defaultFormat}";
 
             var actual = sut.ToString();
@@ -176,7 +176,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void ToString_CustomLevelAndFormat()
         {
-            var customFormat = "{1:DateTimeIso} - {0:Level} {4:Message} {5:Exception} at [{2:Caller}::{3:Method}]";
+            const string customFormat = "{1:DateTimeIso} - {0:Level} {4:Message} {5:Exception} at [{2:Caller}::{3:Method}]";
             var expected = $"Level:{Critical}, Format:{customFormat}";
 
             sut.Object.Level = Critical;
@@ -192,7 +192,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void GetDefault_BufferSize()
         {
-            var expected = 0;
+            const int expected = 0;
 
             var actual = sut.Object.BufferSize;
 
@@ -203,7 +203,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void SetCustom_BufferSize()
         {
-            var expected = 50;
+            const int expected = 50;
             sut.Object.BufferSize = expected;
 
             var actual = sut.Object.BufferSize;
@@ -225,7 +225,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void SetCustom_DatabaseLogLocation()
         {
-            var expected = @"C:\Logs\Database";
+            const string expected = @"C:\Logs\Database";
             sut.Object.DatabaseLogLocation = expected;
 
             var actual = sut.Object.DatabaseLogLocation;
@@ -247,7 +247,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void SetCustom_FileLogLocation()
         {
-            var expected = @"C:\Logs\File";
+            const string expected = @"C:\Logs\File";
             sut.Object.FileLogLocation = expected;
 
             var actual = sut.Object.FileLogLocation;
