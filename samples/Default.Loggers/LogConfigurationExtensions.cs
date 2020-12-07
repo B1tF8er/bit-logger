@@ -17,13 +17,13 @@ namespace Default.Loggers
             };
 
         internal static Configuration CreateDatabaseLogConfiguration() =>
-                new Configuration
-                {
-                    DateTypeFormat = DateType.DateIso,
-                    ShowLevel = ShowLevel.Yes,
-                    Level = Level.Information,
-                    DatabaseLogLocation = GetCustomLogLocation("Database")
-                };
+            new Configuration
+            {
+                DateTypeFormat = DateType.DateIso,
+                ShowLevel = ShowLevel.Yes,
+                Level = Level.Information,
+                DatabaseLogLocation = GetCustomLogLocation("Database")
+            };
 
         internal static Configuration CreateFileLogConfiguration() =>
             new Configuration
