@@ -23,7 +23,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void AddConsoleSource_AndReturnConsoleSource()
         {
-            sut.Object.AddConsoleSource(It.IsAny<Configuration>());
+            sut.Object.AddConsoleSource(It.IsAny<ConsoleConfiguration>());
 
             var actual = sut.Object.Sources.Single();
 
@@ -34,7 +34,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void AddDatabaseSource_AndReturnDatabaseSource()
         {
-            sut.Object.AddDatabaseSource(It.IsAny<Configuration>());
+            sut.Object.AddDatabaseSource(It.IsAny<DatabaseConfiguration>());
 
             var actual = sut.Object.Sources.Single();
 
@@ -45,7 +45,7 @@ namespace Bit.Logger.Tests
         [Fact]
         public void AddFileSource_AndReturnFileSource()
         {
-            sut.Object.AddFileSource(It.IsAny<Configuration>());
+            sut.Object.AddFileSource(It.IsAny<FileConfiguration>());
 
             var actual = sut.Object.Sources.Single();
 
@@ -141,16 +141,26 @@ namespace Bit.Logger.Tests
 
         private void SetBaseSources(Level level, ShowLevel showLevel, int bufferSize)
         {
-            var configuration = new Configuration
+            sut.Object.AddConsoleSource(new ConsoleConfiguration
             {
                 Level = level,
                 ShowLevel = showLevel,
                 BufferSize = bufferSize
-            };
+            });
 
-            sut.Object.AddConsoleSource(configuration);
-            sut.Object.AddDatabaseSource(configuration);
-            sut.Object.AddFileSource(configuration);
+            sut.Object.AddDatabaseSource(new DatabaseConfiguration
+            {
+                Level = level,
+                ShowLevel = showLevel,
+                BufferSize = bufferSize
+            });
+
+            sut.Object.AddFileSource(new FileConfiguration
+            {
+                Level = level,
+                ShowLevel = showLevel,
+                BufferSize = bufferSize
+            });
         }
     }
 }

@@ -19,9 +19,9 @@
 
         public Logger() => Sources = new List<ISource>();
 
-        public ILogger AddConsoleSource(Configuration configuration = default)
+        public ILogger AddConsoleSource(IConsoleConfiguration configuration = default)
         {
-            configuration ??= new Configuration();
+            configuration ??= new ConsoleConfiguration();
             var bulkWriter = new ConsoleBulkWriter();
             var logBuffer = new LogBuffer<string>(configuration, bulkWriter);
             var consoleSource = new ConsoleSource(logBuffer);
@@ -31,9 +31,9 @@
             return this;
         }
 
-        public ILogger AddDatabaseSource(Configuration configuration = default)
+        public ILogger AddDatabaseSource(IDatabaseConfiguration configuration = default)
         {
-            configuration ??= new Configuration();
+            configuration ??= new DatabaseConfiguration();
             var databaseLogPathResolver = new DatabaseLogPathResolver(configuration);
             var bulkWriter = new DatabaseBulkWriter(databaseLogPathResolver);
             var logBuffer = new LogBuffer<Log>(configuration, bulkWriter);
@@ -44,9 +44,9 @@
             return this;
         }
 
-        public ILogger AddFileSource(Configuration configuration = default)
+        public ILogger AddFileSource(IFileConfiguration configuration = default)
         {
-            configuration ??= new Configuration();
+            configuration ??= new FileConfiguration();
             var bulkWriter = new FileBulkWriter(new FileLogPathResolver(configuration));
             var logBuffer = new LogBuffer<string>(configuration, bulkWriter);
             var fileSource = new FileSource(logBuffer);
@@ -80,7 +80,7 @@
 
         public override string ToString() =>
             Sources
-                .Select(s => $"{s}")
-                .Aggregate((acc, next) => $"{acc}{Environment.NewLine}{next}");
+                .Select(source => $"{source}")
+                .Aggregate((sourcesSoFar, nextSource) => $"{sourcesSoFar}{Environment.NewLine}{nextSource}");
     }
 }

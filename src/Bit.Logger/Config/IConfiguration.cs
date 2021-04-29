@@ -11,14 +11,6 @@ namespace Bit.Logger.Config
 
         Level Level { get; set; }
 
-        IFormatProvider FormatProvider { get; set; }
-
-        string Format { get; set; }
-
         int BufferSize { get; set; }
-
-        string DatabaseLogLocation { get; set; }
-
-        string FileLogLocation { get; set; }
     }
 }

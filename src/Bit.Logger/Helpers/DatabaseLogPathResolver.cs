@@ -7,9 +7,9 @@
 
     public class DatabaseLogPathResolver : IDatabaseLogPathResolver
     {
-        private readonly IConfiguration configuration;
+        private readonly IDatabaseConfiguration configuration;
 
-        public DatabaseLogPathResolver(IConfiguration configuration) =>
+        public DatabaseLogPathResolver(IDatabaseConfiguration configuration) =>
             this.configuration = configuration;
 
         public string GetCurrentConnectionString()

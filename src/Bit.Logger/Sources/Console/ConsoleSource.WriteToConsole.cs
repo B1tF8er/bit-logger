@@ -8,7 +8,7 @@ namespace Bit.Logger.Sources.Console
         private void WriteToConsole(LogArguments logArguments) => logBuffer
             .Write(
                 logArguments,
-                (logArguments, configuration) => logArguments.ToStringLogUsing(configuration),
+                (logArguments, configuration) => logArguments.ToConsoleLogUsing(configuration),
                 kv => kv.Value
             );
     }

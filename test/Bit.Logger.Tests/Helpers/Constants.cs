@@ -18,21 +18,21 @@ namespace Bit.Logger.Tests
         {
             private static readonly string logicalDrive = Environment.GetLogicalDrives().FirstOrDefault();
 
-            internal static readonly Configuration Console = new Configuration
+            internal static readonly IConsoleConfiguration Console = new ConsoleConfiguration
             {
                 Level = Level.None
             };
 
-            internal static readonly Configuration Database = new Configuration
+            internal static readonly IDatabaseConfiguration Database = new DatabaseConfiguration
             {
                 Level = Level.None,
                 DatabaseLogLocation = Path.Combine(logicalDrive, "Logs", "Database")
             };
 
-            internal static readonly Configuration File = new Configuration
+            internal static readonly IFileConfiguration File = new FileConfiguration
             {
                 Level = Level.None,
-                DatabaseLogLocation = Path.Combine(logicalDrive, "Logs", "File")
+                FileLogLocation = Path.Combine(logicalDrive, "Logs", "File")
             };
         }
     }

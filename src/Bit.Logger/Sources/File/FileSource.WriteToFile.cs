@@ -9,7 +9,7 @@ namespace Bit.Logger.Sources.File
         private void WriteToFile(LogArguments logArguments) => logBuffer
             .Write(
                 logArguments,
-                (logArguments, configuration) => logArguments.ToStringLogUsing(configuration),
+                (logArguments, configuration) => logArguments.ToFileLogUsing(configuration),
                 kv => $"{kv.Value}{Environment.NewLine}"
             );
     }

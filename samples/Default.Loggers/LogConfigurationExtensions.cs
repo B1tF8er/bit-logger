@@ -8,16 +8,16 @@ namespace Default.Loggers
 
     internal static class LogConfigurationExtensions
     {
-        internal static Configuration CreateConsoleLogConfiguration() =>
-            new Configuration
+        internal static IConsoleConfiguration CreateConsoleLogConfiguration() =>
+            new ConsoleConfiguration
             {
                 DateTypeFormat = DateType.DateTimeIso,
                 ShowLevel = ShowLevel.Yes,
                 Level = Level.Trace
             };
 
-        internal static Configuration CreateDatabaseLogConfiguration() =>
-            new Configuration
+        internal static IDatabaseConfiguration CreateDatabaseLogConfiguration() =>
+            new DatabaseConfiguration
             {
                 DateTypeFormat = DateType.DateIso,
                 ShowLevel = ShowLevel.Yes,
@@ -25,8 +25,8 @@ namespace Default.Loggers
                 DatabaseLogLocation = GetCustomLogLocation("Database")
             };
 
-        internal static Configuration CreateFileLogConfiguration() =>
-            new Configuration
+        internal static IFileConfiguration CreateFileLogConfiguration() =>
+            new FileConfiguration
             {
                 DateTypeFormat = DateType.TimeIso,
                 ShowLevel = ShowLevel.No,

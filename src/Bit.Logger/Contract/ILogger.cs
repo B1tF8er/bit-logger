@@ -7,11 +7,11 @@ namespace Bit.Logger.Contract
     {
         List<ISource> Sources { get; }
 
-        ILogger AddConsoleSource(Configuration configuration = default);
+        ILogger AddConsoleSource(IConsoleConfiguration configuration = default);
 
-        ILogger AddDatabaseSource(Configuration configuration = default);
+        ILogger AddDatabaseSource(IDatabaseConfiguration configuration = default);
 
-        ILogger AddFileSource(Configuration configuration = default);
+        ILogger AddFileSource(IFileConfiguration configuration = default);
 
         ILogger AddSource(ISource source);
 

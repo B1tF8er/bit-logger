@@ -11,15 +11,15 @@ namespace Bit.Logger.Helpers
 
     internal static class LogArgumentsExtensions
     {
-        internal static string ToStringLogUsing(this LogArguments args, IConfiguration configuration) =>
-            string.Format(configuration.FormatProvider, configuration.Format,
-                args.Level,
-                DateTime.Now,
-                args.ClassName,
-                args.MethodName,
-                args.Message,
-                args.Exception
-            ).Trim();
+        internal static string ToConsoleLogUsing(this LogArguments args, IConfiguration configuration)
+        {
+            var consoleConfiguration = configuration as IFormatConfiguration;
+
+            return args.ToFormatedString(
+                consoleConfiguration.FormatProvider,
+                consoleConfiguration.Format
+            );
+        }
 
         internal static Log ToDatabaseLogUsing(this LogArguments args, IConfiguration configuration) =>
             new Log
@@ -33,7 +33,29 @@ namespace Bit.Logger.Helpers
                 Exception = args.Exception?.ToString() ?? null
             };
 
+        internal static string ToFileLogUsing(this LogArguments args, IConfiguration configuration)
+        {
+            var fileConfiguration = configuration as IFormatConfiguration;
+
+            return args.ToFormatedString(
+                fileConfiguration.FormatProvider,
+                fileConfiguration.Format
+            );
+        }
+
         internal static bool IsLevelAllowed(this LogArguments args, Level level) =>
             level <= args.Level;
+
+        private static string ToFormatedString(this LogArguments args, IFormatProvider formatProvider, string format) =>
+            string.Format(
+                formatProvider,
+                format,
+                args.Level.ToString(),
+                DateTime.Now,
+                args.ClassName,
+                args.MethodName,
+                args.Message,
+                args.Exception
+            ).Trim();
     }
 }

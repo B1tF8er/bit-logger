@@ -7,9 +7,9 @@ namespace Bit.Logger.Helpers
 
     internal class FileLogPathResolver : IFileLogPathResolver
     {
-        private readonly IConfiguration configuration;
+        private readonly IFileConfiguration configuration;
 
-        public FileLogPathResolver(IConfiguration configuration) =>
+        public FileLogPathResolver(IFileConfiguration configuration) =>
             this.configuration = configuration;
 
         public string CurrentLogPath()

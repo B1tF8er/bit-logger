@@ -16,7 +16,7 @@ namespace Bit.Logger.Tests
             sut = new Mock<ILogger>(MockBehavior.Strict);
 
             sut.SetupCalls()
-                .Setup(logger => logger.AddConsoleSource(It.IsAny<Configuration>()));
+                .Setup(logger => logger.AddConsoleSource(It.IsAny<ConsoleConfiguration>()));
         }
 
         [Fact]
