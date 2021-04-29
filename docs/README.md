@@ -99,17 +99,17 @@ public enum Level
 
 public void Test()
 {
-    var consoleConfiguration = new Configuration
+    var consoleConfiguration = new ConsoleConfiguration
     {
         Level = Level.Trace // Do not ignore any level and log all messages
     };
 
-    var databaseConfiguration = new Configuration
+    var databaseConfiguration = new DatabaseConfiguration
     {
         Level = Level.Warning // Ignore any lower levels and only log messages equal or greater than Warning
     };
 
-    var fileConfiguration = new Configuration
+    var fileConfiguration = new FileConfiguration
     {
         Level = Level.Critical // Ignore any lower levels and only log Critical messages 
     };
