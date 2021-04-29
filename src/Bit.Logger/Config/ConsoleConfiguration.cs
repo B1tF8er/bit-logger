@@ -2,6 +2,5 @@
 {
     public class ConsoleConfiguration : FormatConfiguration, IConsoleConfiguration
     {
-
     }
 }
