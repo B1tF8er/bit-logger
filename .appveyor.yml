@@ -19,10 +19,6 @@ only_commits:
     - src/
     - test/
 
-environment:
-  COVERALLS_REPO_TOKEN:
-    secure: 0n47+7c3YiptuHdHw7IBRhdFghphRyIbAQ2u0HiUV8D8mE2AqBK17naDGOuvM1/q
-
 before_build:
   - dotnet --version
   - dotnet restore ./src/Bit.Logger
@@ -34,13 +30,9 @@ build_script:
   - dotnet pack ./src/Bit.Logger -c Release -o ./artifacts/nupkg
 
 test_script:
-  # Build tests project
+  # Build and run tests project
   - dotnet build ./test/Bit.Logger.Tests -c Release
-
-after_test:
-  # Run tests and create coverage file to send to coveralls.io
-  - dotnet test ./test/Bit.Logger.Tests -c Release --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="../coverage.xml" /p:Include=\"[Bit.Logger]\" /p:Exclude=\"[Bit.Logger]Bit.Logger.Migrations.*\"
-  - ps: iex ((Get-ChildItem ($env:USERPROFILE + '\.nuget\packages\coveralls.io'))[0].FullName + '\tools\coveralls.net.exe' + ' --opencover ./test/coverage.xml --full-sources false')
+  - dotnet test ./test/Bit.Logger.Tests -c Release --no-build 
 
 artifacts:
   - path: ./artifacts/nupkg/*.nupkg
